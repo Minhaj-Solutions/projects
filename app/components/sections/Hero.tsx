@@ -42,7 +42,7 @@ const fadeInUp = {
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-primary-dark via-gray-900 to-primary-dark">
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-primary-dark">
       {/* Background Image with Overlay */}
       <motion.div
         className="absolute inset-0"
@@ -54,10 +54,10 @@ export function Hero() {
           src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop"
           alt="Team collaboration"
           fill
-          className="object-cover opacity-10"
+          className="object-cover opacity-30"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-dark/90 via-primary-dark/80 to-primary/70"></div>
+        <div className="absolute inset-0 bg-primary-dark/50"></div>
       </motion.div>
 
       {/* Decorative Elements */}
@@ -89,7 +89,7 @@ export function Hero() {
             className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-6 md:mb-8 text-white"
           >
             Transform Your Business with{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-light via-primary to-primary-light">
+            <span className="text-primary-light">
               Cutting-Edge Solutions
             </span>
           </motion.h1>
