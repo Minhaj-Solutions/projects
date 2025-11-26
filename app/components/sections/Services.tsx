@@ -1,9 +1,10 @@
 'use client'
 
 import { ArrowRight, Code, Palette, ShoppingCart, TrendingUp } from 'lucide-react'
-import Link from 'next/link'
 import Image from 'next/image'
+import Link from 'next/link'
 import { ScrollAnimation, ScrollContainer, ScrollItem } from '../ui/ScrollAnimation'
+import { Button } from '../ui/Button'
 
 const services = [
   {
@@ -77,10 +78,10 @@ export function Services() {
                       sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
                       priority={index < 2}
                     />
-                    
+
                     {/* Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent group-hover:from-black/90 group-hover:via-black/70 transition-all duration-300"></div>
-                    
+
                     {/* Icon - Always Visible */}
                     <div className="absolute top-6 left-6">
                       <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center">
@@ -94,7 +95,7 @@ export function Services() {
                       <h3 className="text-2xl font-bold text-white mb-3">
                         {service.name}
                       </h3>
-                      
+
                       {/* Hidden content that appears on hover */}
                       <div className="max-h-0 overflow-hidden group-hover:max-h-40 transition-all duration-300 ease-in-out">
                         <p className="text-white/90 text-sm leading-relaxed mb-4">
@@ -117,6 +118,22 @@ export function Services() {
             )
           })}
         </ScrollContainer>
+
+        {/* View More Button */}
+        <ScrollAnimation delay={0.4}>
+          <div className="text-center mt-12 md:mt-16">
+            <Link href="/services">
+              <Button 
+                size="lg" 
+                variant="outline"
+                className="border-2 border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300"
+              >
+                View More Services
+                <ArrowRight className="w-5 h-5 ml-2" />
+              </Button>
+            </Link>
+          </div>
+        </ScrollAnimation>
       </div>
     </section>
   )
