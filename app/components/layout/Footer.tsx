@@ -1,0 +1,126 @@
+import Link from "next/link"
+import Image from "next/image"
+import { Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin } from "lucide-react"
+import { SITE_NAME, NAVIGATION_ITEMS, SERVICE_CATEGORIES } from "@/app/lib/constants"
+
+export function Footer() {
+  const currentYear = new Date().getFullYear()
+
+  return (
+    <footer className="bg-gray-800 text-gray-300">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 py-12 md:py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+          {/* Company Info */}
+          <div>
+            <div className="mb-4">
+              <Link href="/" aria-label={SITE_NAME} className="inline-flex items-center">
+                <Image
+                  src="/logo.png"
+                  alt={`${SITE_NAME} logo`}
+                  width={797}
+                  height={559}
+                  className="h-11 w-auto"
+                />
+              </Link>
+            </div>
+            <p className="text-sm mb-4">
+              Professional technology services provider offering comprehensive solutions for businesses worldwide.
+            </p>
+            <div className="flex space-x-4 text-gray-400">
+              <a href="#" className="hover:text-primary transition-colors" aria-label="Facebook">
+                <Facebook className="w-5 h-5" />
+              </a>
+              <a href="#" className="hover:text-primary transition-colors" aria-label="Twitter">
+                <Twitter className="w-5 h-5" />
+              </a>
+              <a href="#" className="hover:text-primary transition-colors" aria-label="LinkedIn">
+                <Linkedin className="w-5 h-5" />
+              </a>
+              <a href="#" className="hover:text-primary transition-colors" aria-label="Instagram">
+                <Instagram className="w-5 h-5" />
+              </a>
+            </div>
+          </div>
+
+          {/* Services */}
+          <div>
+            <h3 className="text-white text-lg font-semibold mb-4">Services</h3>
+            <ul className="space-y-2">
+              {SERVICE_CATEGORIES.map((category) => (
+                <li key={category.id}>
+                  <Link 
+                    href={`/services/${category.id}`}
+                    className="text-sm hover:text-white transition-colors"
+                  >
+                    {category.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Company */}
+          <div>
+            <h3 className="text-white text-lg font-semibold mb-4">Company</h3>
+            <ul className="space-y-2">
+              {NAVIGATION_ITEMS.map((item) => (
+                <li key={item.name}>
+                  <Link 
+                    href={item.href}
+                    className="text-sm hover:text-white transition-colors"
+                  >
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <h3 className="text-white text-lg font-semibold mb-4">Contact</h3>
+            <ul className="space-y-3">
+              <li className="flex items-start gap-2">
+                <Mail className="w-5 h-5 flex-shrink-0 mt-0.5" />
+                <a href="mailto:info@minhajsolutions.com" className="text-sm hover:text-white transition-colors">
+                  info@minhajsolutions.com
+                </a>
+              </li>
+              <li className="flex items-start gap-2">
+                <Phone className="w-5 h-5 flex-shrink-0 mt-0.5" />
+                <a href="tel:+1234567890" className="text-sm hover:text-white transition-colors">
+                  +1 (234) 567-890
+                </a>
+              </li>
+              <li className="flex items-start gap-2">
+                <MapPin className="w-5 h-5 flex-shrink-0 mt-0.5" />
+                <span className="text-sm">
+                  123 Business Street<br />
+                  City, State 12345
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="pt-8 border-t border-gray-800">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-sm">
+              © {currentYear} {SITE_NAME}. All rights reserved.
+            </p>
+            <div className="flex gap-6">
+              <Link href="/privacy" className="text-sm hover:text-white transition-colors">
+                Privacy Policy
+              </Link>
+              <Link href="/terms" className="text-sm hover:text-white transition-colors">
+                Terms of Service
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  )
+}
+
