@@ -1,0 +1,578 @@
+'use client'
+
+import { useState } from 'react'
+import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle } from 'lucide-react'
+import { Button } from '@/app/components/ui/Button'
+import { ScrollAnimation } from '@/app/components/ui/ScrollAnimation'
+import { SITE_NAME } from '@/app/lib/constants'
+
+interface FormData {
+  firstName: string
+  lastName: string
+  businessEmail: string
+  company: string
+  jobTitle: string
+  phone: string
+  location: string
+  message: string
+  consent: boolean
+}
+
+interface FormErrors {
+  firstName?: string
+  lastName?: string
+  businessEmail?: string
+  company?: string
+  jobTitle?: string
+  phone?: string
+  location?: string
+  message?: string
+  consent?: string
+}
+
+export default function ContactPage() {
+  const [formData, setFormData] = useState<FormData>({
+    firstName: '',
+    lastName: '',
+    businessEmail: '',
+    company: '',
+    jobTitle: '',
+    phone: '',
+    location: '',
+    message: '',
+    consent: false,
+  })
+
+  const [errors, setErrors] = useState<FormErrors>({})
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isSubmitted, setIsSubmitted] = useState(false)
+
+  const validateForm = (): boolean => {
+    const newErrors: FormErrors = {}
+
+    if (!formData.firstName.trim()) {
+      newErrors.firstName = 'First name is required'
+    }
+
+    if (!formData.lastName.trim()) {
+      newErrors.lastName = 'Last name is required'
+    }
+
+    if (!formData.businessEmail.trim()) {
+      newErrors.businessEmail = 'Business email is required'
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.businessEmail)) {
+      newErrors.businessEmail = 'Please enter a valid email address'
+    }
+
+    if (!formData.company.trim()) {
+      newErrors.company = 'Company name is required'
+    }
+
+    if (!formData.jobTitle.trim()) {
+      newErrors.jobTitle = 'Job title is required'
+    }
+
+    if (formData.phone && !/^[\d\s\-\+\(\)]+$/.test(formData.phone)) {
+      newErrors.phone = 'Please enter a valid phone number'
+    }
+
+    if (!formData.location) {
+      newErrors.location = 'Please select your location'
+    }
+
+    if (!formData.consent) {
+      newErrors.consent = 'You must consent to proceed'
+    }
+
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+
+    if (!validateForm()) {
+      return
+    }
+
+    setIsSubmitting(true)
+
+    // Simulate API call
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 1500))
+      setIsSubmitted(true)
+      setFormData({
+        firstName: '',
+        lastName: '',
+        businessEmail: '',
+        company: '',
+        jobTitle: '',
+        phone: '',
+        location: '',
+        message: '',
+        consent: false,
+      })
+      setErrors({})
+    } catch (error) {
+      console.error('Form submission error:', error)
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
+    const { name, value, type } = e.target
+    const checked = (e.target as HTMLInputElement).checked
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value,
+    }))
+
+    // Clear error when user starts typing
+    if (errors[name as keyof FormErrors]) {
+      setErrors((prev) => ({
+        ...prev,
+        [name]: undefined,
+      }))
+    }
+  }
+
+  const countries = [
+    { value: '', label: 'Select Country' },
+    { value: 'PK', label: 'Pakistan' },
+    { value: 'US', label: 'United States' },
+    { value: 'UK', label: 'United Kingdom' },
+    { value: 'CA', label: 'Canada' },
+    { value: 'AU', label: 'Australia' },
+    { value: 'AE', label: 'United Arab Emirates' },
+    { value: 'SA', label: 'Saudi Arabia' },
+    { value: 'IN', label: 'India' },
+    { value: 'DE', label: 'Germany' },
+    { value: 'FR', label: 'France' },
+    { value: 'OTHER', label: 'Other' },
+  ]
+
+  return (
+    <div className="min-h-screen bg-white">
+      {/* Page Hero */}
+      <section className="py-12 md:py-16 bg-gradient-to-b from-gray-50 to-white border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
+          <ScrollAnimation>
+            <div className="text-center max-w-3xl mx-auto">
+              <div className="inline-flex items-center gap-2 bg-primary/5 px-4 py-2 rounded-full mb-4">
+                <div className="w-2 h-2 bg-primary rounded-full"></div>
+                <span className="text-primary font-semibold text-sm">Get In Touch</span>
+              </div>
+              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                Contact Us
+              </h1>
+              <p className="text-lg md:text-xl text-gray-600">
+                Let's Talk Business
+              </p>
+              <p className="text-base text-gray-500 mt-3">
+                Get in touch with {SITE_NAME} for all your technology needs and inquiries.
+              </p>
+            </div>
+          </ScrollAnimation>
+        </div>
+      </section>
+
+      {/* Contact Form + Info Section */}
+      <section className="py-16 md:py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-12">
+            {/* Office Information - Left Side */}
+            <ScrollAnimation direction="right" className="lg:col-span-4">
+              <div className="bg-gradient-to-br from-primary to-primary-dark rounded-2xl p-8 text-white shadow-xl">
+                <h2 className="text-2xl font-bold mb-6">Offices</h2>
+
+                <div className="space-y-6">
+                  {/* Email */}
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Mail className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold mb-1">Email</h3>
+                      <a
+                        href="mailto:info@minhajsolutions.com"
+                        className="text-white/90 hover:text-white transition-colors text-sm break-all"
+                      >
+                        info@minhajsolutions.com
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Phone */}
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Phone className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold mb-1">Phone</h3>
+                      <a
+                        href="tel:+92-000-0000000"
+                        className="text-white/90 hover:text-white transition-colors text-sm"
+                      >
+                        +92 000 0000000
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Address */}
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <MapPin className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold mb-1">Office</h3>
+                      <address className="text-white/90 text-sm not-italic leading-relaxed">
+                        123 Business Street<br />
+                        City, State 12345<br />
+                        Pakistan
+                      </address>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Trust Indicators */}
+                <div className="mt-8 pt-8 border-t border-white/20">
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-3">
+                      <CheckCircle className="w-5 h-5 text-white/80" />
+                      <span className="text-sm text-white/90">24/7 Support Available</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <CheckCircle className="w-5 h-5 text-white/80" />
+                      <span className="text-sm text-white/90">Free Consultation</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <CheckCircle className="w-5 h-5 text-white/80" />
+                      <span className="text-sm text-white/90">Quick Response Time</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ScrollAnimation>
+
+            {/* Contact Form - Right Side */}
+            <ScrollAnimation direction="left" className="lg:col-span-8">
+              <div className="bg-white rounded-2xl border border-gray-200 shadow-lg p-6 md:p-8">
+                {isSubmitted ? (
+                  <div className="text-center py-12">
+                    <div className="w-16 h-16 bg-success/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <CheckCircle className="w-8 h-8 text-success" />
+                    </div>
+                    <h2 className="text-2xl font-bold text-gray-900 mb-2">
+                      Thank You!
+                    </h2>
+                    <p className="text-gray-600 mb-6">
+                      We've received your message. Someone from our team will reach out to find a time to connect with you.
+                    </p>
+                    <Button
+                      onClick={() => setIsSubmitted(false)}
+                      variant="outline"
+                    >
+                      Send Another Message
+                    </Button>
+                  </div>
+                ) : (
+                  <>
+                    <div className="mb-6">
+                      <h2 className="text-2xl font-bold text-gray-900 mb-2">
+                        Let's discuss your project
+                      </h2>
+                      <p className="text-gray-600">
+                        We are committed to understanding your requirements and crafting a tailored solution that aligns with your goals.
+                        Enter your details and someone from our team will reach out to find a time to connect with you.
+                      </p>
+                    </div>
+
+                    <form onSubmit={handleSubmit} className="space-y-6">
+                      {/* First Name & Last Name */}
+                      <div className="grid md:grid-cols-2 gap-4">
+                        <div>
+                          <label
+                            htmlFor="firstName"
+                            className="block text-sm font-medium text-gray-700 mb-1.5"
+                          >
+                            First Name <span className="text-error">*</span>
+                          </label>
+                          <input
+                            type="text"
+                            id="firstName"
+                            name="firstName"
+                            value={formData.firstName}
+                            onChange={handleChange}
+                            className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all ${
+                              errors.firstName
+                                ? 'border-error focus:ring-error focus:border-error'
+                                : 'border-gray-300'
+                            }`}
+                            placeholder="John"
+                          />
+                          {errors.firstName && (
+                            <p className="mt-1 text-xs text-error flex items-center gap-1">
+                              <AlertCircle className="w-3 h-3" />
+                              {errors.firstName}
+                            </p>
+                          )}
+                        </div>
+
+                        <div>
+                          <label
+                            htmlFor="lastName"
+                            className="block text-sm font-medium text-gray-700 mb-1.5"
+                          >
+                            Last Name <span className="text-error">*</span>
+                          </label>
+                          <input
+                            type="text"
+                            id="lastName"
+                            name="lastName"
+                            value={formData.lastName}
+                            onChange={handleChange}
+                            className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all ${
+                              errors.lastName
+                                ? 'border-error focus:ring-error focus:border-error'
+                                : 'border-gray-300'
+                            }`}
+                            placeholder="Doe"
+                          />
+                          {errors.lastName && (
+                            <p className="mt-1 text-xs text-error flex items-center gap-1">
+                              <AlertCircle className="w-3 h-3" />
+                              {errors.lastName}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Business Email */}
+                      <div>
+                        <label
+                          htmlFor="businessEmail"
+                          className="block text-sm font-medium text-gray-700 mb-1.5"
+                        >
+                          Business Email <span className="text-error">*</span>
+                        </label>
+                        <input
+                          type="email"
+                          id="businessEmail"
+                          name="businessEmail"
+                          value={formData.businessEmail}
+                          onChange={handleChange}
+                          className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all ${
+                            errors.businessEmail
+                              ? 'border-error focus:ring-error focus:border-error'
+                              : 'border-gray-300'
+                          }`}
+                          placeholder="john.doe@company.com"
+                        />
+                        {errors.businessEmail && (
+                          <p className="mt-1 text-xs text-error flex items-center gap-1">
+                            <AlertCircle className="w-3 h-3" />
+                            {errors.businessEmail}
+                          </p>
+                        )}
+                      </div>
+
+                      {/* Company & Job Title */}
+                      <div className="grid md:grid-cols-2 gap-4">
+                        <div>
+                          <label
+                            htmlFor="company"
+                            className="block text-sm font-medium text-gray-700 mb-1.5"
+                          >
+                            Company <span className="text-error">*</span>
+                          </label>
+                          <input
+                            type="text"
+                            id="company"
+                            name="company"
+                            value={formData.company}
+                            onChange={handleChange}
+                            className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all ${
+                              errors.company
+                                ? 'border-error focus:ring-error focus:border-error'
+                                : 'border-gray-300'
+                            }`}
+                            placeholder="Company Name"
+                          />
+                          {errors.company && (
+                            <p className="mt-1 text-xs text-error flex items-center gap-1">
+                              <AlertCircle className="w-3 h-3" />
+                              {errors.company}
+                            </p>
+                          )}
+                        </div>
+
+                        <div>
+                          <label
+                            htmlFor="jobTitle"
+                            className="block text-sm font-medium text-gray-700 mb-1.5"
+                          >
+                            Job Title <span className="text-error">*</span>
+                          </label>
+                          <input
+                            type="text"
+                            id="jobTitle"
+                            name="jobTitle"
+                            value={formData.jobTitle}
+                            onChange={handleChange}
+                            className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all ${
+                              errors.jobTitle
+                                ? 'border-error focus:ring-error focus:border-error'
+                                : 'border-gray-300'
+                            }`}
+                            placeholder="CEO, CTO, Manager"
+                          />
+                          {errors.jobTitle && (
+                            <p className="mt-1 text-xs text-error flex items-center gap-1">
+                              <AlertCircle className="w-3 h-3" />
+                              {errors.jobTitle}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Phone & Location */}
+                      <div className="grid md:grid-cols-2 gap-4">
+                        <div>
+                          <label
+                            htmlFor="phone"
+                            className="block text-sm font-medium text-gray-700 mb-1.5"
+                          >
+                            Phone
+                          </label>
+                          <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            value={formData.phone}
+                            onChange={handleChange}
+                            className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all ${
+                              errors.phone
+                                ? 'border-error focus:ring-error focus:border-error'
+                                : 'border-gray-300'
+                            }`}
+                            placeholder="+1 (234) 567-890"
+                          />
+                          {errors.phone && (
+                            <p className="mt-1 text-xs text-error flex items-center gap-1">
+                              <AlertCircle className="w-3 h-3" />
+                              {errors.phone}
+                            </p>
+                          )}
+                        </div>
+
+                        <div>
+                          <label
+                            htmlFor="location"
+                            className="block text-sm font-medium text-gray-700 mb-1.5"
+                          >
+                            Location <span className="text-error">*</span>
+                          </label>
+                          <select
+                            id="location"
+                            name="location"
+                            value={formData.location}
+                            onChange={handleChange}
+                            className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all bg-white ${
+                              errors.location
+                                ? 'border-error focus:ring-error focus:border-error'
+                                : 'border-gray-300'
+                            }`}
+                          >
+                            {countries.map((country) => (
+                              <option key={country.value} value={country.value}>
+                                {country.label}
+                              </option>
+                            ))}
+                          </select>
+                          {errors.location && (
+                            <p className="mt-1 text-xs text-error flex items-center gap-1">
+                              <AlertCircle className="w-3 h-3" />
+                              {errors.location}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Message */}
+                      <div>
+                        <label
+                          htmlFor="message"
+                          className="block text-sm font-medium text-gray-700 mb-1.5"
+                        >
+                          Message
+                        </label>
+                        <textarea
+                          id="message"
+                          name="message"
+                          value={formData.message}
+                          onChange={handleChange}
+                          rows={4}
+                          className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all resize-none"
+                          placeholder="Tell us about your project requirements..."
+                        />
+                      </div>
+
+                      {/* Consent Checkbox */}
+                      <div>
+                        <label className="flex items-start gap-3 cursor-pointer">
+                          <input
+                            type="checkbox"
+                            name="consent"
+                            checked={formData.consent}
+                            onChange={handleChange}
+                            className="mt-1 w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary"
+                          />
+                          <span className="text-sm text-gray-600">
+                            I consent to {SITE_NAME} processing my personal information as set out in the Privacy Policy for marketing purposes and therefore to be contacted via the contact information I provided. Given the global nature of {SITE_NAME}'s business, such processing may take place outside of my home jurisdiction. The consent can be withdrawn at any time under the contact in the Privacy Policy.{' '}
+                            <span className="text-error">*</span>
+                          </span>
+                        </label>
+                        {errors.consent && (
+                          <p className="mt-1 text-xs text-error flex items-center gap-1">
+                            <AlertCircle className="w-3 h-3" />
+                            {errors.consent}
+                          </p>
+                        )}
+                      </div>
+
+                      {/* Submit Button */}
+                      <Button
+                        type="submit"
+                        size="lg"
+                        fullWidth
+                        disabled={isSubmitting}
+                        className="bg-primary hover:bg-primary-dark text-white shadow-lg shadow-primary/20"
+                      >
+                        {isSubmitting ? (
+                          <>
+                            <span className="animate-spin mr-2">⏳</span>
+                            Submitting...
+                          </>
+                        ) : (
+                          <>
+                            <Send className="w-5 h-5 mr-2" />
+                            Submit
+                          </>
+                        )}
+                      </Button>
+                    </form>
+                  </>
+                )}
+              </div>
+            </ScrollAnimation>
+          </div>
+        </div>
+      </section>
+    </div>
+  )
+}
+
