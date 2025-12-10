@@ -51,37 +51,30 @@ export function Hero() {
         transition={{ duration: 1.5, ease: "easeOut" }}
       >
         <Image
-          src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop"
+          src="/bg-hero.jpeg"
           alt="Team collaboration"
           fill
           className="object-cover opacity-30"
           priority
         />
-        <div className="absolute inset-0 bg-primary-dark/50"></div>
+        <div className="absolute inset-0 bg-black/10"></div>
       </motion.div>
 
       {/* Decorative Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-primary/20 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary-light/10 rounded-full blur-3xl"></div>
+        <div className="absolute top-0 right-0 w-96 h-96 bg-black/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-black-light/10 rounded-full blur-3xl"></div>
       </div>
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 w-full py-16 md:py-24">
         <motion.div
-          className="max-w-5xl"
+          className="max-w-5xl mx-auto text-center"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
-          {/* Badge */}
-          <motion.div
-            variants={itemVariants}
-            className="inline-flex items-center gap-2 text-primary bg-primary/10 px-4 py-2 rounded-full font-semibold uppercase text-xs tracking-wider mb-8 backdrop-blur-md border border-primary/30"
-          >
-            <span className="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
-            Professional Technology Services
-          </motion.div>
+
 
           {/* Heading */}
           <motion.h1
@@ -97,7 +90,7 @@ export function Hero() {
           {/* Description */}
           <motion.p
             variants={itemVariants}
-            className="text-lg md:text-xl lg:text-2xl text-gray-200 mb-10 md:mb-12 max-w-3xl leading-relaxed font-light"
+            className="text-lg md:text-xl lg:text-2xl text-gray-200 mb-10 md:mb-12 max-w-3xl mx-auto leading-relaxed font-light"
           >
             From custom software development to digital marketing excellence.
             We deliver 134 specialized services across 4 core categories to help your business thrive.
@@ -106,13 +99,13 @@ export function Hero() {
           {/* Key Points - Grid Layout */}
           <motion.div
             variants={containerVariants}
-            className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-10 md:mb-12"
+            className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-10 md:mb-12 justify-items-center"
           >
             <motion.div
               variants={fadeInUp}
-              className="flex items-start gap-4 bg-white/5 backdrop-blur-md rounded-lg p-6 border border-white/10 hover:bg-white/10 hover:border-primary/30 transition-all duration-300"
+              className="flex items-start gap-4 bg-white/5 backdrop-blur-md rounded-lg p-6 border border-white/10 hover:bg-white/10 hover:border-primary/30 transition-all duration-300 max-w-sm w-full"
             >
-              <div className="flex-shrink-0 mt-1">
+              <div className="shrink-0 mt-1">
                 <CheckCircle className="w-6 h-6 text-success" />
               </div>
               <div>
@@ -122,9 +115,9 @@ export function Hero() {
             </motion.div>
             <motion.div
               variants={fadeInUp}
-              className="flex items-start gap-4 bg-white/5 backdrop-blur-md rounded-lg p-6 border border-white/10 hover:bg-white/10 hover:border-primary/30 transition-all duration-300"
+              className="flex items-start gap-4 bg-white/5 backdrop-blur-md rounded-lg p-6 border border-white/10 hover:bg-white/10 hover:border-primary/30 transition-all duration-300 max-w-sm w-full"
             >
-              <div className="flex-shrink-0 mt-1">
+              <div className="shrink-0 mt-1">
                 <CheckCircle className="w-6 h-6 text-success" />
               </div>
               <div>
@@ -134,9 +127,9 @@ export function Hero() {
             </motion.div>
             <motion.div
               variants={fadeInUp}
-              className="flex items-start gap-4 bg-white/5 backdrop-blur-md rounded-lg p-6 border border-white/10 hover:bg-white/10 hover:border-primary/30 transition-all duration-300"
+              className="flex items-start gap-4 bg-white/5 backdrop-blur-md rounded-lg p-6 border border-white/10 hover:bg-white/10 hover:border-primary/30 transition-all duration-300 max-w-sm w-full"
             >
-              <div className="flex-shrink-0 mt-1">
+              <div className="shrink-0 mt-1">
                 <CheckCircle className="w-6 h-6 text-success" />
               </div>
               <div>
@@ -149,10 +142,10 @@ export function Hero() {
           {/* CTAs */}
           <motion.div
             variants={itemVariants}
-            className="flex flex-col sm:flex-row gap-4 md:gap-6"
+            className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center"
           >
-            <Button 
-              size="lg" 
+            <Button
+              size="lg"
               className="bg-primary hover:bg-primary-dark text-white shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 transition-all duration-300"
             >
               Get Started

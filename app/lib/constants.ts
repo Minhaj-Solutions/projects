@@ -15,28 +15,24 @@ export const SERVICE_CATEGORIES = [
     name: 'Software Development',
     description: 'Custom software solutions tailored to your business needs',
     icon: 'Code',
-    servicesCount: 27,
   },
   {
     id: 'website-design-creative',
     name: 'Website Design & Creative',
     description: 'Beautiful, modern designs that engage and convert',
     icon: 'Palette',
-    servicesCount: 31,
   },
   {
     id: 'digital-marketing',
     name: 'Digital Marketing',
     description: 'Data-driven marketing strategies that deliver results',
     icon: 'TrendingUp',
-    servicesCount: 65,
   },
   {
     id: 'ecommerce-solutions',
     name: 'E-Commerce Solutions',
     description: 'Complete e-commerce platforms to grow your business',
     icon: 'ShoppingCart',
-    servicesCount: 11,
   },
 ]
 

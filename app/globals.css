@@ -42,3 +42,80 @@
 .border-muted {
   border-color: var(--color-gray-300);
 }
+
+/* Tech Stack Marquee Animations */
+@keyframes marquee-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-right {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.marquee {
+  position: relative;
+  overflow: hidden;
+}
+
+.marquee::before,
+.marquee::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 80px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.marquee::before {
+  left: 0;
+  background: linear-gradient(to right, var(--color-gray-50), transparent);
+}
+
+.marquee::after {
+  right: 0;
+  background: linear-gradient(to left, var(--color-gray-50), transparent);
+}
+
+.marquee-track {
+  display: flex;
+  align-items: center;
+  animation-play-state: running;
+}
+
+.marquee-track-left {
+  animation: marquee-left 28s linear infinite;
+}
+
+.marquee-track-right {
+  animation: marquee-right 32s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* Shimmer animation for hover effects */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(200%) translateY(200%) rotate(45deg);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 0.6s ease-out;
+}

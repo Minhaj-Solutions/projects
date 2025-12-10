@@ -1,127 +1,166 @@
 'use client'
 
 import { Target, Users, Zap, Shield, Award, HeadphonesIcon } from "lucide-react"
-import Image from "next/image"
-import { ScrollAnimation, ScrollContainer, ScrollItem } from '../ui/ScrollAnimation'
+import { Card } from "../ui/Card"
+import { ScrollAnimation, ScrollContainer, ScrollItem } from "../ui/ScrollAnimation"
 
-const features = [
+const highlights = [
   {
-    icon: Target,
-    title: 'Results-Driven Approach',
-    description: 'We focus on delivering measurable results that align with your business goals and drive growth.',
-    color: 'from-primary/80 to-primary-dark',
+    title: "Hands-on partnership",
+    description: "Senior leads stay engaged from discovery to post-launch, so context never gets lost.",
   },
   {
-    icon: Users,
-    title: 'Expert Team',
-    description: 'Our talented professionals bring years of experience and cutting-edge expertise to every project.',
-    color: 'from-primary/80 to-primary-dark',
+    title: "Transparent delivery",
+    description: "Weekly demos, sprint scorecards, and open channels keep you clear on progress without chasing updates.",
+  },
+]
+
+const stats = [
+  { value: "98%", label: "client satisfaction across 500+ launches" },
+  { value: "12 yrs", label: "average leadership experience per squad" },
+]
+
+const differentiators = [
+  {
+    icon: Target,
+    badge: "Strategy",
+    title: "Outcome-led roadmaps",
+    description: "Co-create a measurable roadmap in week one with KPIs, milestones, and success criteria everyone agrees on.",
+    meta: "Roadmap ready in week one",
   },
   {
     icon: Zap,
-    title: 'Fast Delivery',
-    description: 'Agile methodology and efficient processes ensure your projects are delivered on time, every time.',
-    color: 'from-primary/80 to-primary-dark',
+    badge: "Delivery",
+    title: "Momentum every sprint",
+    description: "Two-week increments with demos and release-ready builds that shorten time-to-value without sacrificing quality.",
+    meta: "Demo every Friday",
   },
   {
     icon: Shield,
-    title: 'Quality Assurance',
-    description: 'Rigorous testing and QA processes guarantee the highest standards of quality and reliability.',
-    color: 'from-primary/80 to-primary-dark',
+    badge: "Reliability",
+    title: "Quality baked in",
+    description: "Automated checks, QA gates, and peer reviews prevent rework and keep launches calm and predictable.",
+    meta: "Zero missed release windows in the last 12 months",
+  },
+  {
+    icon: Users,
+    badge: "Team",
+    title: "Embedded leadership",
+    description: "Product and engineering leads stay on your account—not a rotating bench—so decisions stay sharp and consistent.",
+    meta: "Same leads from kickoff to scale",
   },
   {
     icon: Award,
-    title: 'Proven Track Record',
-    description: '500+ successful projects and 98% client satisfaction rate speak to our commitment to excellence.',
-    color: 'from-primary/80 to-primary-dark',
+    badge: "Expertise",
+    title: "Cross-industry depth",
+    description: "Fintech, healthcare, retail, and growth-stage SaaS experience means fewer surprises and compliant builds.",
+    meta: "500+ launches shipped",
   },
   {
     icon: HeadphonesIcon,
-    title: '24/7 Support',
-    description: 'Round-the-clock support ensures your business operations run smoothly without interruption.',
-    color: 'from-primary/80 to-primary-dark',
+    badge: "Support",
+    title: "Follow-the-sun care",
+    description: "24/7 support with clear SLAs, proactive monitoring, and calm incident management when you need it most.",
+    meta: "12 min average first response",
   },
+]
+
+const collaboration = [
+  "Roadmap and success metrics defined together in week one",
+  "Dedicated Slack or Teams pod with the same senior leads",
+  "Post-launch care with runbooks, monitoring, and optimizations",
 ]
 
 export function WhyChooseUs() {
   return (
-    <section className="py-16 md:py-24 bg-white relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0" style={{
-          backgroundImage: 'radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)',
-          backgroundSize: '40px 40px'
-        }}></div>
+    <section className="py-16 md:py-24 bg-gradient-to-b from-gray-50 via-white to-gray-50 relative overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute -left-24 top-6 w-72 h-72 rounded-full bg-primary/5 blur-3xl" />
+        <div className="absolute bottom-10 right-0 w-80 h-80 rounded-full bg-primary-light/60 blur-3xl" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 md:px-6 relative">
-        <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
-          {/* Text Content */}
-          <ScrollAnimation direction="right">
-            <div>
-              <div className="inline-block text-primary font-semibold uppercase text-sm tracking-wide mb-3">
-                Why Choose Us
-              </div>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-                Partner with{' '}
-                <span className="text-primary">Industry Leaders</span>
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+          <ScrollAnimation direction="right" className="lg:col-span-5 space-y-6 lg:sticky lg:top-24">
+            <div className="inline-flex items-center gap-2 bg-white border border-gray-200/80 px-4 py-2 rounded-full text-sm font-semibold text-primary shadow-sm backdrop-blur">
+              <span className="w-2 h-2 rounded-full bg-primary" />
+              Why partners stay with us
+            </div>
+            <div className="space-y-4">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
+                A delivery partner that feels in-house
               </h2>
-              <p className="text-lg text-gray-600 mb-6">
-                We combine innovation, expertise, and dedication to deliver exceptional results that exceed expectations.
-              </p>
-              <p className="text-gray-600 leading-relaxed">
-                With over a decade of experience and a portfolio of 500+ successful projects, 
-                we've established ourselves as a trusted technology partner for businesses worldwide.
+              <p className="text-lg text-gray-700">
+                Small, senior squads that move fast, stay transparent, and keep every milestone measurable.
               </p>
             </div>
-          </ScrollAnimation>
 
-          {/* Image */}
-          <ScrollAnimation direction="left" delay={0.2}>
-            <div className="relative">
-              <div className="relative h-96 rounded-2xl overflow-hidden shadow-2xl">
-                <Image
-                  src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop"
-                  alt="Professional team meeting"
-                  fill
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent"></div>
-              </div>
-              {/* Floating Stats */}
-              <div className="absolute -bottom-6 -left-6 bg-white rounded-xl shadow-xl p-6 border border-gray-100">
-                <div className="text-4xl font-bold text-primary mb-1">98%</div>
-                <div className="text-sm text-gray-600">Client Satisfaction</div>
-              </div>
-              <div className="absolute -top-6 -right-6 bg-white rounded-xl shadow-xl p-6 border border-gray-100">
-                <div className="text-4xl font-bold text-primary mb-1">10+</div>
-                <div className="text-sm text-gray-600">Years Experience</div>
-              </div>
-            </div>
-          </ScrollAnimation>
-        </div>
-
-        {/* Features Grid */}
-        <ScrollContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-6" stagger={0.1}>
-          {features.map((feature, index) => {
-            const Icon = feature.icon
-            return (
-              <ScrollItem key={index} delay={index * 0.1}>
-                <div className="group bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 p-6 border border-gray-100 hover:border-primary/20 hover:-translate-y-1">
-                  <div className={`w-14 h-14 bg-gradient-to-br ${feature.color} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
-                    <Icon className="w-7 h-7 text-white" />
+            <div className="space-y-4">
+              {highlights.map((item) => (
+                <div key={item.title} className="flex items-start gap-3">
+                  <span className="mt-1 inline-block w-2 h-2 rounded-full bg-primary" />
+                  <div>
+                    <div className="text-base font-semibold text-gray-900">{item.title}</div>
+                    <p className="text-gray-600 text-sm leading-relaxed">{item.description}</p>
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-primary transition-colors">
-                    {feature.title}
-                  </h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                    {feature.description}
-                  </p>
                 </div>
-              </ScrollItem>
-            )
-          })}
-        </ScrollContainer>
+              ))}
+            </div>
+
+            <div className="grid grid-cols-2 gap-4 pt-2">
+              {stats.map((stat) => (
+                <Card key={stat.label} className="shadow-sm border border-gray-200/80 bg-white/80 backdrop-blur">
+                  <div className="text-3xl md:text-4xl font-bold text-primary mb-1">{stat.value}</div>
+                  <div className="text-sm text-gray-600 leading-relaxed">{stat.label}</div>
+                </Card>
+              ))}
+            </div>
+          </ScrollAnimation>
+
+          <ScrollContainer className="lg:col-span-7 grid sm:grid-cols-2 gap-4 lg:gap-6" stagger={0.1}>
+            {differentiators.map((item, index) => {
+              const Icon = item.icon
+              return (
+                <ScrollItem key={item.title} delay={index * 0.08}>
+                  <Card hover className="h-full border border-gray-200/80 shadow-sm bg-white/90 backdrop-blur transition-transform duration-300">
+                    <div className="inline-flex items-center gap-2 text-xs font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full">
+                      {item.badge}
+                    </div>
+                    <div className="mt-4 flex items-center gap-3">
+                      <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+                        <Icon className="w-6 h-6" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-gray-900">{item.title}</h3>
+                    </div>
+                    <p className="text-gray-600 text-sm leading-relaxed mt-3">{item.description}</p>
+                    <div className="mt-4 text-sm font-semibold text-primary">{item.meta}</div>
+                  </Card>
+                </ScrollItem>
+              )
+            })}
+
+            <ScrollItem className="sm:col-span-2" delay={differentiators.length * 0.08}>
+              <Card hover className="border border-gray-200/80 shadow-sm bg-white/90 backdrop-blur">
+                <div className="flex items-start gap-3 mb-4">
+                  <Shield className="w-5 h-5 text-primary mt-0.5" />
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-900">How we work together</h3>
+                    <p className="text-gray-600 text-sm leading-relaxed">
+                      Simple rituals that keep collaboration calm, predictable, and human.
+                    </p>
+                  </div>
+                </div>
+                <div className="grid sm:grid-cols-3 gap-3">
+                  {collaboration.map((point) => (
+                    <div key={point} className="bg-gray-100 border border-gray-200 rounded-lg p-3 text-sm text-gray-700 leading-relaxed">
+                      {point}
+                    </div>
+                  ))}
+                </div>
+              </Card>
+            </ScrollItem>
+          </ScrollContainer>
+        </div>
       </div>
     </section>
   )

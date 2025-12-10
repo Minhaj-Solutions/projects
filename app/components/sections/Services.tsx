@@ -1,42 +1,34 @@
 'use client'
 
-import { ArrowRight, Code, Palette, ShoppingCart, TrendingUp } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ScrollAnimation, ScrollContainer, ScrollItem } from '../ui/ScrollAnimation'
 import { Button } from '../ui/Button'
+import { ScrollAnimation, ScrollContainer, ScrollItem } from '../ui/ScrollAnimation'
 
 const services = [
   {
     id: 'software-development',
     name: 'Software Development',
     description: 'Custom software solutions, mobile apps, web applications, AI/ML services, and game development tailored to your needs.',
-    icon: Code,
-    count: '27 Services',
     image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop',
   },
   {
     id: 'website-design-creative',
     name: 'Website Design & Creative',
     description: 'UI/UX design, branding, graphics, web design, and multimedia production services that captivate your audience.',
-    icon: Palette,
-    count: '31 Services',
     image: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=2055&auto=format&fit=crop',
   },
   {
     id: 'digital-marketing',
     name: 'Digital Marketing',
     description: 'SEO, SEM, social media marketing, content creation, and comprehensive strategies to grow your online presence.',
-    icon: TrendingUp,
-    count: '65 Services',
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop',
   },
   {
     id: 'ecommerce-solutions',
     name: 'E-Commerce Solutions',
     description: 'Complete e-commerce platforms, Shopify, WooCommerce, multi-vendor marketplaces to scale your business.',
-    icon: ShoppingCart,
-    count: '11 Services',
     image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?q=80&w=2070&auto=format&fit=crop',
   },
 ]
@@ -56,7 +48,7 @@ export function Services() {
               Our Services
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Four comprehensive categories with 134 specialized services to transform your business
+              Comprehensive solutions across four key categories to transform your business
             </p>
           </div>
         </ScrollAnimation>
@@ -64,7 +56,6 @@ export function Services() {
         {/* Service Cards */}
         <ScrollContainer className="grid md:grid-cols-2 lg:grid-cols-4 gap-8" stagger={0.1}>
           {services.map((service, index) => {
-            const Icon = service.icon
             return (
               <ScrollItem key={service.id} delay={index * 0.1}>
                 <Link href={`/services/${service.id}`}>
@@ -80,14 +71,7 @@ export function Services() {
                     />
 
                     {/* Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent group-hover:from-black/90 group-hover:via-black/70 transition-all duration-300"></div>
-
-                    {/* Icon - Always Visible */}
-                    <div className="absolute top-6 left-6">
-                      <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center">
-                        <Icon className="w-6 h-6 text-white" />
-                      </div>
-                    </div>
+                    <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent group-hover:from-black/90 group-hover:via-black/70 transition-all duration-300"></div>
 
                     {/* Content Container */}
                     <div className="absolute bottom-0 left-0 right-0 p-6">
@@ -101,10 +85,7 @@ export function Services() {
                         <p className="text-white/90 text-sm leading-relaxed mb-4">
                           {service.description}
                         </p>
-                        <div className="flex items-center justify-between pt-3 border-t border-white/20">
-                          <span className="text-sm font-semibold text-white">
-                            {service.count}
-                          </span>
+                        <div className="flex items-center justify-end pt-3 border-t border-white/20">
                           <div className="flex items-center text-white font-medium text-sm">
                             Explore
                             <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
@@ -123,8 +104,8 @@ export function Services() {
         <ScrollAnimation delay={0.4}>
           <div className="text-center mt-12 md:mt-16">
             <Link href="/services">
-              <Button 
-                size="lg" 
+              <Button
+                size="lg"
                 variant="outline"
                 className="border-2 border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300"
               >
