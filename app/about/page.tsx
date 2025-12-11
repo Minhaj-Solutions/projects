@@ -30,7 +30,7 @@ const coreValues = [
       "We embrace new technologies and ideas, continually seeking ways to improve our solutions.",
     icon: (
       <svg
-        className="w-8 h-8 text-blue-600"
+        className="w-8 h-8 text-primary"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -50,7 +50,7 @@ const coreValues = [
       "Honesty and transparency are at the heart of every client relationship.",
     icon: (
       <svg
-        className="w-8 h-8 text-blue-600"
+        className="w-8 h-8 text-primary"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -70,7 +70,7 @@ const coreValues = [
       "We believe in open communication and teamwork, both internally and with clients.",
     icon: (
       <svg
-        className="w-8 h-8 text-blue-600"
+        className="w-8 h-8 text-primary"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -90,7 +90,7 @@ const coreValues = [
       "Our primary goal is to deliver measurable impact for every project and partnership.",
     icon: (
       <svg
-        className="w-8 h-8 text-blue-600"
+        className="w-8 h-8 text-primary"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -110,7 +110,7 @@ const coreValues = [
       "We stay ahead of industry trends to ensure our clients benefit from the latest tech and methodologies.",
     icon: (
       <svg
-        className="w-8 h-8 text-blue-600"
+        className="w-8 h-8 text-primary"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -130,7 +130,7 @@ const coreValues = [
       "We view ourselves as an extension of your team, committed to your success as true long-term partners.",
     icon: (
       <svg
-        className="w-8 h-8 text-blue-600"
+        className="w-8 h-8 text-primary"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -356,7 +356,7 @@ export default function AboutPage() {
       >
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <div className="inline-block px-4 py-1.5 mb-5 rounded-full bg-blue-50 text-blue-700 font-semibold text-sm">
+            <div className="inline-block px-4 py-1.5 mb-5 rounded-full bg-primary-light text-primary-dark font-semibold text-sm">
               Our Principles
             </div>
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
@@ -378,10 +378,10 @@ export default function AboutPage() {
               <motion.div
                 key={value.title}
                 variants={itemVariants}
-                className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200 hover:border-blue-500/60 transition-all duration-300"
+                className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200 hover:border-primary/60 transition-all duration-300"
               >
                 <div
-                  className="w-16 h-16 bg-blue-50 rounded-xl flex items-center justify-center mb-6 text-blue-700"
+                  className="w-16 h-16 bg-primary-light rounded-xl flex items-center justify-center mb-6 text-primary-dark"
                 >
                   {value.icon}
                 </div>

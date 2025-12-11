@@ -75,7 +75,7 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <p className="text-blue-600 text-sm font-semibold tracking-wider uppercase mb-4">
+              <p className="text-primary text-sm font-semibold tracking-wider uppercase mb-4">
                 {service.category}
               </p>
               <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
@@ -86,7 +86,7 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
               </p>
               <Link
                 href={service.cta.primaryButtonLink}
-                className="inline-flex items-center px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl"
+                className="inline-flex items-center px-8 py-4 bg-primary hover:bg-primary-dark text-white font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl"
               >
                 {service.cta.primaryButtonText}
                 <svg
@@ -119,7 +119,7 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
               transition={{ duration: 0.6 }}
               className="text-center mb-12"
             >
-              <h2 className="text-sm uppercase tracking-wider text-blue-600 mb-4 font-semibold">
+              <h2 className="text-sm uppercase tracking-wider text-primary mb-4 font-semibold">
                 {service.overview.heading}
               </h2>
             </motion.div>
@@ -224,7 +224,7 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
                           {serviceDetail.features.slice(0, 4).map((feature, i) => (
                             <li key={i} className="flex items-start text-sm">
                               <svg
-                                className="w-4 h-4 text-blue-300 mt-0.5 mr-2 flex-shrink-0"
+                                className="w-4 h-4 text-primary-light mt-0.5 mr-2 flex-shrink-0"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
@@ -269,7 +269,7 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
             </motion.div>
 
             <div className="relative max-w-5xl mx-auto">
-              <div className="absolute left-6 md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-blue-500/40 via-blue-500/20 to-transparent pointer-events-none" />
+              <div className="absolute left-6 md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary/40 via-primary/20 to-transparent pointer-events-none" />
               <div className="space-y-8">
                 {service.process.map((step, index) => (
                   <motion.div
@@ -283,7 +283,7 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
                   >
                     <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 md:p-7 grid md:grid-cols-[auto,1fr] gap-4 md:gap-6">
                       <div className="flex md:flex-col items-center md:items-start gap-4 md:gap-2">
-                        <div className="w-12 h-12 rounded-full bg-blue-600 text-white font-semibold text-lg flex items-center justify-center shadow-lg">
+                        <div className="w-12 h-12 rounded-full bg-primary text-white font-semibold text-lg flex items-center justify-center shadow-lg">
                           {step.number}
                         </div>
                         <h3 className="text-xl font-bold text-gray-900">
@@ -314,7 +314,7 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
               transition={{ duration: 0.6 }}
               className="text-center mb-16"
             >
-              <p className="text-sm uppercase tracking-wider text-blue-600 mb-4 font-semibold">
+              <p className="text-sm uppercase tracking-wider text-primary mb-4 font-semibold">
                 INDUSTRIES WE FOCUS
               </p>
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
@@ -333,10 +333,10 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
                       : { opacity: 0, y: 20 }
                   }
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="bg-white rounded-2xl p-8 border border-gray-200 hover:border-blue-500/70 hover:shadow-lg transition-all"
+                  className="bg-white rounded-2xl p-8 border border-gray-200 hover:border-primary/70 hover:shadow-lg transition-all"
                 >
                   <div className="flex items-start gap-4 mb-4">
-                    <div className="bg-blue-100 text-blue-700 w-12 h-12 rounded-xl flex items-center justify-center shadow-sm">
+                    <div className="bg-primary-light text-primary-dark w-12 h-12 rounded-xl flex items-center justify-center shadow-sm">
                       <svg
                         className="w-7 h-7"
                         fill="none"
