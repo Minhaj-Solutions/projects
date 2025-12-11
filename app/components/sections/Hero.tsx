@@ -67,9 +67,9 @@ export function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 w-full py-16 md:py-24">
+      <div className="relative z-10 section-shell w-full py-16 md:py-24">
         <motion.div
-          className="max-w-5xl mx-auto text-center"
+          className="max-w-6xl mx-auto text-center"
           variants={containerVariants}
           initial="hidden"
           animate="visible"

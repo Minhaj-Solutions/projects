@@ -1,6 +1,6 @@
 'use client'
 
-import { Target, Users, Zap, Shield, Award, HeadphonesIcon } from "lucide-react"
+import { Award, HeadphonesIcon, Shield, Target, Users, Zap } from "lucide-react"
 import { Card } from "../ui/Card"
 import { ScrollAnimation, ScrollContainer, ScrollItem } from "../ui/ScrollAnimation"
 
@@ -79,7 +79,7 @@ export function WhyChooseUs() {
         <div className="absolute bottom-10 right-0 w-80 h-80 rounded-full bg-primary-light/60 blur-3xl" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 md:px-6 relative">
+      <div className="section-shell relative">
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
           <ScrollAnimation direction="right" className="lg:col-span-5 space-y-6 lg:sticky lg:top-24">
             <div className="inline-flex items-center gap-2 bg-white border border-gray-200/80 px-4 py-2 rounded-full text-sm font-semibold text-primary shadow-sm backdrop-blur">

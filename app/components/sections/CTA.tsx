@@ -1,14 +1,14 @@
 'use client'
 
-import { ArrowRight, Mail, Phone } from "lucide-react"
-import { Button } from "../ui/Button"
+import { Mail, Phone } from "lucide-react"
 import Image from "next/image"
+import { Button } from "../ui/Button"
 import { ScrollAnimation, ScrollContainer, ScrollItem } from '../ui/ScrollAnimation'
 
 export function CTA() {
   return (
     <section className="py-16 md:py-24 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 md:px-6">
+      <div className="section-shell">
         <div className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-primary rounded-3xl overflow-hidden shadow-2xl">
           {/* Background Image */}
           <div className="absolute inset-0">
@@ -27,7 +27,7 @@ export function CTA() {
                 <span className="text-primary font-semibold text-sm">Start Your Journey</span>
               </div>
             </ScrollAnimation>
-            
+
             <ScrollAnimation delay={0.1}>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-white">
                 Ready to Transform Your{' '}
@@ -36,25 +36,25 @@ export function CTA() {
                 </span>
               </h2>
             </ScrollAnimation>
-            
+
             <ScrollAnimation delay={0.2}>
               <p className="text-xl text-gray-300 mb-10 max-w-3xl mx-auto">
-                Let's discuss how our 134 specialized services can help you achieve your goals. 
+                Let's discuss how our 134 specialized services can help you achieve your goals.
                 Get in touch with us today for a free consultation and project estimate.
               </p>
             </ScrollAnimation>
 
             <ScrollAnimation delay={0.3}>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-                <Button 
-                  size="lg" 
+                <Button
+                  size="lg"
                   className="bg-primary hover:bg-primary-dark text-white shadow-lg shadow-primary/30"
                 >
                   <Mail className="w-5 h-5 mr-2" />
                   Get Free Consultation
                 </Button>
-                <Button 
-                  size="lg" 
+                <Button
+                  size="lg"
                   variant="outline"
                   className="border-2 border-white text-white hover:bg-white hover:text-gray-900"
                 >

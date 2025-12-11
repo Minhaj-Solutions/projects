@@ -1,42 +1,28 @@
 'use client'
 
+import type { Service } from '@/data/services'
+import { services as allServices } from '@/data/services'
 import { ArrowRight } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from '../ui/Button'
 import { ScrollAnimation, ScrollContainer, ScrollItem } from '../ui/ScrollAnimation'
 
-const services = [
-  {
-    id: 'software-development',
-    name: 'Software Development',
-    description: 'Custom software solutions, mobile apps, web applications, AI/ML services, and game development tailored to your needs.',
-    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop',
-  },
-  {
-    id: 'website-design-creative',
-    name: 'Website Design & Creative',
-    description: 'UI/UX design, branding, graphics, web design, and multimedia production services that captivate your audience.',
-    image: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=2055&auto=format&fit=crop',
-  },
-  {
-    id: 'digital-marketing',
-    name: 'Digital Marketing',
-    description: 'SEO, SEM, social media marketing, content creation, and comprehensive strategies to grow your online presence.',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop',
-  },
-  {
-    id: 'ecommerce-solutions',
-    name: 'E-Commerce Solutions',
-    description: 'Complete e-commerce platforms, Shopify, WooCommerce, multi-vendor marketplaces to scale your business.',
-    image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?q=80&w=2070&auto=format&fit=crop',
-  },
+const featuredServiceSlugs = [
+  'mobile-app-development',
+  'web-development',
+  'cloud',
+  'cybersecurity',
 ]
+
+const featuredServices = featuredServiceSlugs
+  .map((slug) => allServices.find((service) => service.slug === slug))
+  .filter((service): service is Service => Boolean(service))
 
 export function Services() {
   return (
     <section className="py-20 md:py-28 bg-white">
-      <div className="max-w-7xl mx-auto px-4 md:px-6">
+      <div className="section-shell">
         {/* Section Header */}
         <ScrollAnimation>
           <div className="text-center mb-16">
@@ -55,15 +41,16 @@ export function Services() {
 
         {/* Service Cards */}
         <ScrollContainer className="grid md:grid-cols-2 lg:grid-cols-4 gap-8" stagger={0.1}>
-          {services.map((service, index) => {
+          {featuredServices.map((service, index) => {
+            if (!service) return null
             return (
-              <ScrollItem key={service.id} delay={index * 0.1}>
-                <Link href={`/services/${service.id}`}>
+              <ScrollItem key={service.slug} delay={index * 0.1}>
+                <Link href={`/services/${service.slug}`}>
                   <div className="group relative h-80 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
                     {/* Background Image */}
                     <Image
-                      src={service.image}
-                      alt={service.name}
+                      src={service.hero.imagePath}
+                      alt={service.title}
                       fill
                       className="object-cover transition-transform duration-700 group-hover:scale-110"
                       sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
@@ -77,13 +64,13 @@ export function Services() {
                     <div className="absolute bottom-0 left-0 right-0 p-6">
                       {/* Title - Always Visible */}
                       <h3 className="text-2xl font-bold text-white mb-3">
-                        {service.name}
+                        {service.title}
                       </h3>
 
                       {/* Hidden content that appears on hover */}
                       <div className="max-h-0 overflow-hidden group-hover:max-h-40 transition-all duration-300 ease-in-out">
                         <p className="text-white/90 text-sm leading-relaxed mb-4">
-                          {service.description}
+                          {service.hero.subtitle}
                         </p>
                         <div className="flex items-center justify-end pt-3 border-t border-white/20">
                           <div className="flex items-center text-white font-medium text-sm">

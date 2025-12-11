@@ -1,17 +1,17 @@
 'use client'
 
-import { 
-  Luggage, 
-  Satellite, 
-  Zap, 
-  Building2, 
-  ShoppingBag, 
+import {
+  ArrowRight,
+  Building2,
+  Luggage,
   Rocket,
-  ArrowRight 
+  Satellite,
+  ShoppingBag,
+  Zap
 } from 'lucide-react'
 import Link from 'next/link'
-import { ScrollAnimation, ScrollContainer, ScrollItem } from '../ui/ScrollAnimation'
 import { Button } from '../ui/Button'
+import { ScrollAnimation, ScrollContainer, ScrollItem } from '../ui/ScrollAnimation'
 
 const industries = [
   {
@@ -57,20 +57,20 @@ export function Industries() {
     <section className="py-16 md:py-24 bg-gradient-to-b from-white to-gray-50 relative overflow-hidden">
       {/* Subtle Background Elements */}
       <div className="absolute inset-0 opacity-[0.03]">
-        <div 
-          className="absolute inset-0" 
+        <div
+          className="absolute inset-0"
           style={{
             backgroundImage: 'radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)',
             backgroundSize: '40px 40px'
           }}
         />
       </div>
-      
+
       {/* Decorative gradient orbs */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
 
-      <div className="max-w-7xl mx-auto px-4 md:px-6 relative">
+      <div className="section-shell relative">
         {/* Section Header */}
         <ScrollAnimation>
           <div className="text-center mb-12 md:mb-16">
@@ -85,15 +85,15 @@ export function Industries() {
 
         {/* Industries Grid */}
         <div className="relative">
-          <ScrollContainer 
-            className="grid md:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto" 
+          <ScrollContainer
+            className="grid md:grid-cols-2 gap-6 md:gap-8 max-w-6xl mx-auto"
             stagger={0.1}
           >
             {industries.map((industry, index) => {
               const Icon = industry.icon
               return (
                 <ScrollItem key={industry.id} delay={index * 0.1}>
-                  <Link 
+                  <Link
                     href={`/industries/${industry.id}`}
                     className="group block h-full"
                   >
@@ -106,19 +106,19 @@ export function Industries() {
                             <Icon className="w-7 h-7 md:w-8 md:h-8 text-primary group-hover:text-primary-dark transition-all duration-500 group-hover:scale-110" />
                           </div>
                         </div>
-                        
+
                         {/* Content */}
                         <div className="flex-1 min-w-0 pt-1">
                           <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-3 group-hover:text-primary transition-colors duration-300">
                             {industry.name}
                           </h3>
-                          
+
                           {/* Animated Divider */}
                           <div className="relative mb-4">
                             <div className="h-px bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 group-hover:from-primary/30 group-hover:via-primary group-hover:to-primary/30 transition-all duration-500" />
                             <div className="absolute left-0 top-0 h-px w-0 bg-primary group-hover:w-full transition-all duration-500" />
                           </div>
-                          
+
                           {/* Description - Always present, expands on hover */}
                           <div className="overflow-hidden">
                             <p className="text-sm text-gray-600 leading-relaxed line-clamp-2 transition-all duration-500 ease-out group-hover:line-clamp-none group-hover:text-gray-700">
@@ -136,7 +136,7 @@ export function Industries() {
 
                       {/* Subtle hover gradient overlay */}
                       <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/0 via-primary/0 to-primary/0 group-hover:from-primary/[0.02] group-hover:via-primary/[0.03] group-hover:to-transparent transition-all duration-500 pointer-events-none" />
-                      
+
                       {/* Shine effect on hover */}
                       <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none overflow-hidden">
                         <div className="absolute -inset-10 -skew-x-12 bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:animate-shimmer" />
@@ -152,8 +152,8 @@ export function Industries() {
           <ScrollAnimation delay={0.6}>
             <div className="mt-12 md:mt-16 text-center">
               <Link href="/contact">
-                <Button 
-                  size="lg" 
+                <Button
+                  size="lg"
                   variant="primary"
                   className="group shadow-lg hover:shadow-xl transition-all duration-300"
                 >

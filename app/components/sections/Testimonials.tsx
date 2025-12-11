@@ -1,6 +1,6 @@
 'use client'
 
-import { Star, Quote } from "lucide-react"
+import { Quote, Star } from "lucide-react"
 import Image from "next/image"
 import { ScrollAnimation, ScrollContainer, ScrollItem } from '../ui/ScrollAnimation'
 
@@ -34,7 +34,7 @@ const testimonials = [
 export function Testimonials() {
   return (
     <section className="py-16 md:py-24 bg-gradient-to-b from-white to-gray-50">
-      <div className="max-w-7xl mx-auto px-4 md:px-6">
+      <div className="section-shell">
         {/* Section Header */}
         <ScrollAnimation>
           <div className="text-center mb-16">
@@ -55,41 +55,41 @@ export function Testimonials() {
           {testimonials.map((testimonial, index) => (
             <ScrollItem key={index} delay={index * 0.1}>
               <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:-translate-y-1">
-              {/* Quote Icon */}
-              <div className="mb-6">
-                <Quote className="w-10 h-10 text-primary/20" />
-              </div>
-
-              {/* Rating */}
-              <div className="flex gap-1 mb-4">
-                {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                ))}
-              </div>
-
-              {/* Quote */}
-              <p className="text-gray-700 mb-6 leading-relaxed italic">
-                "{testimonial.quote}"
-              </p>
-
-              {/* Author */}
-              <div className="flex items-center gap-4 pt-6 border-t border-gray-100">
-                <div className="relative w-12 h-12 rounded-full overflow-hidden flex-shrink-0">
-                  <Image
-                    src={testimonial.image}
-                    alt={testimonial.name}
-                    fill
-                    className="object-cover"
-                  />
+                {/* Quote Icon */}
+                <div className="mb-6">
+                  <Quote className="w-10 h-10 text-primary/20" />
                 </div>
-                <div>
-                  <div className="font-semibold text-gray-900">{testimonial.name}</div>
-                  <div className="text-sm text-gray-600">
-                    {testimonial.position}, {testimonial.company}
+
+                {/* Rating */}
+                <div className="flex gap-1 mb-4">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+                  ))}
+                </div>
+
+                {/* Quote */}
+                <p className="text-gray-700 mb-6 leading-relaxed italic">
+                  "{testimonial.quote}"
+                </p>
+
+                {/* Author */}
+                <div className="flex items-center gap-4 pt-6 border-t border-gray-100">
+                  <div className="relative w-12 h-12 rounded-full overflow-hidden flex-shrink-0">
+                    <Image
+                      src={testimonial.image}
+                      alt={testimonial.name}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div>
+                    <div className="font-semibold text-gray-900">{testimonial.name}</div>
+                    <div className="text-sm text-gray-600">
+                      {testimonial.position}, {testimonial.company}
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
             </ScrollItem>
           ))}
         </ScrollContainer>

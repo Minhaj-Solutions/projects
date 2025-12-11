@@ -1,51 +1,150 @@
 'use client'
 
-import { 
-  Target, 
-  Eye, 
-  Rocket, 
-  Shield, 
-  Heart, 
-  MessageSquare, 
-  Globe, 
-  MapPin, 
-  Phone, 
-  Mail,
-  Linkedin,
-  Users,
-  Award,
-  CheckCircle,
-  ArrowRight
-} from 'lucide-react'
 import { Button } from '@/app/components/ui/Button'
 import { Card } from '@/app/components/ui/Card'
 import { ScrollAnimation, ScrollContainer, ScrollItem } from '@/app/components/ui/ScrollAnimation'
 import { SITE_NAME } from '@/app/lib/constants'
-import Link from 'next/link'
+import { motion } from 'framer-motion'
+import {
+  ArrowRight,
+  CheckCircle,
+  Eye,
+  Globe,
+  Linkedin,
+  Mail,
+  MapPin,
+  Phone,
+  Shield,
+  Target,
+  Users
+} from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
+import { useInView } from 'react-intersection-observer'
 
-const values = [
+// Core values data
+const coreValues = [
   {
-    icon: Rocket,
-    title: 'Ship & Iterate',
-    description: 'We move swiftly, refining our approach with every step to maintain a leading edge.',
+    title: "Innovation",
+    description:
+      "We embrace new technologies and ideas, continually seeking ways to improve our solutions.",
+    icon: (
+      <svg
+        className="w-8 h-8 text-blue-600"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={1.5}
+          d="M13 10V3L4 14h7v7l9-11h-7z"
+        />
+      </svg>
+    ),
   },
   {
-    icon: Shield,
-    title: 'Trusted Pair of Hands',
-    description: 'Dependable and steadfast, we are always there when it matters most.',
+    title: "Integrity",
+    description:
+      "Honesty and transparency are at the heart of every client relationship.",
+    icon: (
+      <svg
+        className="w-8 h-8 text-blue-600"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={1.5}
+          d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+        />
+      </svg>
+    ),
   },
   {
-    icon: Heart,
-    title: 'Overdeliver on the Promise',
-    description: 'Exceeding expectations is our standard, going beyond what\'s assured.',
+    title: "Collaboration",
+    description:
+      "We believe in open communication and teamwork, both internally and with clients.",
+    icon: (
+      <svg
+        className="w-8 h-8 text-blue-600"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={1.5}
+          d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+        />
+      </svg>
+    ),
   },
   {
-    icon: MessageSquare,
-    title: 'Clear is Kind',
-    description: 'Transparent, honest communication keeps everyone on the same page.',
+    title: "Results-Driven",
+    description:
+      "Our primary goal is to deliver measurable impact for every project and partnership.",
+    icon: (
+      <svg
+        className="w-8 h-8 text-blue-600"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={1.5}
+          d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+        />
+      </svg>
+    ),
   },
-]
+  {
+    title: "Continuous Learning",
+    description:
+      "We stay ahead of industry trends to ensure our clients benefit from the latest tech and methodologies.",
+    icon: (
+      <svg
+        className="w-8 h-8 text-blue-600"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={1.5}
+          d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13c-1.168-.776-2.754-1.253-4.5-1.253-1.746 0-3.332.477-4.5 1.253"
+        />
+      </svg>
+    ),
+  },
+  {
+    title: "Client Partnership",
+    description:
+      "We view ourselves as an extension of your team, committed to your success as true long-term partners.",
+    icon: (
+      <svg
+        className="w-8 h-8 text-blue-600"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={1.5}
+          d="M14 11h3m-3 4h3m-6-4v8m-3-3h3m-3-11v8m0 0h18a2 2 0 002-2V6a2 2 0 00-2-2H3a2 2 0 00-2 2v8a2 2 0 002 2z"
+        />
+      </svg>
+    ),
+  },
+];
 
 const offices = [
   {
@@ -121,18 +220,42 @@ const leadership = [
   },
 ]
 
+// Animation variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: "spring" as const,
+      stiffness: 100,
+      damping: 15,
+    },
+  },
+};
+
+
 export default function AboutPage() {
+  const { ref: valuesRef, inView: valuesInView } = useInView({
+    threshold: 0.2,
+    triggerOnce: true,
+  });
+
   return (
     <div className="min-h-screen bg-white">
       {/* Page Hero */}
-      <section className="relative py-16 md:py-24 bg-gradient-to-br from-primary-dark via-primary to-primary-light overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{
-            backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
-            backgroundSize: '40px 40px'
-          }}></div>
-        </div>
-        
+      <section className="relative py-16 md:py-24 bg-primary overflow-hidden">
+
         <div className="relative max-w-7xl mx-auto px-4 md:px-6">
           <ScrollAnimation>
             <div className="text-center max-w-4xl mx-auto">
@@ -143,8 +266,8 @@ export default function AboutPage() {
                 Empowering Businesses, Inspiring Innovation
               </p>
               <p className="text-lg md:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
-                At {SITE_NAME}, we specialize in transforming businesses with enterprise-grade software solutions tailored to their needs. 
-                With a legacy of technical excellence, a global team of experts, and a passion for innovation, we help organizations thrive 
+                At {SITE_NAME}, we specialize in transforming businesses with enterprise-grade software solutions tailored to their needs.
+                With a legacy of technical excellence, a global team of experts, and a passion for innovation, we help organizations thrive
                 in an ever-evolving digital landscape.
               </p>
             </div>
@@ -166,12 +289,12 @@ export default function AboutPage() {
                   Empowering People and Businesses Through Innovation
                 </h2>
                 <p className="text-lg text-gray-600 leading-relaxed mb-4">
-                  At {SITE_NAME}, our philosophy is simple—empowering people and businesses through innovation. 
-                  We believe in fostering a collaborative environment, investing in talent, and delivering meaningful 
+                  At {SITE_NAME}, our philosophy is simple—empowering people and businesses through innovation.
+                  We believe in fostering a collaborative environment, investing in talent, and delivering meaningful
                   solutions that drive progress for our clients and communities worldwide.
                 </p>
                 <p className="text-lg text-gray-600 leading-relaxed">
-                  We are committed to understanding your requirements and crafting a tailored solution that aligns with your goals. 
+                  We are committed to understanding your requirements and crafting a tailored solution that aligns with your goals.
                   Our team of experienced professionals works closely with you to ensure every project exceeds expectations.
                 </p>
               </div>
@@ -192,7 +315,7 @@ export default function AboutPage() {
       </section>
 
       {/* Mission & Vision Section */}
-      <section className="py-16 md:py-24 bg-gradient-to-b from-gray-50 to-white">
+      <section className="py-16 md:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 md:px-6">
           <ScrollContainer className="grid md:grid-cols-2 gap-8" stagger={0.1}>
             <ScrollItem>
@@ -202,8 +325,8 @@ export default function AboutPage() {
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Mission</h3>
                 <p className="text-gray-600 leading-relaxed">
-                  To empower businesses with cutting-edge technology solutions, unlocking their growth potential by connecting 
-                  them with passionate and skilled engineers. We strive to deliver exceptional value through innovative 
+                  To empower businesses with cutting-edge technology solutions, unlocking their growth potential by connecting
+                  them with passionate and skilled engineers. We strive to deliver exceptional value through innovative
                   solutions that transform how businesses operate and compete in the digital age.
                 </p>
               </Card>
@@ -216,8 +339,8 @@ export default function AboutPage() {
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Vision</h3>
                 <p className="text-gray-600 leading-relaxed">
-                  At {SITE_NAME}, we envision transforming IT systems into smart, agile, and AI-driven digital assets. 
-                  With years of expertise, we empower global clients through innovative, adaptive solutions, shaping a future 
+                  At {SITE_NAME}, we envision transforming IT systems into smart, agile, and AI-driven digital assets.
+                  With years of expertise, we empower global clients through innovative, adaptive solutions, shaping a future
                   where technology meets the dynamic demands of a connected world.
                 </p>
               </Card>
@@ -226,49 +349,56 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Values Section */}
-      <section className="py-16 md:py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 md:px-6">
-          <ScrollAnimation>
-            <div className="text-center mb-12">
-              <div className="inline-flex items-center gap-2 bg-primary/5 px-4 py-2 rounded-full mb-4">
-                <div className="w-2 h-2 bg-primary rounded-full"></div>
-                <span className="text-primary font-semibold text-sm">We Believe in Providing Values</span>
-              </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                Our Values
-              </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                The principles that guide everything we do
-              </p>
+      {/* Core Values Section */}
+      <section
+        ref={valuesRef}
+        className="py-20 bg-white"
+      >
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <div className="inline-block px-4 py-1.5 mb-5 rounded-full bg-blue-50 text-blue-700 font-semibold text-sm">
+              Our Principles
             </div>
-          </ScrollAnimation>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
+              Our Core Values
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              We are guided by six key principles that shape our work and our
+              relationships with clients.
+            </p>
+          </div>
 
-          <ScrollContainer className="grid md:grid-cols-2 lg:grid-cols-4 gap-6" stagger={0.1}>
-            {values.map((value, index) => {
-              const Icon = value.icon
-              return (
-                <ScrollItem key={value.title} delay={index * 0.1}>
-                  <Card hover className="h-full text-center">
-                    <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
-                      <Icon className="w-7 h-7 text-primary" />
-                    </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-3">
-                      {value.title}
-                    </h3>
-                    <p className="text-gray-600 text-sm leading-relaxed">
-                      {value.description}
-                    </p>
-                  </Card>
-                </ScrollItem>
-              )
-            })}
-          </ScrollContainer>
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate={valuesInView ? "visible" : "hidden"}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto"
+          >
+            {coreValues.map((value, index) => (
+              <motion.div
+                key={value.title}
+                variants={itemVariants}
+                className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200 hover:border-blue-500/60 transition-all duration-300"
+              >
+                <div
+                  className="w-16 h-16 bg-blue-50 rounded-xl flex items-center justify-center mb-6 text-blue-700"
+                >
+                  {value.icon}
+                </div>
+                <h3 className="text-2xl font-bold mb-3 text-gray-900">
+                  {value.title}
+                </h3>
+                <p className="text-gray-700">
+                  {value.description}
+                </p>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </section>
 
       {/* Global Presence Section */}
-      <section className="py-16 md:py-24 bg-gradient-to-b from-gray-50 to-white">
+      <section className="py-16 md:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 md:px-6">
           <ScrollAnimation>
             <div className="text-center mb-12">
@@ -382,7 +512,7 @@ export default function AboutPage() {
       </section>
 
       {/* Code of Conduct Section */}
-      <section className="py-16 md:py-24 bg-gradient-to-b from-gray-50 to-white">
+      <section className="py-16 md:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 md:px-6">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <ScrollAnimation direction="right">
@@ -406,7 +536,7 @@ export default function AboutPage() {
                   Our Code of Business Principles
                 </h2>
                 <p className="text-lg text-gray-600 leading-relaxed mb-6">
-                  {SITE_NAME} prioritizes legal and ethical conduct, ensuring honesty, fairness, and accountability for all. 
+                  {SITE_NAME} prioritizes legal and ethical conduct, ensuring honesty, fairness, and accountability for all.
                   We are committed to maintaining the highest standards of integrity in all our business dealings.
                 </p>
                 <div className="space-y-3 mb-6">
@@ -438,7 +568,7 @@ export default function AboutPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 md:py-24 bg-gradient-to-br from-primary to-primary-dark">
+      <section className="py-16 md:py-24 bg-primary">
         <div className="max-w-7xl mx-auto px-4 md:px-6">
           <ScrollAnimation>
             <div className="text-center max-w-3xl mx-auto">
