@@ -37,7 +37,7 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
     Angular: "/images/tech-logos/angular.avif",
     Bootstrap: "/images/tech-logos/bootstrap.avif",
     Firebase: "/images/tech-logos/firebase.avif",
-    "AWS": "/images/tech-logos/aws.avif",
+    AWS: "/images/tech-logos/aws.avif",
     "AWS Amplify": "/images/tech-logos/aws.avif",
     "Tailwind CSS": "/images/tech-logos/tailwindcss.avif",
     Tailwind: "/images/tech-logos/tailwindcss.avif",
@@ -54,43 +54,57 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
   return (
     <div className="bg-white text-gray-900">
       {/* Hero Section */}
-      <section className="relative min-h-[600px] flex items-center justify-center bg-gray-50 overflow-hidden">
+      <section className="relative min-h-[600px] flex items-center justify-center bg-gradient-to-br from-primary to-primary-dark overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage:
+                "radial-gradient(circle at 2px 2px, white 1px, transparent 0)",
+              backgroundSize: "30px 30px",
+            }}
+          ></div>
+        </div>
+
         {/* Background Image with Overlay */}
         <div className="absolute inset-0 z-0">
           <Image
             src={service.hero.imagePath}
             alt={service.hero.title}
             fill
-            className="object-cover"
+            className="object-cover opacity-20"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-black/30"></div>
         </div>
 
         {/* Content */}
-        <div className="container mx-auto px-4 py-32 relative z-10">
+        <div className="section-shell py-12 md:py-16 relative z-10 max-[968px]:py-10 max-[425px]:py-8">
           <div className="max-w-4xl">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <p className="text-primary text-sm font-semibold tracking-wider uppercase mb-4">
-                {service.category}
-              </p>
-              <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
+              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-6 border border-white/20">
+                <div className="w-2 h-2 bg-white rounded-full"></div>
+                <span className="text-white font-semibold text-sm tracking-wider uppercase">
+                  {service.category}
+                </span>
+              </div>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight max-[968px]:text-3xl max-[425px]:text-2xl max-[375px]:text-xl">
                 {service.hero.title}
               </h1>
-              <p className="text-xl text-gray-200 mb-8 leading-relaxed max-w-3xl">
+              <p className="text-lg md:text-xl text-white/90 mb-8 leading-relaxed max-w-3xl max-[968px]:text-base max-[425px]:text-sm max-[375px]:text-xs">
                 {service.hero.subtitle}
               </p>
               <Link
                 href={service.cta.primaryButtonLink}
-                className="inline-flex items-center px-8 py-4 bg-primary hover:bg-primary-dark text-white font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-white text-primary hover:bg-primary-light hover:text-primary-dark font-semibold rounded-lg transition-all duration-300 shadow-xl hover:shadow-2xl hover:-translate-y-1 max-[968px]:px-5 max-[968px]:py-2.5 max-[968px]:text-sm max-[425px]:px-4 max-[425px]:py-2 max-[425px]:text-xs"
               >
                 {service.cta.primaryButtonText}
                 <svg
-                  className="ml-2 w-5 h-5"
+                  className="w-5 h-5 max-[968px]:w-4 max-[968px]:h-4 max-[425px]:w-3.5 max-[425px]:h-3.5"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -110,7 +124,7 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
 
       {/* Overview Section */}
       <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="section-shell">
           <div className="max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -119,9 +133,12 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
               transition={{ duration: 0.6 }}
               className="text-center mb-12"
             >
-              <h2 className="text-sm uppercase tracking-wider text-primary mb-4 font-semibold">
-                {service.overview.heading}
-              </h2>
+              <div className="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full mb-4">
+                <div className="w-2 h-2 bg-primary rounded-full"></div>
+                <span className="text-primary font-semibold text-sm uppercase tracking-wider">
+                  {service.overview.heading}
+                </span>
+              </div>
             </motion.div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -134,7 +151,7 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
                 {service.overview.paragraphs.map((paragraph, index) => (
                   <p
                     key={index}
-                    className="text-lg text-gray-700 mb-6 leading-relaxed"
+                    className="text-lg text-gray-700 mb-6 leading-relaxed max-[968px]:text-base max-[425px]:text-sm max-[375px]:text-xs"
                   >
                     {paragraph}
                   </p>
@@ -165,7 +182,7 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
 
       {/* Specific Services Section */}
       <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
+        <div className="section-shell">
           <div className="max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -174,15 +191,15 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
               transition={{ duration: 0.6 }}
               className="text-center mb-16"
             >
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                {service.title} Services
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 max-[968px]:text-2xl max-[425px]:text-xl max-[375px]:text-lg">
+                {service.title} <span className="text-primary">Services</span>
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto max-[968px]:text-base max-[425px]:text-sm max-[375px]:text-xs">
                 Comprehensive solutions tailored to your business needs
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 max-[968px]:md:grid-cols-2 gap-8 max-[968px]:gap-6">
               {service.specificServices.map((serviceDetail, index) => {
                 const serviceDetailImage =
                   serviceDetail.image ||
@@ -195,7 +212,7 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
-                    className="group relative rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 h-[450px]"
+                    className="group relative rounded-2xl overflow-hidden shadow-lg border-2 border-primary/20 hover:border-primary hover:shadow-2xl transition-all duration-500 h-[450px] max-[968px]:h-[380px]"
                   >
                     {/* Background Image */}
                     <div className="absolute inset-0">
@@ -209,9 +226,9 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
                     </div>
 
                     {/* Content */}
-                    <div className="relative h-full flex flex-col justify-end p-8">
+                    <div className="relative h-full flex flex-col justify-end p-8 max-[968px]:p-6">
                       {/* Title - Always Visible */}
-                      <h3 className="text-2xl font-bold text-white mb-3 transform transition-transform duration-500 group-hover:-translate-y-2">
+                      <h3 className="text-2xl font-bold text-white mb-3 transform transition-transform duration-500 group-hover:-translate-y-2 max-[968px]:text-xl">
                         {serviceDetail.title}
                       </h3>
 
@@ -221,24 +238,26 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
                           {serviceDetail.description}
                         </p>
                         <ul className="space-y-2">
-                          {serviceDetail.features.slice(0, 4).map((feature, i) => (
-                            <li key={i} className="flex items-start text-sm">
-                              <svg
-                                className="w-4 h-4 text-primary-light mt-0.5 mr-2 flex-shrink-0"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                              >
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  strokeWidth="2"
-                                  d="M5 13l4 4L19 7"
-                                />
-                              </svg>
-                              <span className="text-gray-100">{feature}</span>
-                            </li>
-                          ))}
+                          {serviceDetail.features
+                            .slice(0, 4)
+                            .map((feature, i) => (
+                              <li key={i} className="flex items-start text-sm">
+                                <svg
+                                  className="w-4 h-4 text-primary-light mt-0.5 mr-2 flex-shrink-0"
+                                  fill="none"
+                                  viewBox="0 0 24 24"
+                                  stroke="currentColor"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
+                                    d="M5 13l4 4L19 7"
+                                  />
+                                </svg>
+                                <span className="text-gray-100">{feature}</span>
+                              </li>
+                            ))}
                         </ul>
                       </div>
                     </div>
@@ -252,19 +271,22 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
 
       {/* Process Section */}
       <section ref={processRef} className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="section-shell">
           <div className="max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              animate={processInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              animate={
+                processInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
+              }
               transition={{ duration: 0.6 }}
               className="text-center mb-16"
             >
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                Our Process
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 max-[968px]:text-2xl max-[425px]:text-xl max-[375px]:text-lg">
+                Our <span className="text-primary">Process</span>
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                A systematic, collaborative approach that ensures we deliver measurable results
+              <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto max-[968px]:text-base max-[425px]:text-sm max-[375px]:text-xs">
+                A systematic, collaborative approach that ensures we deliver
+                measurable results
               </p>
             </motion.div>
 
@@ -276,21 +298,23 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
                     key={index}
                     initial={{ opacity: 0, y: 20 }}
                     animate={
-                      processInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
+                      processInView
+                        ? { opacity: 1, y: 0 }
+                        : { opacity: 0, y: 20 }
                     }
                     transition={{ duration: 0.45, delay: index * 0.08 }}
                     className="relative"
                   >
-                    <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 md:p-7 grid md:grid-cols-[auto,1fr] gap-4 md:gap-6">
+                    <div className="bg-white rounded-2xl shadow-lg border-2 border-primary/20 hover:border-primary hover:shadow-xl transition-all duration-300 p-6 md:p-7 max-[968px]:p-5 grid md:grid-cols-[auto,1fr] gap-4 md:gap-6 max-[968px]:gap-4">
                       <div className="flex md:flex-col items-center md:items-start gap-4 md:gap-2">
-                        <div className="w-12 h-12 rounded-full bg-primary text-white font-semibold text-lg flex items-center justify-center shadow-lg">
+                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-primary-dark text-white font-semibold text-lg flex items-center justify-center shadow-lg max-[968px]:w-10 max-[968px]:h-10 max-[425px]:w-9 max-[425px]:h-9 max-[425px]:text-base">
                           {step.number}
                         </div>
-                        <h3 className="text-xl font-bold text-gray-900">
+                        <h3 className="text-xl font-bold text-gray-900 max-[968px]:text-lg max-[425px]:text-base max-[375px]:text-sm">
                           {step.title}
                         </h3>
                       </div>
-                      <p className="text-gray-600 leading-relaxed">
+                      <p className="text-gray-600 leading-relaxed max-[425px]:text-sm max-[375px]:text-xs">
                         {step.description}
                       </p>
                     </div>
@@ -304,7 +328,7 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
 
       {/* Industries We Serve Section */}
       <section ref={industriesRef} className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="section-shell">
           <div className="max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -314,15 +338,19 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
               transition={{ duration: 0.6 }}
               className="text-center mb-16"
             >
-              <p className="text-sm uppercase tracking-wider text-primary mb-4 font-semibold">
-                INDUSTRIES WE FOCUS
-              </p>
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                Industries We Serve with Our {service.title} Services
+              <div className="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full mb-4">
+                <div className="w-2 h-2 bg-primary rounded-full"></div>
+                <span className="text-primary font-semibold text-sm uppercase tracking-wider">
+                  INDUSTRIES WE FOCUS
+                </span>
+              </div>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 max-[968px]:text-2xl max-[425px]:text-xl max-[375px]:text-lg">
+                Industries We Serve with Our{" "}
+                <span className="text-primary">{service.title}</span> Services
               </h2>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-[968px]:gap-6">
               {service.industries.map((industry, index) => (
                 <motion.div
                   key={index}
@@ -333,12 +361,12 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
                       : { opacity: 0, y: 20 }
                   }
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="bg-white rounded-2xl p-8 border border-gray-200 hover:border-primary/70 hover:shadow-lg transition-all"
+                  className="bg-white rounded-2xl p-8 max-[968px]:p-6 border-2 border-primary/20 hover:border-primary hover:shadow-xl transition-all duration-300 max-[425px]:p-5"
                 >
-                  <div className="flex items-start gap-4 mb-4">
-                    <div className="bg-primary-light text-primary-dark w-12 h-12 rounded-xl flex items-center justify-center shadow-sm">
+                  <div className="flex items-start gap-4 max-[968px]:gap-3">
+                    <div className="bg-gradient-to-br from-primary to-primary-dark text-white w-12 h-12 rounded-xl flex items-center justify-center shadow-md flex-shrink-0 max-[968px]:w-10 max-[968px]:h-10 max-[425px]:w-9 max-[425px]:h-9">
                       <svg
-                        className="w-7 h-7"
+                        className="w-6 h-6 max-[968px]:w-5 max-[968px]:h-5 max-[425px]:w-4 max-[425px]:h-4"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -346,16 +374,16 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
                         <path
                           strokeLinecap="round"
                           strokeLinejoin="round"
-                          strokeWidth={1.6}
+                          strokeWidth={2}
                           d="M5 13l4 4L19 7"
                         />
                       </svg>
                     </div>
                     <div>
-                      <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                      <h3 className="text-2xl font-bold text-gray-900 mb-2 max-[968px]:text-xl max-[425px]:text-lg max-[375px]:text-base">
                         {industry.name}
                       </h3>
-                      <p className="text-gray-600 leading-relaxed">
+                      <p className="text-gray-600 leading-relaxed max-[968px]:text-sm max-[425px]:text-xs">
                         {industry.description}
                       </p>
                     </div>
@@ -369,7 +397,7 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
 
       {/* Tech Stack Section */}
       <section ref={techStackRef} className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="section-shell">
           <div className="max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -379,15 +407,16 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
               transition={{ duration: 0.6 }}
               className="text-center mb-16"
             >
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                Our Tech Stack
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 max-[968px]:text-2xl max-[425px]:text-xl max-[375px]:text-lg">
+                Our <span className="text-primary">Tech Stack</span>
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Equipped with the latest tools, our teams deliver impactful solutions designed to grow your business
+              <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto max-[968px]:text-base max-[425px]:text-sm max-[375px]:text-xs">
+                Equipped with the latest tools, our teams deliver impactful
+                solutions designed to grow your business
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 max-[968px]:gap-4">
               {service.techStack.map((tech, index) => (
                 <motion.div
                   key={index}
@@ -398,7 +427,7 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
                       : { opacity: 0, scale: 0.9 }
                   }
                   transition={{ duration: 0.3, delay: index * 0.03 }}
-                  className="bg-white rounded-2xl p-6 border border-gray-200 hover:shadow-md transition-all text-center group"
+                  className="bg-white rounded-2xl p-6 max-[968px]:p-4 border-2 border-primary/20 hover:border-primary hover:shadow-xl transition-all duration-300 text-center group max-[425px]:p-3"
                 >
                   <div className="flex flex-col items-center justify-center h-24">
                     {techLogoMap[tech.name] ? (
@@ -428,4 +457,3 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
     </div>
   );
 }
-

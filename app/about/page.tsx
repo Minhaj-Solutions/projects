@@ -1,10 +1,14 @@
-'use client'
+"use client";
 
-import { Button } from '@/app/components/ui/Button'
-import { Card } from '@/app/components/ui/Card'
-import { ScrollAnimation, ScrollContainer, ScrollItem } from '@/app/components/ui/ScrollAnimation'
-import { SITE_NAME } from '@/app/lib/constants'
-import { motion } from 'framer-motion'
+import { Button } from "@/app/components/ui/Button";
+import { Card } from "@/app/components/ui/Card";
+import {
+  ScrollAnimation,
+  ScrollContainer,
+  ScrollItem,
+} from "@/app/components/ui/ScrollAnimation";
+import { SITE_NAME } from "@/app/lib/constants";
+import { motion } from "framer-motion";
 import {
   ArrowRight,
   CheckCircle,
@@ -16,11 +20,11 @@ import {
   Phone,
   Shield,
   Target,
-  Users
-} from 'lucide-react'
-import Image from 'next/image'
-import Link from 'next/link'
-import { useInView } from 'react-intersection-observer'
+  Users,
+} from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { useInView } from "react-intersection-observer";
 
 // Core values data
 const coreValues = [
@@ -30,7 +34,7 @@ const coreValues = [
       "We embrace new technologies and ideas, continually seeking ways to improve our solutions.",
     icon: (
       <svg
-        className="w-8 h-8 text-primary"
+        className="w-8 h-8"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -50,7 +54,7 @@ const coreValues = [
       "Honesty and transparency are at the heart of every client relationship.",
     icon: (
       <svg
-        className="w-8 h-8 text-primary"
+        className="w-8 h-8"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -70,7 +74,7 @@ const coreValues = [
       "We believe in open communication and teamwork, both internally and with clients.",
     icon: (
       <svg
-        className="w-8 h-8 text-primary"
+        className="w-8 h-8"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -90,7 +94,7 @@ const coreValues = [
       "Our primary goal is to deliver measurable impact for every project and partnership.",
     icon: (
       <svg
-        className="w-8 h-8 text-primary"
+        className="w-8 h-8"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -110,7 +114,7 @@ const coreValues = [
       "We stay ahead of industry trends to ensure our clients benefit from the latest tech and methodologies.",
     icon: (
       <svg
-        className="w-8 h-8 text-primary"
+        className="w-8 h-8"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -130,7 +134,7 @@ const coreValues = [
       "We view ourselves as an extension of your team, committed to your success as true long-term partners.",
     icon: (
       <svg
-        className="w-8 h-8 text-primary"
+        className="w-8 h-8"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -148,77 +152,77 @@ const coreValues = [
 
 const offices = [
   {
-    city: 'Lahore',
-    country: 'Pakistan',
-    type: 'Head Office',
-    address: '123 Business Street, Lahore, Punjab',
-    phone: '+92 000 0000000',
-    email: 'info@minhajsolutions.com',
+    city: "Lahore",
+    country: "Pakistan",
+    type: "Head Office",
+    address: "123 Business Street, Lahore, Punjab",
+    phone: "+92 000 0000000",
+    email: "info@minhajsolutions.com",
   },
   {
-    city: 'Islamabad',
-    country: 'Pakistan',
-    type: 'Regional Office',
-    address: '456 Corporate Avenue, Islamabad, ICT',
-    phone: '+92 000 0000001',
-    email: 'islamabad@minhajsolutions.com',
+    city: "Islamabad",
+    country: "Pakistan",
+    type: "Regional Office",
+    address: "456 Corporate Avenue, Islamabad, ICT",
+    phone: "+92 000 0000001",
+    email: "islamabad@minhajsolutions.com",
   },
   {
-    city: 'Karachi',
-    country: 'Pakistan',
-    type: 'Regional Office',
-    address: '789 Tech Hub, Karachi, Sindh',
-    phone: '+92 000 0000002',
-    email: 'karachi@minhajsolutions.com',
+    city: "Karachi",
+    country: "Pakistan",
+    type: "Regional Office",
+    address: "789 Tech Hub, Karachi, Sindh",
+    phone: "+92 000 0000002",
+    email: "karachi@minhajsolutions.com",
   },
   {
-    city: 'Dubai',
-    country: 'United Arab Emirates',
-    type: 'Regional Office',
-    address: 'Business Bay, Dubai, UAE',
-    phone: '+971 4 000 0000',
-    email: 'dubai@minhajsolutions.com',
+    city: "Dubai",
+    country: "United Arab Emirates",
+    type: "Regional Office",
+    address: "Business Bay, Dubai, UAE",
+    phone: "+971 4 000 0000",
+    email: "dubai@minhajsolutions.com",
   },
-]
+];
 
 const leadership = [
   {
-    name: 'Minhaj Ahmed',
-    title: 'Founder & CEO',
-    linkedin: '#',
-    image: '/team/placeholder.jpg', // Replace with real images
+    name: "Minhaj Ahmed",
+    title: "Founder & CEO",
+    linkedin: "#",
+    image: "/team/placeholder.jpg", // Replace with real images
   },
   {
-    name: 'Ahmed Khan',
-    title: 'Chief Technology Officer',
-    linkedin: '#',
-    image: '/team/placeholder.jpg',
+    name: "Ahmed Khan",
+    title: "Chief Technology Officer",
+    linkedin: "#",
+    image: "/team/placeholder.jpg",
   },
   {
-    name: 'Sara Ali',
-    title: 'Chief Operating Officer',
-    linkedin: '#',
-    image: '/team/placeholder.jpg',
+    name: "Sara Ali",
+    title: "Chief Operating Officer",
+    linkedin: "#",
+    image: "/team/placeholder.jpg",
   },
   {
-    name: 'Usman Malik',
-    title: 'Head of Digital Marketing',
-    linkedin: '#',
-    image: '/team/placeholder.jpg',
+    name: "Usman Malik",
+    title: "Head of Digital Marketing",
+    linkedin: "#",
+    image: "/team/placeholder.jpg",
   },
   {
-    name: 'Fatima Hassan',
-    title: 'Head of Design',
-    linkedin: '#',
-    image: '/team/placeholder.jpg',
+    name: "Fatima Hassan",
+    title: "Head of Design",
+    linkedin: "#",
+    image: "/team/placeholder.jpg",
   },
   {
-    name: 'Zain Abbas',
-    title: 'Head of Development',
-    linkedin: '#',
-    image: '/team/placeholder.jpg',
+    name: "Zain Abbas",
+    title: "Head of Development",
+    linkedin: "#",
+    image: "/team/placeholder.jpg",
   },
-]
+];
 
 // Animation variants
 const containerVariants = {
@@ -244,7 +248,6 @@ const itemVariants = {
   },
 };
 
-
 export default function AboutPage() {
   const { ref: valuesRef, inView: valuesInView } = useInView({
     threshold: 0.2,
@@ -254,21 +257,39 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Page Hero */}
-      <section className="relative py-16 md:py-24 bg-primary overflow-hidden">
+      <section className="relative py-16 md:py-24 lg:py-32 bg-gradient-to-br from-primary to-primary-dark overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage:
+                "radial-gradient(circle at 2px 2px, white 1px, transparent 0)",
+              backgroundSize: "30px 30px",
+            }}
+          ></div>
+        </div>
 
         <div className="relative max-w-7xl mx-auto px-4 md:px-6">
           <ScrollAnimation>
-            <div className="text-center max-w-4xl mx-auto">
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
-                ABOUT US
+            <div className="text-center md:text-center max-w-4xl mx-auto max-md:text-left">
+              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-6 border border-white/20">
+                <div className="w-2 h-2 bg-white rounded-full"></div>
+                <span className="text-white font-semibold text-sm">
+                  About {SITE_NAME}
+                </span>
+              </div>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 max-[425px]:text-3xl max-[375px]:text-2xl">
+                Empowering Businesses,
+                <br />
+                <span className="text-primary-light">Inspiring Innovation</span>
               </h1>
-              <p className="text-2xl md:text-3xl text-white/90 font-light mb-8">
-                Empowering Businesses, Inspiring Innovation
-              </p>
-              <p className="text-lg md:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
-                At {SITE_NAME}, we specialize in transforming businesses with enterprise-grade software solutions tailored to their needs.
-                With a legacy of technical excellence, a global team of experts, and a passion for innovation, we help organizations thrive
-                in an ever-evolving digital landscape.
+              <p className="text-lg md:text-xl text-white/90 max-w-3xl md:mx-auto leading-relaxed max-[425px]:text-base max-[375px]:text-sm">
+                At {SITE_NAME}, we specialize in transforming businesses with
+                enterprise-grade software solutions tailored to their needs.
+                With a legacy of technical excellence, a global team of experts,
+                and a passion for innovation, we help organizations thrive in an
+                ever-evolving digital landscape.
               </p>
             </div>
           </ScrollAnimation>
@@ -281,21 +302,27 @@ export default function AboutPage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <ScrollAnimation direction="right">
               <div>
-                <div className="inline-flex items-center gap-2 bg-primary/5 px-4 py-2 rounded-full mb-4">
+                <div className="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full mb-4">
                   <div className="w-2 h-2 bg-primary rounded-full"></div>
-                  <span className="text-primary font-semibold text-sm">Our Philosophy</span>
+                  <span className="text-primary font-semibold text-sm">
+                    Our Philosophy
+                  </span>
                 </div>
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                  Empowering People and Businesses Through Innovation
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 max-[425px]:text-2xl max-[375px]:text-xl">
+                  Building Tomorrow&apos;s{" "}
+                  <span className="text-primary">Solutions Today</span>
                 </h2>
-                <p className="text-lg text-gray-600 leading-relaxed mb-4">
-                  At {SITE_NAME}, our philosophy is simple—empowering people and businesses through innovation.
-                  We believe in fostering a collaborative environment, investing in talent, and delivering meaningful
-                  solutions that drive progress for our clients and communities worldwide.
+                <p className="text-lg text-gray-600 leading-relaxed mb-4 max-[425px]:text-base max-[375px]:text-sm">
+                  We believe technology should empower, not overwhelm. Our
+                  approach centers on understanding your unique challenges and
+                  crafting solutions that drive measurable results while scaling
+                  with your growth.
                 </p>
-                <p className="text-lg text-gray-600 leading-relaxed">
-                  We are committed to understanding your requirements and crafting a tailored solution that aligns with your goals.
-                  Our team of experienced professionals works closely with you to ensure every project exceeds expectations.
+                <p className="text-lg text-gray-600 leading-relaxed max-[425px]:text-base max-[375px]:text-sm">
+                  Every project is an opportunity to innovate, collaborate, and
+                  exceed expectations. We combine technical expertise with
+                  strategic thinking to deliver software that transforms how you
+                  do business.
                 </p>
               </div>
             </ScrollAnimation>
@@ -315,33 +342,41 @@ export default function AboutPage() {
       </section>
 
       {/* Mission & Vision Section */}
-      <section className="py-16 md:py-24 bg-white">
+      <section className="py-16 md:py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 md:px-6">
           <ScrollContainer className="grid md:grid-cols-2 gap-8" stagger={0.1}>
             <ScrollItem>
-              <Card className="h-full border-2 border-primary/20 hover:border-primary/40 transition-all">
-                <div className="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
-                  <Target className="w-8 h-8 text-primary" />
+              <Card className="h-full bg-white border-2 border-primary/20 hover:border-primary hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                <div className="w-16 h-16 bg-gradient-to-br from-primary to-primary-dark rounded-xl flex items-center justify-center mb-6 shadow-lg max-[375px]:w-12 max-[375px]:h-12">
+                  <Target className="w-8 h-8 text-white max-[375px]:w-6 max-[375px]:h-6" />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Mission</h3>
-                <p className="text-gray-600 leading-relaxed">
-                  To empower businesses with cutting-edge technology solutions, unlocking their growth potential by connecting
-                  them with passionate and skilled engineers. We strive to deliver exceptional value through innovative
-                  solutions that transform how businesses operate and compete in the digital age.
+                <h3 className="text-2xl font-bold text-gray-900 mb-4 max-[425px]:text-xl max-[375px]:text-lg">
+                  Our Mission
+                </h3>
+                <p className="text-gray-600 leading-relaxed max-[425px]:text-sm max-[375px]:text-xs">
+                  To empower businesses with cutting-edge technology solutions,
+                  unlocking their growth potential by connecting them with
+                  passionate and skilled engineers. We strive to deliver
+                  exceptional value through innovative solutions that transform
+                  how businesses operate and compete in the digital age.
                 </p>
               </Card>
             </ScrollItem>
 
             <ScrollItem delay={0.1}>
-              <Card className="h-full border-2 border-primary/20 hover:border-primary/40 transition-all">
-                <div className="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
-                  <Eye className="w-8 h-8 text-primary" />
+              <Card className="h-full bg-white border-2 border-primary/20 hover:border-primary hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                <div className="w-16 h-16 bg-gradient-to-br from-primary to-primary-dark rounded-xl flex items-center justify-center mb-6 shadow-lg max-[375px]:w-12 max-[375px]:h-12">
+                  <Eye className="w-8 h-8 text-white max-[375px]:w-6 max-[375px]:h-6" />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Vision</h3>
-                <p className="text-gray-600 leading-relaxed">
-                  At {SITE_NAME}, we envision transforming IT systems into smart, agile, and AI-driven digital assets.
-                  With years of expertise, we empower global clients through innovative, adaptive solutions, shaping a future
-                  where technology meets the dynamic demands of a connected world.
+                <h3 className="text-2xl font-bold text-gray-900 mb-4 max-[425px]:text-xl max-[375px]:text-lg">
+                  Our Vision
+                </h3>
+                <p className="text-gray-600 leading-relaxed max-[425px]:text-sm max-[375px]:text-xs">
+                  At {SITE_NAME}, we envision transforming IT systems into
+                  smart, agile, and AI-driven digital assets. With years of
+                  expertise, we empower global clients through innovative,
+                  adaptive solutions, shaping a future where technology meets
+                  the dynamic demands of a connected world.
                 </p>
               </Card>
             </ScrollItem>
@@ -350,19 +385,19 @@ export default function AboutPage() {
       </section>
 
       {/* Core Values Section */}
-      <section
-        ref={valuesRef}
-        className="py-20 bg-white"
-      >
+      <section ref={valuesRef} className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <div className="inline-block px-4 py-1.5 mb-5 rounded-full bg-primary-light text-primary-dark font-semibold text-sm">
-              Our Principles
+            <div className="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full mb-5">
+              <div className="w-2 h-2 bg-primary rounded-full"></div>
+              <span className="text-primary font-semibold text-sm">
+                Our Principles
+              </span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
-              Our Core Values
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-gray-900 max-[425px]:text-2xl max-[375px]:text-xl">
+              Our Core <span className="text-primary">Values</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto max-[425px]:text-base max-[375px]:text-sm">
               We are guided by six key principles that shape our work and our
               relationships with clients.
             </p>
@@ -378,17 +413,15 @@ export default function AboutPage() {
               <motion.div
                 key={value.title}
                 variants={itemVariants}
-                className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200 hover:border-primary/60 transition-all duration-300"
+                className="bg-white rounded-2xl p-8 shadow-lg border-2 border-primary/20 hover:border-primary hover:shadow-xl hover:-translate-y-1 transition-all duration-300 max-[375px]:p-6"
               >
-                <div
-                  className="w-16 h-16 bg-primary-light rounded-xl flex items-center justify-center mb-6 text-primary-dark"
-                >
-                  {value.icon}
+                <div className="w-16 h-16 bg-gradient-to-br from-primary to-primary-dark rounded-xl flex items-center justify-center mb-6 shadow-md max-[375px]:w-12 max-[375px]:h-12">
+                  <div className="text-white">{value.icon}</div>
                 </div>
-                <h3 className="text-2xl font-bold mb-3 text-gray-900">
+                <h3 className="text-2xl font-bold mb-3 text-gray-900 max-[425px]:text-xl max-[375px]:text-lg">
                   {value.title}
                 </h3>
-                <p className="text-gray-700">
+                <p className="text-gray-600 leading-relaxed max-[425px]:text-sm max-[375px]:text-xs">
                   {value.description}
                 </p>
               </motion.div>
@@ -398,37 +431,48 @@ export default function AboutPage() {
       </section>
 
       {/* Global Presence Section */}
-      <section className="py-16 md:py-24 bg-white">
+      <section className="py-16 md:py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 md:px-6">
           <ScrollAnimation>
             <div className="text-center mb-12">
-              <div className="inline-flex items-center gap-2 bg-primary/5 px-4 py-2 rounded-full mb-4">
+              <div className="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full mb-4">
                 <Globe className="w-4 h-4 text-primary" />
-                <span className="text-primary font-semibold text-sm">Our Global Presence</span>
+                <span className="text-primary font-semibold text-sm">
+                  Our Global Presence
+                </span>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                We Support Clients Worldwide
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 max-[425px]:text-2xl max-[375px]:text-xl">
+                We Support Clients{" "}
+                <span className="text-primary">Worldwide</span>
               </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                We support clients in 20+ countries and drive continued growth through innovation and transformation.
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto max-[425px]:text-base max-[375px]:text-sm">
+                We support clients in 20+ countries and drive continued growth
+                through innovation and transformation.
               </p>
             </div>
           </ScrollAnimation>
 
-          <ScrollContainer className="grid md:grid-cols-2 lg:grid-cols-4 gap-6" stagger={0.1}>
+          <ScrollContainer
+            className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6"
+            stagger={0.1}
+          >
             {offices.map((office, index) => (
               <ScrollItem key={office.city} delay={index * 0.1}>
-                <Card hover className="h-full">
+                <Card className="h-full bg-white border-2 border-primary/20 hover:border-primary hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                   <div className="flex items-start gap-3 mb-4">
-                    <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <MapPin className="w-5 h-5 text-primary" />
+                    <div className="w-10 h-10 bg-gradient-to-br from-primary to-primary-dark rounded-lg flex items-center justify-center flex-shrink-0 shadow-md max-[375px]:w-8 max-[375px]:h-8">
+                      <MapPin className="w-5 h-5 text-white max-[375px]:w-4 max-[375px]:h-4" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-gray-900 mb-1">{office.city}</h3>
-                      <p className="text-sm text-gray-600">{office.country}</p>
+                      <h3 className="font-bold text-gray-900 mb-1 max-[425px]:text-sm max-[375px]:text-xs">
+                        {office.city}
+                      </h3>
+                      <p className="text-sm text-gray-600 max-[425px]:text-xs max-[375px]:text-[10px]">
+                        ,{office.country}
+                      </p>
                     </div>
                   </div>
-                  <div className="space-y-2 text-sm text-gray-600 mb-4">
+                  <div className="space-y-2 text-sm text-gray-600 mb-4 max-[375px]:text-xs">
                     <p className="font-semibold text-primary text-xs uppercase tracking-wide mb-2">
                       {office.type}
                     </p>
@@ -437,16 +481,16 @@ export default function AboutPage() {
                   <div className="space-y-2 pt-4 border-t border-gray-200">
                     <a
                       href={`tel:${office.phone}`}
-                      className="flex items-center gap-2 text-sm text-gray-600 hover:text-primary transition-colors"
+                      className="flex items-center gap-2 text-sm text-gray-600 hover:text-primary transition-colors max-[375px]:text-xs"
                     >
-                      <Phone className="w-4 h-4" />
+                      <Phone className="w-4 h-4 max-[375px]:w-3 max-[375px]:h-3" />
                       {office.phone}
                     </a>
                     <a
                       href={`mailto:${office.email}`}
-                      className="flex items-center gap-2 text-sm text-gray-600 hover:text-primary transition-colors"
+                      className="flex items-center gap-2 text-sm text-gray-600 hover:text-primary transition-colors max-[375px]:text-xs"
                     >
-                      <Mail className="w-4 h-4" />
+                      <Mail className="w-4 h-4 max-[375px]:w-3 max-[375px]:h-3" />
                       {office.email}
                     </a>
                   </div>
@@ -462,24 +506,30 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 md:px-6">
           <ScrollAnimation>
             <div className="text-center mb-12">
-              <div className="inline-flex items-center gap-2 bg-primary/5 px-4 py-2 rounded-full mb-4">
+              <div className="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full mb-4">
                 <Users className="w-4 h-4 text-primary" />
-                <span className="text-primary font-semibold text-sm">Our Leadership</span>
+                <span className="text-primary font-semibold text-sm">
+                  Our Leadership
+                </span>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                Meet Our Leadership Team
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 max-[425px]:text-2xl max-[375px]:text-xl">
+                Meet Our <span className="text-primary">Leadership Team</span>
               </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Our capability and competencies are bolstered by diverse global leadership
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto max-[425px]:text-base max-[375px]:text-sm">
+                Our capability and competencies are bolstered by diverse global
+                leadership
               </p>
             </div>
           </ScrollAnimation>
 
-          <ScrollContainer className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6" stagger={0.1}>
+          <ScrollContainer
+            className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
+            stagger={0.1}
+          >
             {leadership.map((leader, index) => (
               <ScrollItem key={leader.name} delay={index * 0.1}>
-                <Card hover className="text-center">
-                  <div className="relative w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden bg-gray-200">
+                <Card className="text-center bg-white border-2 border-primary/20 hover:border-primary hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                  <div className="relative w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden bg-gradient-to-br from-primary/20 to-primary-dark/20 ring-4 ring-primary/10 max-[375px]:w-24 max-[375px]:h-24">
                     <Image
                       src={leader.image}
                       alt={leader.name}
@@ -487,22 +537,26 @@ export default function AboutPage() {
                       className="object-cover"
                       onError={(e) => {
                         // Fallback to placeholder if image doesn't exist
-                        e.currentTarget.style.display = 'none'
+                        e.currentTarget.style.display = "none";
                       }}
                     />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-1">
+                  <h3 className="text-xl font-bold text-gray-900 mb-1 max-[425px]:text-lg max-[375px]:text-base">
                     {leader.name}
                   </h3>
-                  <p className="text-gray-600 mb-4">{leader.title}</p>
+                  <p className="text-gray-600 mb-4 max-[425px]:text-sm max-[375px]:text-xs">
+                    {leader.title}
+                  </p>
                   <a
                     href={leader.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 text-primary hover:text-primary-dark transition-colors"
                   >
-                    <Linkedin className="w-5 h-5" />
-                    <span className="text-sm font-medium">LinkedIn</span>
+                    <Linkedin className="w-5 h-5 max-[375px]:w-4 max-[375px]:h-4" />
+                    <span className="text-sm font-medium max-[375px]:text-xs">
+                      LinkedIn
+                    </span>
                   </a>
                 </Card>
               </ScrollItem>
@@ -512,7 +566,7 @@ export default function AboutPage() {
       </section>
 
       {/* Code of Conduct Section */}
-      <section className="py-16 md:py-24 bg-white">
+      <section className="py-16 md:py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 md:px-6">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <ScrollAnimation direction="right">
@@ -528,38 +582,54 @@ export default function AboutPage() {
 
             <ScrollAnimation direction="left">
               <div>
-                <div className="inline-flex items-center gap-2 bg-primary/5 px-4 py-2 rounded-full mb-4">
+                <div className="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full mb-4">
                   <Shield className="w-4 h-4 text-primary" />
-                  <span className="text-primary font-semibold text-sm">Code of Conduct</span>
+                  <span className="text-primary font-semibold text-sm">
+                    Code of Conduct
+                  </span>
                 </div>
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                  Our Code of Business Principles
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 max-[425px]:text-2xl max-[375px]:text-xl">
+                  Our Code of{" "}
+                  <span className="text-primary">Business Principles</span>
                 </h2>
-                <p className="text-lg text-gray-600 leading-relaxed mb-6">
-                  {SITE_NAME} prioritizes legal and ethical conduct, ensuring honesty, fairness, and accountability for all.
-                  We are committed to maintaining the highest standards of integrity in all our business dealings.
+                <p className="text-lg text-gray-600 leading-relaxed mb-6 max-[425px]:text-base max-[375px]:text-sm">
+                  {SITE_NAME} prioritizes legal and ethical conduct, ensuring
+                  honesty, fairness, and accountability for all. We are
+                  committed to maintaining the highest standards of integrity in
+                  all our business dealings.
                 </p>
                 <div className="space-y-3 mb-6">
                   <div className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-success mt-0.5 flex-shrink-0" />
-                    <p className="text-gray-600">Ethical business practices and transparency</p>
+                    <CheckCircle className="w-5 h-5 text-success mt-0.5 flex-shrink-0 max-[375px]:w-4 max-[375px]:h-4" />
+                    <p className="text-gray-600 max-[375px]:text-sm">
+                      Ethical business practices and transparency
+                    </p>
                   </div>
                   <div className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-success mt-0.5 flex-shrink-0" />
-                    <p className="text-gray-600">Fair treatment of all stakeholders</p>
+                    <CheckCircle className="w-5 h-5 text-success mt-0.5 flex-shrink-0 max-[375px]:w-4 max-[375px]:h-4" />
+                    <p className="text-gray-600 max-[375px]:text-sm">
+                      Fair treatment of all stakeholders
+                    </p>
                   </div>
                   <div className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-success mt-0.5 flex-shrink-0" />
-                    <p className="text-gray-600">Compliance with all legal requirements</p>
+                    <CheckCircle className="w-5 h-5 text-success mt-0.5 flex-shrink-0 max-[375px]:w-4 max-[375px]:h-4" />
+                    <p className="text-gray-600 max-[375px]:text-sm">
+                      Compliance with all legal requirements
+                    </p>
                   </div>
                   <div className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-success mt-0.5 flex-shrink-0" />
-                    <p className="text-gray-600">Accountability and responsibility</p>
+                    <CheckCircle className="w-5 h-5 text-success mt-0.5 flex-shrink-0 max-[375px]:w-4 max-[375px]:h-4" />
+                    <p className="text-gray-600 max-[375px]:text-sm">
+                      Accountability and responsibility
+                    </p>
                   </div>
                 </div>
-                <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white">
+                <Button
+                  variant="outline"
+                  className="border-2 border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300 max-[425px]:text-xs max-[425px]:px-4 max-[425px]:py-2"
+                >
                   Access Our Code of Business Principles
-                  <ArrowRight className="w-4 h-4 ml-2" />
+                  <ArrowRight className="w-4 h-4 ml-2 max-[425px]:w-3 max-[425px]:h-3" />
                 </Button>
               </div>
             </ScrollAnimation>
@@ -568,30 +638,41 @@ export default function AboutPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 md:py-24 bg-primary">
-        <div className="max-w-7xl mx-auto px-4 md:px-6">
+      <section className="py-16 md:py-24 bg-gradient-to-br from-primary to-primary-dark relative overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage:
+                "radial-gradient(circle at 2px 2px, white 1px, transparent 0)",
+              backgroundSize: "30px 30px",
+            }}
+          ></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 md:px-6 relative">
           <ScrollAnimation>
             <div className="text-center max-w-3xl mx-auto">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                Ready To Get Started
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 max-[425px]:text-2xl max-[375px]:text-xl">
+                Ready To Get{" "}
+                <span className="text-primary-light">Started?</span>
               </h2>
-              <p className="text-xl text-white/90 mb-8">
-                Connect with us to explore how we can deliver exceptional IT solutions tailored to your needs.
+              <p className="text-lg md:text-xl text-white/90 mb-8 max-[425px]:text-base max-[375px]:text-sm">
+                Connect with us to explore how we can deliver exceptional IT
+                solutions tailored to your needs.
               </p>
-              <Link href="/contact">
-                <Button
-                  size="lg"
-                  className="bg-accent text-white hover:bg-accent-dark transition-all duration-300"
-                >
-                  Get in Touch
-                  <ArrowRight className="w-5 h-5 ml-2" />
-                </Button>
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 bg-white text-primary hover:bg-primary-light hover:text-primary-dark px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 shadow-xl hover:shadow-2xl hover:-translate-y-1 max-[425px]:text-base max-[425px]:px-6 max-[425px]:py-3 max-[375px]:text-sm max-[375px]:px-5 max-[375px]:py-2.5"
+              >
+                Get in Touch
+                <ArrowRight className="w-5 h-5 max-[425px]:w-4 max-[425px]:h-4 max-[375px]:w-3.5 max-[375px]:h-3.5" />
               </Link>
             </div>
           </ScrollAnimation>
         </div>
       </section>
     </div>
-  )
+  );
 }
-
