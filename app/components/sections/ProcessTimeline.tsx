@@ -7,7 +7,6 @@ import {
 } from "../ui/ScrollAnimation";
 
 const ProcessTimeline = () => {
-
   const steps = [
     {
       id: 1,
@@ -102,35 +101,54 @@ const ProcessTimeline = () => {
   ];
 
   return (
-    <section
-      className="py-20 md:py-28 bg-linear-to-b from-white to-gray-50 relative overflow-hidden"
-    >
+    <section className="py-12 md:py-20 lg:py-28 bg-linear-to-b from-white to-gray-50 relative overflow-hidden">
       {/* Decorative elements */}
-      <div className="absolute top-0 left-0 w-72 h-72 bg-primary/10 rounded-full -translate-y-1/3 -translate-x-1/3 blur-3xl"></div>
-      <div className="absolute bottom-0 right-0 w-72 h-72 bg-primary/10 rounded-full translate-y-1/3 translate-x-1/3 blur-3xl"></div>
+      <div className="absolute top-0 left-0 w-48 h-48 md:w-72 md:h-72 bg-primary/10 rounded-full -translate-y-1/3 -translate-x-1/3 blur-3xl"></div>
+      <div className="absolute bottom-0 right-0 w-48 h-48 md:w-72 md:h-72 bg-primary/10 rounded-full translate-y-1/3 translate-x-1/3 blur-3xl"></div>
 
       <div className="section-shell relative z-10">
-        <ScrollAnimation className="text-center mb-16 md:mb-20">
-          <div className="inline-flex items-center gap-2 px-4 py-2 mb-4 rounded-full bg-primary/10 text-primary font-semibold text-sm">
+        <ScrollAnimation className="text-center mb-10 md:mb-16 lg:mb-20 px-4">
+          <div className="inline-flex items-center gap-2 px-3 md:px-4 py-1.5 md:py-2 mb-3 md:mb-4 rounded-full bg-primary/10 text-primary font-semibold text-xs md:text-sm">
             <span className="w-2 h-2 rounded-full bg-primary" />
             Our Methodology
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
+          <h2 className="text-2xl max-[375px]:text-xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4 text-gray-900">
             Our Proven Process
           </h2>
-          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-base max-[375px]:text-sm md:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto">
             We follow a structured approach to deliver consistent, high-quality
             results.
           </p>
         </ScrollAnimation>
 
-        <div className="relative max-w-6xl mx-auto">
+        <div className="relative max-w-6xl mx-auto px-4 md:px-0">
           {/* Vertical line for desktop */}
           <ScrollAnimation className="hidden md:block absolute left-1/2 -translate-x-1/2 h-full w-1">
             <div className="h-full w-1 bg-linear-to-b from-primary/20 via-primary/15 to-primary/20 rounded-full" />
           </ScrollAnimation>
 
-          <ScrollContainer className="space-y-14 md:space-y-16">
+          {/* Mobile Grid - 2 columns */}
+          <div className="md:hidden grid grid-cols-2 max-[375px]:grid-cols-1 gap-4 mb-8">
+            {steps.map((step) => (
+              <div
+                key={step.id}
+                className="flex flex-col items-center text-center p-4 bg-white rounded-xl shadow-sm border border-gray-100"
+              >
+                <div className="flex items-center justify-center w-12 h-12 max-[375px]:w-10 max-[375px]:h-10 rounded-full bg-primary text-white font-bold text-lg max-[375px]:text-base mb-3">
+                  {step.id}
+                </div>
+                <h3 className="text-sm max-[375px]:text-xs font-bold mb-2 text-gray-900">
+                  {step.title}
+                </h3>
+                <p className="text-xs max-[375px]:text-[11px] text-gray-600 leading-relaxed">
+                  {step.description}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {/* Desktop Timeline */}
+          <ScrollContainer className="hidden md:block space-y-14 lg:space-y-16">
             {steps.map((step, index) => (
               <ScrollItem
                 key={step.id}
@@ -139,35 +157,40 @@ const ProcessTimeline = () => {
                 className="group"
               >
                 <div
-                  className={`mb-8 md:mb-0 flex flex-col md:flex-row items-center ${index % 2 !== 0 ? "md:flex-row-reverse" : ""
-                    }`}
+                  className={`mb-6 md:mb-0 flex flex-col md:flex-row items-center ${
+                    index % 2 !== 0 ? "md:flex-row-reverse" : ""
+                  }`}
                 >
-                  <div className="md:w-1/2 mb-6 md:mb-0 md:px-10">
+                  <div className="md:w-1/2 mb-6 md:mb-0 md:px-6 lg:px-10 w-full">
                     <div
-                      className={`text-center ${index % 2 === 0 ? "md:text-right" : "md:text-left"
-                        }`}
+                      className={`text-center ${
+                        index % 2 === 0 ? "md:text-right" : "md:text-left"
+                      }`}
                     >
                       <div className="inline-flex items-center mb-2 text-primary">
-                        <span className="text-sm font-semibold mr-2">
+                        <span className="text-xs md:text-sm font-semibold mr-2">
                           STEP {step.id}
                         </span>
-                        <div className="h-px w-10 bg-primary/30"></div>
+                        <div className="h-px w-8 md:w-10 bg-primary/30"></div>
                       </div>
-                      <h3 className="text-2xl font-bold mb-3 text-gray-900">
+                      <h3 className="text-xl md:text-2xl font-bold mb-2 md:mb-3 text-gray-900">
                         {step.title}
                       </h3>
-                      <p className="text-gray-600">{step.description}</p>
+                      <p className="text-sm md:text-base text-gray-600 leading-relaxed">
+                        {step.description}
+                      </p>
 
                       {/* Feature list - optional */}
                       <ul
-                        className={`mt-4 space-y-2 text-sm text-gray-600 ${index % 2 === 0 ? "md:ml-auto" : ""
-                          } inline-block text-left`}
+                        className={`mt-3 md:mt-4 space-y-1.5 md:space-y-2 text-xs md:text-sm text-gray-600 ${
+                          index % 2 === 0 ? "md:ml-auto" : ""
+                        } inline-block text-left`}
                       >
                         {index === 0 && (
                           <>
                             <li className="flex items-center">
                               <svg
-                                className="w-4 h-4 mr-2 text-success"
+                                className="w-3.5 h-3.5 md:w-4 md:h-4 mr-2 text-success flex-shrink-0"
                                 viewBox="0 0 20 20"
                                 fill="currentColor"
                               >
@@ -181,7 +204,7 @@ const ProcessTimeline = () => {
                             </li>
                             <li className="flex items-center">
                               <svg
-                                className="w-4 h-4 mr-2 text-success"
+                                className="w-3.5 h-3.5 md:w-4 md:h-4 mr-2 text-success flex-shrink-0"
                                 viewBox="0 0 20 20"
                                 fill="currentColor"
                               >
@@ -199,7 +222,7 @@ const ProcessTimeline = () => {
                           <>
                             <li className="flex items-center">
                               <svg
-                                className="w-4 h-4 mr-2 text-success"
+                                className="w-3.5 h-3.5 md:w-4 md:h-4 mr-2 text-success flex-shrink-0"
                                 viewBox="0 0 20 20"
                                 fill="currentColor"
                               >
@@ -213,7 +236,7 @@ const ProcessTimeline = () => {
                             </li>
                             <li className="flex items-center">
                               <svg
-                                className="w-4 h-4 mr-2 text-success"
+                                className="w-3.5 h-3.5 md:w-4 md:h-4 mr-2 text-success flex-shrink-0"
                                 viewBox="0 0 20 20"
                                 fill="currentColor"
                               >
@@ -236,25 +259,13 @@ const ProcessTimeline = () => {
                     className="hidden md:flex absolute left-1/2 -translate-x-1/2 z-20"
                     style={{ top: `${index * 33.33}%` }}
                   >
-                    <div className="w-16 h-16 rounded-full bg-linear-to-r from-primary to-primary-dark flex items-center justify-center shadow-lg shadow-primary/20">
+                    <div className="w-14 h-14 lg:w-16 lg:h-16 rounded-full bg-linear-to-r from-primary to-primary-dark flex items-center justify-center shadow-lg shadow-primary/20">
                       {step.icon}
                     </div>
                   </div>
 
-                  {/* Circle with icon for mobile */}
-                  <div className="md:hidden flex w-16 h-16 rounded-full bg-linear-to-r from-primary to-primary-dark items-center justify-center shadow-lg shadow-primary/20 mb-4">
-                    {step.icon}
-                  </div>
-
-                  <div className="md:w-1/2 md:px-10">
-                    <div className="md:hidden">
-                      <h3 className="text-2xl font-bold mb-3 text-center text-gray-900">
-                        {step.title}
-                      </h3>
-                      <p className="text-gray-600 text-center">
-                        {step.description}
-                      </p>
-                    </div>
+                  <div className="md:w-1/2 md:px-6 lg:px-10">
+                    {/* Empty div for desktop layout balance */}
                   </div>
                 </div>
               </ScrollItem>

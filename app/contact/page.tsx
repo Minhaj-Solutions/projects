@@ -1,179 +1,201 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle } from 'lucide-react'
-import { Button } from '@/app/components/ui/Button'
-import { ScrollAnimation } from '@/app/components/ui/ScrollAnimation'
-import { SITE_NAME } from '@/app/lib/constants'
+import { useState } from "react";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Send,
+  CheckCircle,
+  AlertCircle,
+} from "lucide-react";
+import { Button } from "@/app/components/ui/Button";
+import { ScrollAnimation } from "@/app/components/ui/ScrollAnimation";
+import { SITE_NAME } from "@/app/lib/constants";
 
 interface FormData {
-  firstName: string
-  lastName: string
-  businessEmail: string
-  company: string
-  jobTitle: string
-  phone: string
-  location: string
-  message: string
-  consent: boolean
+  firstName: string;
+  lastName: string;
+  businessEmail: string;
+  company: string;
+  jobTitle: string;
+  phone: string;
+  location: string;
+  message: string;
+  consent: boolean;
 }
 
 interface FormErrors {
-  firstName?: string
-  lastName?: string
-  businessEmail?: string
-  company?: string
-  jobTitle?: string
-  phone?: string
-  location?: string
-  message?: string
-  consent?: string
+  firstName?: string;
+  lastName?: string;
+  businessEmail?: string;
+  company?: string;
+  jobTitle?: string;
+  phone?: string;
+  location?: string;
+  message?: string;
+  consent?: string;
 }
 
 export default function ContactPage() {
   const [formData, setFormData] = useState<FormData>({
-    firstName: '',
-    lastName: '',
-    businessEmail: '',
-    company: '',
-    jobTitle: '',
-    phone: '',
-    location: '',
-    message: '',
+    firstName: "",
+    lastName: "",
+    businessEmail: "",
+    company: "",
+    jobTitle: "",
+    phone: "",
+    location: "",
+    message: "",
     consent: false,
-  })
+  });
 
-  const [errors, setErrors] = useState<FormErrors>({})
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isSubmitted, setIsSubmitted] = useState(false)
+  const [errors, setErrors] = useState<FormErrors>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const validateForm = (): boolean => {
-    const newErrors: FormErrors = {}
+    const newErrors: FormErrors = {};
 
     if (!formData.firstName.trim()) {
-      newErrors.firstName = 'First name is required'
+      newErrors.firstName = "First name is required";
     }
 
     if (!formData.lastName.trim()) {
-      newErrors.lastName = 'Last name is required'
+      newErrors.lastName = "Last name is required";
     }
 
     if (!formData.businessEmail.trim()) {
-      newErrors.businessEmail = 'Business email is required'
+      newErrors.businessEmail = "Business email is required";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.businessEmail)) {
-      newErrors.businessEmail = 'Please enter a valid email address'
+      newErrors.businessEmail = "Please enter a valid email address";
     }
 
     if (!formData.company.trim()) {
-      newErrors.company = 'Company name is required'
+      newErrors.company = "Company name is required";
     }
 
     if (!formData.jobTitle.trim()) {
-      newErrors.jobTitle = 'Job title is required'
+      newErrors.jobTitle = "Job title is required";
     }
 
     if (formData.phone && !/^[\d\s\-\+\(\)]+$/.test(formData.phone)) {
-      newErrors.phone = 'Please enter a valid phone number'
+      newErrors.phone = "Please enter a valid phone number";
     }
 
     if (!formData.location) {
-      newErrors.location = 'Please select your location'
+      newErrors.location = "Please select your location";
     }
 
     if (!formData.consent) {
-      newErrors.consent = 'You must consent to proceed'
+      newErrors.consent = "You must consent to proceed";
     }
 
-    setErrors(newErrors)
-    return Object.keys(newErrors).length === 0
-  }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
 
     if (!validateForm()) {
-      return
+      return;
     }
 
-    setIsSubmitting(true)
+    setIsSubmitting(true);
 
     // Simulate API call
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1500))
-      setIsSubmitted(true)
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+      setIsSubmitted(true);
       setFormData({
-        firstName: '',
-        lastName: '',
-        businessEmail: '',
-        company: '',
-        jobTitle: '',
-        phone: '',
-        location: '',
-        message: '',
+        firstName: "",
+        lastName: "",
+        businessEmail: "",
+        company: "",
+        jobTitle: "",
+        phone: "",
+        location: "",
+        message: "",
         consent: false,
-      })
-      setErrors({})
+      });
+      setErrors({});
     } catch (error) {
-      console.error('Form submission error:', error)
+      console.error("Form submission error:", error);
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
-  }
+  };
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
-    const { name, value, type } = e.target
-    const checked = (e.target as HTMLInputElement).checked
+    const { name, value, type } = e.target;
+    const checked = (e.target as HTMLInputElement).checked;
 
     setFormData((prev) => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : value,
-    }))
+      [name]: type === "checkbox" ? checked : value,
+    }));
 
     // Clear error when user starts typing
     if (errors[name as keyof FormErrors]) {
       setErrors((prev) => ({
         ...prev,
         [name]: undefined,
-      }))
+      }));
     }
-  }
+  };
 
   const countries = [
-    { value: '', label: 'Select Country' },
-    { value: 'PK', label: 'Pakistan' },
-    { value: 'US', label: 'United States' },
-    { value: 'UK', label: 'United Kingdom' },
-    { value: 'CA', label: 'Canada' },
-    { value: 'AU', label: 'Australia' },
-    { value: 'AE', label: 'United Arab Emirates' },
-    { value: 'SA', label: 'Saudi Arabia' },
-    { value: 'IN', label: 'India' },
-    { value: 'DE', label: 'Germany' },
-    { value: 'FR', label: 'France' },
-    { value: 'OTHER', label: 'Other' },
-  ]
+    { value: "", label: "Select Country" },
+    { value: "PK", label: "Pakistan" },
+    { value: "US", label: "United States" },
+    { value: "UK", label: "United Kingdom" },
+    { value: "CA", label: "Canada" },
+    { value: "AU", label: "Australia" },
+    { value: "AE", label: "United Arab Emirates" },
+    { value: "SA", label: "Saudi Arabia" },
+    { value: "IN", label: "India" },
+    { value: "DE", label: "Germany" },
+    { value: "FR", label: "France" },
+    { value: "OTHER", label: "Other" },
+  ];
 
   return (
     <div className="min-h-screen bg-white">
       {/* Page Hero */}
-      <section className="py-12 md:py-16 bg-gradient-to-b from-gray-50 to-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 md:px-6">
+      <section className="relative py-16 md:py-24 lg:py-32 bg-gradient-to-br from-primary to-primary-dark overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage:
+                "radial-gradient(circle at 2px 2px, white 1px, transparent 0)",
+              backgroundSize: "30px 30px",
+            }}
+          ></div>
+        </div>
+
+        <div className="relative max-w-7xl mx-auto px-4 md:px-6">
           <ScrollAnimation>
-            <div className="text-center max-w-3xl mx-auto">
-              <div className="inline-flex items-center gap-2 bg-primary/5 px-4 py-2 rounded-full mb-4">
-                <div className="w-2 h-2 bg-primary rounded-full"></div>
-                <span className="text-primary font-semibold text-sm">Get In Touch</span>
+            <div className="text-center md:text-center max-w-4xl mx-auto max-md:text-left">
+              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-6 border border-white/20">
+                <div className="w-2 h-2 bg-white rounded-full"></div>
+                <span className="text-white font-semibold text-sm">
+                  Get In Touch
+                </span>
               </div>
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                Contact Us
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 max-[425px]:text-3xl max-[375px]:text-2xl">
+                Let's Talk <span className="text-primary-light">Business</span>
               </h1>
-              <p className="text-lg md:text-xl text-gray-600">
-                Let's Talk Business
-              </p>
-              <p className="text-base text-gray-500 mt-3">
-                Get in touch with {SITE_NAME} for all your technology needs and inquiries.
+              <p className="text-lg md:text-xl text-white/90 max-w-3xl md:mx-auto leading-relaxed max-[425px]:text-base max-[375px]:text-sm">
+                Get in touch with {SITE_NAME} for all your technology needs and
+                inquiries. We're here to help you transform your business with
+                innovative solutions.
               </p>
             </div>
           </ScrollAnimation>
@@ -186,8 +208,10 @@ export default function ContactPage() {
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-12">
             {/* Office Information - Left Side */}
             <ScrollAnimation direction="right" className="lg:col-span-4">
-              <div className="bg-gradient-to-br from-primary to-primary-dark rounded-2xl p-8 text-white shadow-xl">
-                <h2 className="text-2xl font-bold mb-6">Offices</h2>
+              <div className="bg-gradient-to-br from-primary to-primary-dark rounded-2xl p-8 text-white shadow-xl max-[425px]:p-6">
+                <h2 className="text-2xl font-bold mb-6 max-[425px]:text-xl max-[375px]:text-lg">
+                  Offices
+                </h2>
 
                 <div className="space-y-6">
                   {/* Email */}
@@ -196,10 +220,12 @@ export default function ContactPage() {
                       <Mail className="w-6 h-6" />
                     </div>
                     <div>
-                      <h3 className="font-semibold mb-1">Email</h3>
+                      <h3 className="font-semibold mb-1 max-[425px]:text-sm">
+                        Email
+                      </h3>
                       <a
                         href="mailto:info@minhajsolutions.com"
-                        className="text-white/90 hover:text-white transition-colors text-sm break-all"
+                        className="text-white/90 hover:text-white transition-colors text-sm break-all max-[425px]:text-xs"
                       >
                         info@minhajsolutions.com
                       </a>
@@ -212,10 +238,12 @@ export default function ContactPage() {
                       <Phone className="w-6 h-6" />
                     </div>
                     <div>
-                      <h3 className="font-semibold mb-1">Phone</h3>
+                      <h3 className="font-semibold mb-1 max-[425px]:text-sm">
+                        Phone
+                      </h3>
                       <a
                         href="tel:+92-000-0000000"
-                        className="text-white/90 hover:text-white transition-colors text-sm"
+                        className="text-white/90 hover:text-white transition-colors text-sm max-[425px]:text-xs"
                       >
                         +92 000 0000000
                       </a>
@@ -228,10 +256,14 @@ export default function ContactPage() {
                       <MapPin className="w-6 h-6" />
                     </div>
                     <div>
-                      <h3 className="font-semibold mb-1">Office</h3>
-                      <address className="text-white/90 text-sm not-italic leading-relaxed">
-                        123 Business Street<br />
-                        City, State 12345<br />
+                      <h3 className="font-semibold mb-1 max-[425px]:text-sm">
+                        Office
+                      </h3>
+                      <address className="text-white/90 text-sm not-italic leading-relaxed max-[425px]:text-xs">
+                        123 Business Street
+                        <br />
+                        City, State 12345
+                        <br />
                         Pakistan
                       </address>
                     </div>
@@ -242,16 +274,22 @@ export default function ContactPage() {
                 <div className="mt-8 pt-8 border-t border-white/20">
                   <div className="space-y-4">
                     <div className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-white/80" />
-                      <span className="text-sm text-white/90">24/7 Support Available</span>
+                      <CheckCircle className="w-5 h-5 text-white/80 max-[425px]:w-4 max-[425px]:h-4" />
+                      <span className="text-sm text-white/90 max-[425px]:text-xs">
+                        24/7 Support Available
+                      </span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-white/80" />
-                      <span className="text-sm text-white/90">Free Consultation</span>
+                      <CheckCircle className="w-5 h-5 text-white/80 max-[425px]:w-4 max-[425px]:h-4" />
+                      <span className="text-sm text-white/90 max-[425px]:text-xs">
+                        Free Consultation
+                      </span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-white/80" />
-                      <span className="text-sm text-white/90">Quick Response Time</span>
+                      <CheckCircle className="w-5 h-5 text-white/80 max-[425px]:w-4 max-[425px]:h-4" />
+                      <span className="text-sm text-white/90 max-[425px]:text-xs">
+                        Quick Response Time
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -270,7 +308,8 @@ export default function ContactPage() {
                       Thank You!
                     </h2>
                     <p className="text-gray-600 mb-6">
-                      We've received your message. Someone from our team will reach out to find a time to connect with you.
+                      We've received your message. Someone from our team will
+                      reach out to find a time to connect with you.
                     </p>
                     <Button
                       onClick={() => setIsSubmitted(false)}
@@ -282,12 +321,14 @@ export default function ContactPage() {
                 ) : (
                   <>
                     <div className="mb-6">
-                      <h2 className="text-2xl font-bold text-gray-900 mb-2">
+                      <h2 className="text-2xl font-bold text-gray-900 mb-2 max-[425px]:text-xl max-[375px]:text-lg">
                         Let's discuss your project
                       </h2>
-                      <p className="text-gray-600">
-                        We are committed to understanding your requirements and crafting a tailored solution that aligns with your goals.
-                        Enter your details and someone from our team will reach out to find a time to connect with you.
+                      <p className="text-gray-600 max-[425px]:text-sm max-[375px]:text-xs">
+                        We are committed to understanding your requirements and
+                        crafting a tailored solution that aligns with your
+                        goals. Enter your details and someone from our team will
+                        reach out to find a time to connect with you.
                       </p>
                     </div>
 
@@ -297,7 +338,7 @@ export default function ContactPage() {
                         <div>
                           <label
                             htmlFor="firstName"
-                            className="block text-sm font-medium text-gray-700 mb-1.5"
+                            className="block text-sm font-medium text-gray-700 mb-1.5 max-[425px]:text-xs"
                           >
                             First Name <span className="text-error">*</span>
                           </label>
@@ -307,10 +348,10 @@ export default function ContactPage() {
                             name="firstName"
                             value={formData.firstName}
                             onChange={handleChange}
-                            className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all ${
+                            className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all max-[425px]:px-3 max-[425px]:py-2 max-[425px]:text-sm ${
                               errors.firstName
-                                ? 'border-error focus:ring-error focus:border-error'
-                                : 'border-gray-300'
+                                ? "border-error focus:ring-error focus:border-error"
+                                : "border-gray-300"
                             }`}
                             placeholder="John"
                           />
@@ -325,7 +366,7 @@ export default function ContactPage() {
                         <div>
                           <label
                             htmlFor="lastName"
-                            className="block text-sm font-medium text-gray-700 mb-1.5"
+                            className="block text-sm font-medium text-gray-700 mb-1.5 max-[425px]:text-xs"
                           >
                             Last Name <span className="text-error">*</span>
                           </label>
@@ -335,10 +376,10 @@ export default function ContactPage() {
                             name="lastName"
                             value={formData.lastName}
                             onChange={handleChange}
-                            className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all ${
+                            className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all max-[425px]:px-3 max-[425px]:py-2 max-[425px]:text-sm ${
                               errors.lastName
-                                ? 'border-error focus:ring-error focus:border-error'
-                                : 'border-gray-300'
+                                ? "border-error focus:ring-error focus:border-error"
+                                : "border-gray-300"
                             }`}
                             placeholder="Doe"
                           />
@@ -355,7 +396,7 @@ export default function ContactPage() {
                       <div>
                         <label
                           htmlFor="businessEmail"
-                          className="block text-sm font-medium text-gray-700 mb-1.5"
+                          className="block text-sm font-medium text-gray-700 mb-1.5 max-[425px]:text-xs"
                         >
                           Business Email <span className="text-error">*</span>
                         </label>
@@ -365,10 +406,10 @@ export default function ContactPage() {
                           name="businessEmail"
                           value={formData.businessEmail}
                           onChange={handleChange}
-                          className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all ${
+                          className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all max-[425px]:px-3 max-[425px]:py-2 max-[425px]:text-sm ${
                             errors.businessEmail
-                              ? 'border-error focus:ring-error focus:border-error'
-                              : 'border-gray-300'
+                              ? "border-error focus:ring-error focus:border-error"
+                              : "border-gray-300"
                           }`}
                           placeholder="john.doe@company.com"
                         />
@@ -385,7 +426,7 @@ export default function ContactPage() {
                         <div>
                           <label
                             htmlFor="company"
-                            className="block text-sm font-medium text-gray-700 mb-1.5"
+                            className="block text-sm font-medium text-gray-700 mb-1.5 max-[425px]:text-xs"
                           >
                             Company <span className="text-error">*</span>
                           </label>
@@ -395,10 +436,10 @@ export default function ContactPage() {
                             name="company"
                             value={formData.company}
                             onChange={handleChange}
-                            className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all ${
+                            className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all max-[425px]:px-3 max-[425px]:py-2 max-[425px]:text-sm ${
                               errors.company
-                                ? 'border-error focus:ring-error focus:border-error'
-                                : 'border-gray-300'
+                                ? "border-error focus:ring-error focus:border-error"
+                                : "border-gray-300"
                             }`}
                             placeholder="Company Name"
                           />
@@ -413,7 +454,7 @@ export default function ContactPage() {
                         <div>
                           <label
                             htmlFor="jobTitle"
-                            className="block text-sm font-medium text-gray-700 mb-1.5"
+                            className="block text-sm font-medium text-gray-700 mb-1.5 max-[425px]:text-xs"
                           >
                             Job Title <span className="text-error">*</span>
                           </label>
@@ -423,10 +464,10 @@ export default function ContactPage() {
                             name="jobTitle"
                             value={formData.jobTitle}
                             onChange={handleChange}
-                            className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all ${
+                            className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all max-[425px]:px-3 max-[425px]:py-2 max-[425px]:text-sm ${
                               errors.jobTitle
-                                ? 'border-error focus:ring-error focus:border-error'
-                                : 'border-gray-300'
+                                ? "border-error focus:ring-error focus:border-error"
+                                : "border-gray-300"
                             }`}
                             placeholder="CEO, CTO, Manager"
                           />
@@ -444,7 +485,7 @@ export default function ContactPage() {
                         <div>
                           <label
                             htmlFor="phone"
-                            className="block text-sm font-medium text-gray-700 mb-1.5"
+                            className="block text-sm font-medium text-gray-700 mb-1.5 max-[425px]:text-xs"
                           >
                             Phone
                           </label>
@@ -454,10 +495,10 @@ export default function ContactPage() {
                             name="phone"
                             value={formData.phone}
                             onChange={handleChange}
-                            className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all ${
+                            className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all max-[425px]:px-3 max-[425px]:py-2 max-[425px]:text-sm ${
                               errors.phone
-                                ? 'border-error focus:ring-error focus:border-error'
-                                : 'border-gray-300'
+                                ? "border-error focus:ring-error focus:border-error"
+                                : "border-gray-300"
                             }`}
                             placeholder="+1 (234) 567-890"
                           />
@@ -472,7 +513,7 @@ export default function ContactPage() {
                         <div>
                           <label
                             htmlFor="location"
-                            className="block text-sm font-medium text-gray-700 mb-1.5"
+                            className="block text-sm font-medium text-gray-700 mb-1.5 max-[425px]:text-xs"
                           >
                             Location <span className="text-error">*</span>
                           </label>
@@ -481,10 +522,10 @@ export default function ContactPage() {
                             name="location"
                             value={formData.location}
                             onChange={handleChange}
-                            className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all bg-white ${
+                            className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all bg-white max-[425px]:px-3 max-[425px]:py-2 max-[425px]:text-sm ${
                               errors.location
-                                ? 'border-error focus:ring-error focus:border-error'
-                                : 'border-gray-300'
+                                ? "border-error focus:ring-error focus:border-error"
+                                : "border-gray-300"
                             }`}
                           >
                             {countries.map((country) => (
@@ -506,7 +547,7 @@ export default function ContactPage() {
                       <div>
                         <label
                           htmlFor="message"
-                          className="block text-sm font-medium text-gray-700 mb-1.5"
+                          className="block text-sm font-medium text-gray-700 mb-1.5 max-[425px]:text-xs"
                         >
                           Message
                         </label>
@@ -516,7 +557,7 @@ export default function ContactPage() {
                           value={formData.message}
                           onChange={handleChange}
                           rows={4}
-                          className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all resize-none"
+                          className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all resize-none max-[425px]:px-3 max-[425px]:py-2 max-[425px]:text-sm"
                           placeholder="Tell us about your project requirements..."
                         />
                       </div>
@@ -531,8 +572,15 @@ export default function ContactPage() {
                             onChange={handleChange}
                             className="mt-1 w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary"
                           />
-                          <span className="text-sm text-gray-600">
-                            I consent to {SITE_NAME} processing my personal information as set out in the Privacy Policy for marketing purposes and therefore to be contacted via the contact information I provided. Given the global nature of {SITE_NAME}'s business, such processing may take place outside of my home jurisdiction. The consent can be withdrawn at any time under the contact in the Privacy Policy.{' '}
+                          <span className="text-sm text-gray-600 max-[425px]:text-xs">
+                            I consent to {SITE_NAME} processing my personal
+                            information as set out in the Privacy Policy for
+                            marketing purposes and therefore to be contacted via
+                            the contact information I provided. Given the global
+                            nature of {SITE_NAME}'s business, such processing
+                            may take place outside of my home jurisdiction. The
+                            consent can be withdrawn at any time under the
+                            contact in the Privacy Policy.{" "}
                             <span className="text-error">*</span>
                           </span>
                         </label>
@@ -550,7 +598,7 @@ export default function ContactPage() {
                         size="lg"
                         fullWidth
                         disabled={isSubmitting}
-                        className="bg-primary hover:bg-primary-dark text-white shadow-lg shadow-primary/20"
+                        className="bg-primary hover:bg-primary-dark text-white shadow-lg shadow-primary/20 max-[425px]:text-sm max-[425px]:py-2.5 max-[375px]:text-xs max-[375px]:py-2"
                       >
                         {isSubmitting ? (
                           <>
@@ -559,7 +607,7 @@ export default function ContactPage() {
                           </>
                         ) : (
                           <>
-                            <Send className="w-5 h-5 mr-2" />
+                            <Send className="w-5 h-5 mr-2 max-[425px]:w-4 max-[425px]:h-4" />
                             Submit
                           </>
                         )}
@@ -573,6 +621,5 @@ export default function ContactPage() {
         </div>
       </section>
     </div>
-  )
+  );
 }
-

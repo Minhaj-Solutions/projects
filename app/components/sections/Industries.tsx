@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import {
   ArrowRight,
@@ -7,50 +7,57 @@ import {
   Rocket,
   Satellite,
   ShoppingBag,
-  Zap
-} from 'lucide-react'
-import Link from 'next/link'
-import { Button } from '../ui/Button'
-import { ScrollAnimation, ScrollContainer, ScrollItem } from '../ui/ScrollAnimation'
+  Zap,
+} from "lucide-react";
+import Link from "next/link";
+import { Button } from "../ui/Button";
+import {
+  ScrollAnimation,
+  ScrollContainer,
+  ScrollItem,
+} from "../ui/ScrollAnimation";
 
 const industries = [
   {
-    id: 'travel-hospitality',
-    name: 'Travel & Hospitality',
+    id: "travel-hospitality",
+    name: "Travel & Hospitality",
     icon: Luggage,
-    description: 'Transforming guest experiences with innovative technology solutions',
+    description:
+      "Transforming guest experiences with innovative technology solutions",
   },
   {
-    id: 'telecommunication',
-    name: 'Telecommunication',
+    id: "telecommunication",
+    name: "Telecommunication",
     icon: Satellite,
-    description: 'Enabling seamless connectivity and communication infrastructure',
+    description:
+      "Enabling seamless connectivity and communication infrastructure",
   },
   {
-    id: 'oil-gas-energy',
-    name: 'Oil, Gas, and Energy',
+    id: "oil-gas-energy",
+    name: "Oil, Gas, and Energy",
     icon: Zap,
-    description: 'Powering the energy sector with advanced digital solutions',
+    description: "Powering the energy sector with advanced digital solutions",
   },
   {
-    id: 'public-sector',
-    name: 'Public Sector',
+    id: "public-sector",
+    name: "Public Sector",
     icon: Building2,
-    description: 'Supporting government initiatives with secure, scalable systems',
+    description:
+      "Supporting government initiatives with secure, scalable systems",
   },
   {
-    id: 'retail-cpg',
-    name: 'Retail & CPG',
+    id: "retail-cpg",
+    name: "Retail & CPG",
     icon: ShoppingBag,
-    description: 'Driving retail innovation and consumer engagement platforms',
+    description: "Driving retail innovation and consumer engagement platforms",
   },
   {
-    id: 'startups',
-    name: 'Startups',
+    id: "startups",
+    name: "Startups",
     icon: Rocket,
-    description: 'Accelerating startup growth with agile technology solutions',
+    description: "Accelerating startup growth with agile technology solutions",
   },
-]
+];
 
 export function Industries() {
   return (
@@ -60,8 +67,9 @@ export function Industries() {
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: 'radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)',
-            backgroundSize: '40px 40px'
+            backgroundImage:
+              "radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)",
+            backgroundSize: "40px 40px",
           }}
         />
       </div>
@@ -74,11 +82,12 @@ export function Industries() {
         {/* Section Header */}
         <ScrollAnimation>
           <div className="text-center mb-12 md:mb-16">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 tracking-tight">
+            <h2 className="text-3xl max-[375px]:text-2xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 tracking-tight">
               Discover our Impact Across Industries
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-              We deliver tailored technology solutions that drive success across diverse sectors
+            <p className="text-lg max-[375px]:text-base text-gray-600 max-w-2xl mx-auto leading-relaxed">
+              We deliver tailored technology solutions that drive success across
+              diverse sectors
             </p>
           </div>
         </ScrollAnimation>
@@ -90,7 +99,7 @@ export function Industries() {
             stagger={0.1}
           >
             {industries.map((industry, index) => {
-              const Icon = industry.icon
+              const Icon = industry.icon;
               return (
                 <ScrollItem key={industry.id} delay={index * 0.1}>
                   <Link
@@ -99,8 +108,8 @@ export function Industries() {
                   >
                     <div className="relative bg-white rounded-2xl p-6 md:p-8 border border-gray-200/80 hover:border-primary/40 transition-all duration-500 ease-out hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-2 h-full">
                       {/* Icon Container with gradient background */}
-                      <div className="flex items-start gap-5 md:gap-6">
-                        <div className="shrink-0 relative">
+                      <div className="flex max-[375px]:flex-col items-start gap-5 md:gap-6">
+                        <div className="shrink-0 relative max-[375px]:self-center">
                           <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl blur-sm group-hover:blur-md transition-all duration-500 opacity-0 group-hover:opacity-100" />
                           <div className="relative w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-gradient-to-br from-primary/10 via-primary/8 to-primary/5 group-hover:from-primary/20 group-hover:via-primary/15 group-hover:to-primary/10 flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:rotate-3">
                             <Icon className="w-7 h-7 md:w-8 md:h-8 text-primary group-hover:text-primary-dark transition-all duration-500 group-hover:scale-110" />
@@ -108,8 +117,8 @@ export function Industries() {
                         </div>
 
                         {/* Content */}
-                        <div className="flex-1 min-w-0 pt-1">
-                          <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-3 group-hover:text-primary transition-colors duration-300">
+                        <div className="flex-1 min-w-0 pt-1 max-[375px]:text-center max-[375px]:pt-4">
+                          <h3 className="text-lg max-[375px]:text-base md:text-xl font-bold text-gray-900 mb-3 group-hover:text-primary transition-colors duration-300">
                             {industry.name}
                           </h3>
 
@@ -121,15 +130,17 @@ export function Industries() {
 
                           {/* Description - Always present, expands on hover */}
                           <div className="overflow-hidden">
-                            <p className="text-sm text-gray-600 leading-relaxed line-clamp-2 transition-all duration-500 ease-out group-hover:line-clamp-none group-hover:text-gray-700">
+                            <p className="text-sm max-[375px]:text-xs text-gray-600 leading-relaxed line-clamp-2 transition-all duration-500 ease-out group-hover:line-clamp-none group-hover:text-gray-700">
                               {industry.description}
                             </p>
                           </div>
 
                           {/* Learn more indicator */}
-                          <div className="flex items-center mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <span className="text-sm font-medium text-primary mr-2">Learn more</span>
-                            <ArrowRight className="w-4 h-4 text-primary group-hover:translate-x-1.5 transition-transform duration-300" />
+                          <div className="flex max-[375px]:justify-center items-center mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <span className="text-sm max-[375px]:text-xs font-medium text-primary mr-2">
+                              Learn more
+                            </span>
+                            <ArrowRight className="w-4 h-4 max-[375px]:w-3 max-[375px]:h-3 text-primary group-hover:translate-x-1.5 transition-transform duration-300" />
                           </div>
                         </div>
                       </div>
@@ -144,7 +155,7 @@ export function Industries() {
                     </div>
                   </Link>
                 </ScrollItem>
-              )
+              );
             })}
           </ScrollContainer>
 
@@ -155,10 +166,10 @@ export function Industries() {
                 <Button
                   size="lg"
                   variant="primary"
-                  className="group shadow-lg hover:shadow-xl transition-all duration-300"
+                  className="group shadow-lg hover:shadow-xl transition-all duration-300 max-[375px]:text-sm"
                 >
                   Let's Talk Business
-                  <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+                  <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300 max-[375px]:w-4 max-[375px]:h-4" />
                 </Button>
               </Link>
             </div>
@@ -166,6 +177,5 @@ export function Industries() {
         </div>
       </div>
     </section>
-  )
+  );
 }
-

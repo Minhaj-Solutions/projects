@@ -1,9 +1,9 @@
-'use client'
+"use client";
 
-import { motion } from "framer-motion"
-import { ArrowRight, CheckCircle, Play } from "lucide-react"
-import Image from "next/image"
-import { Button } from "../ui/Button"
+import { motion } from "framer-motion";
+import { ArrowRight, CheckCircle, Play } from "lucide-react";
+import Image from "next/image";
+import { Button } from "../ui/Button";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -14,7 +14,7 @@ const containerVariants = {
       delayChildren: 0.2,
     },
   },
-}
+};
 
 const itemVariants = {
   hidden: { opacity: 0, y: 40 },
@@ -26,7 +26,7 @@ const itemVariants = {
       ease: [0.22, 1, 0.36, 1] as const,
     },
   },
-}
+};
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -38,7 +38,7 @@ const fadeInUp = {
       ease: [0.22, 1, 0.36, 1] as const,
     },
   },
-}
+};
 
 export function Hero() {
   return (
@@ -63,7 +63,7 @@ export function Hero() {
       {/* Decorative Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 right-0 w-96 h-96 bg-black/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-black-light/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-gray-900/10 rounded-full blur-3xl"></div>
       </div>
 
       {/* Content */}
@@ -74,67 +74,76 @@ export function Hero() {
           initial="hidden"
           animate="visible"
         >
-
-
           {/* Heading */}
           <motion.h1
             variants={itemVariants}
-            className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-6 md:mb-8 text-white"
+            className="text-3xl max-[375px]:text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-6 md:mb-8 text-white"
           >
             Transform Your Business with{" "}
-            <span className="text-primary-light">
-              Cutting-Edge Solutions
-            </span>
+            <span className="text-primary-light">Cutting-Edge Solutions</span>
           </motion.h1>
 
           {/* Description */}
           <motion.p
             variants={itemVariants}
-            className="text-lg md:text-xl lg:text-2xl text-gray-200 mb-10 md:mb-12 max-w-3xl mx-auto leading-relaxed font-light"
+            className="text-sm max-[375px]:text-xs sm:text-base md:text-xl lg:text-2xl text-gray-200 mb-8 md:mb-12 max-w-3xl mx-auto leading-relaxed font-light px-4"
           >
-            From custom software development to digital marketing excellence.
-            We deliver 134 specialized services across 4 core categories to help your business thrive.
+            From custom software development to digital marketing excellence. We
+            deliver 134 specialized services across 4 core categories to help
+            your business thrive.
           </motion.p>
 
           {/* Key Points - Grid Layout */}
           <motion.div
             variants={containerVariants}
-            className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-10 md:mb-12 justify-items-center"
+            className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-6 mb-8 md:mb-12 justify-items-center px-4"
           >
             <motion.div
               variants={fadeInUp}
-              className="flex items-start gap-4 bg-white/5 backdrop-blur-md rounded-lg p-6 border border-white/10 hover:bg-white/10 hover:border-primary/30 transition-all duration-300 max-w-sm w-full"
+              className="flex items-start gap-3 bg-white/5 backdrop-blur-md rounded-lg p-4 sm:p-6 border border-white/10 hover:bg-white/10 hover:border-primary/30 transition-all duration-300 max-w-sm w-full"
             >
-              <div className="shrink-0 mt-1">
-                <CheckCircle className="w-6 h-6 text-success" />
+              <div className="shrink-0 mt-0.5">
+                <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6 text-success" />
               </div>
               <div>
-                <p className="text-white font-semibold text-base mb-1">10+ Years</p>
-                <p className="text-gray-300 text-sm">Expert team experience</p>
+                <p className="text-white font-semibold text-sm sm:text-base mb-1">
+                  10+ Years
+                </p>
+                <p className="text-gray-300 text-xs sm:text-sm">
+                  Expert team experience
+                </p>
               </div>
             </motion.div>
             <motion.div
               variants={fadeInUp}
-              className="flex items-start gap-4 bg-white/5 backdrop-blur-md rounded-lg p-6 border border-white/10 hover:bg-white/10 hover:border-primary/30 transition-all duration-300 max-w-sm w-full"
+              className="flex items-start gap-3 bg-white/5 backdrop-blur-md rounded-lg p-4 sm:p-6 border border-white/10 hover:bg-white/10 hover:border-primary/30 transition-all duration-300 max-w-sm w-full"
             >
-              <div className="shrink-0 mt-1">
-                <CheckCircle className="w-6 h-6 text-success" />
+              <div className="shrink-0 mt-0.5">
+                <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6 text-success" />
               </div>
               <div>
-                <p className="text-white font-semibold text-base mb-1">500+ Projects</p>
-                <p className="text-gray-300 text-sm">Successfully delivered</p>
+                <p className="text-white font-semibold text-sm sm:text-base mb-1">
+                  500+ Projects
+                </p>
+                <p className="text-gray-300 text-xs sm:text-sm">
+                  Successfully delivered
+                </p>
               </div>
             </motion.div>
             <motion.div
               variants={fadeInUp}
-              className="flex items-start gap-4 bg-white/5 backdrop-blur-md rounded-lg p-6 border border-white/10 hover:bg-white/10 hover:border-primary/30 transition-all duration-300 max-w-sm w-full"
+              className="flex items-start gap-3 bg-white/5 backdrop-blur-md rounded-lg p-4 sm:p-6 border border-white/10 hover:bg-white/10 hover:border-primary/30 transition-all duration-300 max-w-sm w-full"
             >
-              <div className="shrink-0 mt-1">
-                <CheckCircle className="w-6 h-6 text-success" />
+              <div className="shrink-0 mt-0.5">
+                <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6 text-success" />
               </div>
               <div>
-                <p className="text-white font-semibold text-base mb-1">98% Satisfaction</p>
-                <p className="text-gray-300 text-sm">Client satisfaction rate</p>
+                <p className="text-white font-semibold text-sm sm:text-base mb-1">
+                  98% Satisfaction
+                </p>
+                <p className="text-gray-300 text-xs sm:text-sm">
+                  Client satisfaction rate
+                </p>
               </div>
             </motion.div>
           </motion.div>
@@ -146,17 +155,17 @@ export function Hero() {
           >
             <Button
               size="lg"
-              className="bg-primary hover:bg-primary-dark text-white shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 transition-all duration-300"
+              className="bg-primary hover:bg-primary-dark text-white shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 transition-all duration-300 max-[375px]:text-sm"
             >
               Get Started
-              <ArrowRight className="w-5 h-5 ml-2" />
+              <ArrowRight className="w-5 h-5 ml-2 max-[375px]:w-4 max-[375px]:h-4" />
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="border-2 border-white/30 text-white hover:bg-white/10 hover:border-white/50 backdrop-blur-sm transition-all duration-300"
+              className="border-2 border-white/30 text-white hover:bg-white/10 hover:border-white/50 backdrop-blur-sm transition-all duration-300 max-[375px]:text-sm"
             >
-              <Play className="w-5 h-5 mr-2" />
+              <Play className="w-5 h-5 mr-2 max-[375px]:w-4 max-[375px]:h-4" />
               Watch Demo
             </Button>
           </motion.div>
@@ -183,6 +192,5 @@ export function Hero() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }
-
