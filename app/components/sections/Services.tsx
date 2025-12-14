@@ -15,7 +15,7 @@ import {
 const featuredServiceSlugs = [
   "mobile-app-development",
   "web-development",
-  "cloud",
+  "artificial-intelligence",
   "cybersecurity",
 ];
 
@@ -25,7 +25,7 @@ const featuredServices = featuredServiceSlugs
 
 export function Services() {
   return (
-    <section className="py-20 md:py-28 bg-white">
+    <section className="py-10 md:py-16 bg-white">
       <div className="section-shell">
         {/* Section Header */}
         <ScrollAnimation>
@@ -82,12 +82,12 @@ export function Services() {
                         <p className="text-white/90 text-sm max-[375px]:text-xs leading-relaxed mb-4">
                           {service.hero.subtitle}
                         </p>
-                        <div className="flex items-center justify-end pt-3 border-t border-white/20">
+                        {/* <div className="flex items-center justify-end pt-3 border-t border-white/20">
                           <div className="flex items-center text-white font-medium text-sm max-[375px]:text-xs">
                             Explore
                             <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform max-[375px]:w-3 max-[375px]:h-3" />
                           </div>
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                   </div>
@@ -100,13 +100,13 @@ export function Services() {
         {/* View More Button */}
         <ScrollAnimation delay={0.4}>
           <div className="text-center mt-12 md:mt-16">
-            <Link href="/services">
+            <Link href="/contact">
               <Button
                 size="lg"
                 variant="outline"
                 className="border-2 border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300 max-[375px]:text-sm"
               >
-                View More Services
+                Let's Talk
                 <ArrowRight className="w-5 h-5 ml-2 max-[375px]:w-4 max-[375px]:h-4" />
               </Button>
             </Link>

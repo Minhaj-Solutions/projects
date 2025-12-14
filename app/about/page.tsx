@@ -257,20 +257,22 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Page Hero */}
-      <section className="relative py-16 md:py-24 lg:py-32 bg-gradient-to-br from-primary to-primary-dark overflow-hidden">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage:
-                "radial-gradient(circle at 2px 2px, white 1px, transparent 0)",
-              backgroundSize: "30px 30px",
-            }}
-          ></div>
+      <section className="relative min-h-[600px] flex items-center justify-center bg-gray-50 overflow-hidden">
+        {/* Background Image with Overlay */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/about/about-hero.jpg"
+            alt="About Us"
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/60 to-black/50"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent"></div>
         </div>
 
-        <div className="relative max-w-7xl mx-auto px-4 md:px-6">
+        {/* Content */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 py-16 md:py-24">
           <ScrollAnimation>
             <div className="text-center md:text-center max-w-4xl mx-auto max-md:text-left">
               <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-6 border border-white/20">
@@ -330,7 +332,7 @@ export default function AboutPage() {
             <ScrollAnimation direction="left">
               <div className="relative h-96 rounded-2xl overflow-hidden shadow-xl">
                 <Image
-                  src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop"
+                  src="/images/about/our-story.jpg"
                   alt="Team collaboration"
                   fill
                   className="object-cover"
@@ -572,7 +574,7 @@ export default function AboutPage() {
             <ScrollAnimation direction="right">
               <div className="relative h-96 rounded-2xl overflow-hidden shadow-xl">
                 <Image
-                  src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070&auto=format&fit=crop"
+                  src="/images/about/mission-vision.jpg"
                   alt="Code of conduct"
                   fill
                   className="object-cover"

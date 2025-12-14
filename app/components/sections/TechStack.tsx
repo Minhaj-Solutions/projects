@@ -25,7 +25,7 @@ export function TechStack() {
   const duplicatedTech = [...techStack, ...techStack];
 
   return (
-    <section className="py-16 md:py-24 bg-gray-50 overflow-hidden">
+    <section className="py-10 md:py-16 bg-gray-50 overflow-hidden">
       <div className="section-shell">
         {/* Section Header */}
         <ScrollAnimation>

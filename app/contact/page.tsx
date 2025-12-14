@@ -1,17 +1,19 @@
 "use client";
 
-import { useState } from "react";
-import {
-  Mail,
-  Phone,
-  MapPin,
-  Send,
-  CheckCircle,
-  AlertCircle,
-} from "lucide-react";
 import { Button } from "@/app/components/ui/Button";
-import { ScrollAnimation } from "@/app/components/ui/ScrollAnimation";
+import { ScrollAnimation, ScrollContainer, ScrollItem } from "@/app/components/ui/ScrollAnimation";
 import { SITE_NAME } from "@/app/lib/constants";
+import {
+  AlertCircle,
+  CheckCircle,
+  Mail,
+  MapPin,
+  Phone,
+  Send,
+} from "lucide-react";
+import Image from "next/image";
+import { useState } from "react";
+import { Card } from "../components/ui/Card";
 
 interface FormData {
   firstName: string;
@@ -167,20 +169,22 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Page Hero */}
-      <section className="relative py-16 md:py-24 lg:py-32 bg-gradient-to-br from-primary to-primary-dark overflow-hidden">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage:
-                "radial-gradient(circle at 2px 2px, white 1px, transparent 0)",
-              backgroundSize: "30px 30px",
-            }}
-          ></div>
+      <section className="relative min-h-[600px] flex items-center justify-center bg-gray-50 overflow-hidden">
+        {/* Background Image with Overlay */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/contact-hero.jpg"
+            alt="Contact Us"
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/60 to-black/50"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent"></div>
         </div>
 
-        <div className="relative max-w-7xl mx-auto px-4 md:px-6">
+        {/* Content */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 py-16 md:py-24">
           <ScrollAnimation>
             <div className="text-center md:text-center max-w-4xl mx-auto max-md:text-left">
               <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-6 border border-white/20">
@@ -348,11 +352,10 @@ export default function ContactPage() {
                             name="firstName"
                             value={formData.firstName}
                             onChange={handleChange}
-                            className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all max-[425px]:px-3 max-[425px]:py-2 max-[425px]:text-sm ${
-                              errors.firstName
-                                ? "border-error focus:ring-error focus:border-error"
-                                : "border-gray-300"
-                            }`}
+                            className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all max-[425px]:px-3 max-[425px]:py-2 max-[425px]:text-sm ${errors.firstName
+                              ? "border-error focus:ring-error focus:border-error"
+                              : "border-gray-300"
+                              }`}
                             placeholder="John"
                           />
                           {errors.firstName && (
@@ -376,11 +379,10 @@ export default function ContactPage() {
                             name="lastName"
                             value={formData.lastName}
                             onChange={handleChange}
-                            className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all max-[425px]:px-3 max-[425px]:py-2 max-[425px]:text-sm ${
-                              errors.lastName
-                                ? "border-error focus:ring-error focus:border-error"
-                                : "border-gray-300"
-                            }`}
+                            className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all max-[425px]:px-3 max-[425px]:py-2 max-[425px]:text-sm ${errors.lastName
+                              ? "border-error focus:ring-error focus:border-error"
+                              : "border-gray-300"
+                              }`}
                             placeholder="Doe"
                           />
                           {errors.lastName && (
@@ -406,11 +408,10 @@ export default function ContactPage() {
                           name="businessEmail"
                           value={formData.businessEmail}
                           onChange={handleChange}
-                          className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all max-[425px]:px-3 max-[425px]:py-2 max-[425px]:text-sm ${
-                            errors.businessEmail
-                              ? "border-error focus:ring-error focus:border-error"
-                              : "border-gray-300"
-                          }`}
+                          className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all max-[425px]:px-3 max-[425px]:py-2 max-[425px]:text-sm ${errors.businessEmail
+                            ? "border-error focus:ring-error focus:border-error"
+                            : "border-gray-300"
+                            }`}
                           placeholder="john.doe@company.com"
                         />
                         {errors.businessEmail && (
@@ -436,11 +437,10 @@ export default function ContactPage() {
                             name="company"
                             value={formData.company}
                             onChange={handleChange}
-                            className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all max-[425px]:px-3 max-[425px]:py-2 max-[425px]:text-sm ${
-                              errors.company
-                                ? "border-error focus:ring-error focus:border-error"
-                                : "border-gray-300"
-                            }`}
+                            className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all max-[425px]:px-3 max-[425px]:py-2 max-[425px]:text-sm ${errors.company
+                              ? "border-error focus:ring-error focus:border-error"
+                              : "border-gray-300"
+                              }`}
                             placeholder="Company Name"
                           />
                           {errors.company && (
@@ -464,11 +464,10 @@ export default function ContactPage() {
                             name="jobTitle"
                             value={formData.jobTitle}
                             onChange={handleChange}
-                            className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all max-[425px]:px-3 max-[425px]:py-2 max-[425px]:text-sm ${
-                              errors.jobTitle
-                                ? "border-error focus:ring-error focus:border-error"
-                                : "border-gray-300"
-                            }`}
+                            className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all max-[425px]:px-3 max-[425px]:py-2 max-[425px]:text-sm ${errors.jobTitle
+                              ? "border-error focus:ring-error focus:border-error"
+                              : "border-gray-300"
+                              }`}
                             placeholder="CEO, CTO, Manager"
                           />
                           {errors.jobTitle && (
@@ -495,11 +494,10 @@ export default function ContactPage() {
                             name="phone"
                             value={formData.phone}
                             onChange={handleChange}
-                            className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all max-[425px]:px-3 max-[425px]:py-2 max-[425px]:text-sm ${
-                              errors.phone
-                                ? "border-error focus:ring-error focus:border-error"
-                                : "border-gray-300"
-                            }`}
+                            className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all max-[425px]:px-3 max-[425px]:py-2 max-[425px]:text-sm ${errors.phone
+                              ? "border-error focus:ring-error focus:border-error"
+                              : "border-gray-300"
+                              }`}
                             placeholder="+1 (234) 567-890"
                           />
                           {errors.phone && (
@@ -522,11 +520,10 @@ export default function ContactPage() {
                             name="location"
                             value={formData.location}
                             onChange={handleChange}
-                            className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all bg-white max-[425px]:px-3 max-[425px]:py-2 max-[425px]:text-sm ${
-                              errors.location
-                                ? "border-error focus:ring-error focus:border-error"
-                                : "border-gray-300"
-                            }`}
+                            className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all bg-white max-[425px]:px-3 max-[425px]:py-2 max-[425px]:text-sm ${errors.location
+                              ? "border-error focus:ring-error focus:border-error"
+                              : "border-gray-300"
+                              }`}
                           >
                             {countries.map((country) => (
                               <option key={country.value} value={country.value}>
@@ -618,6 +615,81 @@ export default function ContactPage() {
               </div>
             </ScrollAnimation>
           </div>
+        </div>
+      </section>
+
+      {/* Contact Information Cards */}
+      <section className="py-16 md:py-24 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
+          <ScrollAnimation>
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                Get In Touch
+              </h2>
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                Choose your preferred method to reach out to us
+              </p>
+            </div>
+          </ScrollAnimation>
+          <ScrollContainer className="grid md:grid-cols-3 gap-8" stagger={0.1}>
+            {/* Email Card */}
+            <ScrollItem>
+              <Card hover className="text-center h-full">
+                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <Mail className="w-8 h-8 text-primary" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">Email Us</h3>
+                <p className="text-gray-600 mb-4">
+                  Send us an email and we'll get back to you within 24 hours
+                </p>
+                <a
+                  href="mailto:info@minhajsolutions.com"
+                  className="inline-flex items-center text-primary font-semibold hover:text-primary-dark transition-colors"
+                >
+                  info@minhajsolutions.com
+                  <Mail className="w-4 h-4 ml-2" />
+                </a>
+              </Card>
+            </ScrollItem>
+
+            {/* Phone Card */}
+            <ScrollItem delay={0.1}>
+              <Card hover className="text-center h-full">
+                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <Phone className="w-8 h-8 text-primary" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">Call Us</h3>
+                <p className="text-gray-600 mb-4">
+                  Speak directly with our team during business hours
+                </p>
+                <a
+                  href="tel:+92-000-0000000"
+                  className="inline-flex items-center text-primary font-semibold hover:text-primary-dark transition-colors"
+                >
+                  +92 000 0000000
+                  <Phone className="w-4 h-4 ml-2" />
+                </a>
+              </Card>
+            </ScrollItem>
+
+            {/* Location Card */}
+            <ScrollItem delay={0.2}>
+              <Card hover className="text-center h-full">
+                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <MapPin className="w-8 h-8 text-primary" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">Visit Us</h3>
+                <p className="text-gray-600 mb-4">
+                  Come visit our office for an in-person consultation
+                </p>
+                <address className="text-primary font-semibold not-italic">
+                  123 Business Street<br />
+                  City, State 12345<br />
+                  Pakistan
+                </address>
+              </Card>
+            </ScrollItem>
+          </ScrollContainer>
         </div>
       </section>
     </div>

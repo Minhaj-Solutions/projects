@@ -16,6 +16,8 @@ const nextConfig: NextConfig = {
         pathname: '/**',
       },
     ],
+    // Disable image optimization cache to ensure fresh images
+    minimumCacheTTL: 0,
   },
 };
 

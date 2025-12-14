@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle, Play } from "lucide-react";
+import { ArrowRight, CheckCircle } from "lucide-react";
 import Image from "next/image";
 import { Button } from "../ui/Button";
 
@@ -42,7 +42,7 @@ const fadeInUp = {
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-primary-dark">
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-black">
       {/* Background Image with Overlay */}
       <motion.div
         className="absolute inset-0"
@@ -54,10 +54,10 @@ export function Hero() {
           src="/bg-hero.jpeg"
           alt="Team collaboration"
           fill
-          className="object-cover opacity-30"
+          className="object-cover opacity-40"
           priority
         />
-        <div className="absolute inset-0 bg-black/10"></div>
+        <div className="absolute inset-0 bg-black/0"></div>
       </motion.div>
 
       {/* Decorative Elements */}
@@ -155,18 +155,18 @@ export function Hero() {
           >
             <Button
               size="lg"
-              className="bg-primary hover:bg-primary-dark text-white shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 transition-all duration-300 max-[375px]:text-sm"
+              className="cursor-pointer bg-primary hover:bg-primary-dark text-white shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 transition-all duration-300 max-[375px]:text-sm"
             >
-              Get Started
+              Let's Talk
               <ArrowRight className="w-5 h-5 ml-2 max-[375px]:w-4 max-[375px]:h-4" />
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="border-2 border-white/30 text-white hover:bg-white/10 hover:border-white/50 backdrop-blur-sm transition-all duration-300 max-[375px]:text-sm"
+              className="cursor-pointer border-2 border-white/30 text-white hover:bg-white/10 hover:border-white/50 backdrop-blur-sm transition-all duration-300 max-[375px]:text-sm"
             >
-              <Play className="w-5 h-5 mr-2 max-[375px]:w-4 max-[375px]:h-4" />
-              Watch Demo
+              Explore Our Services
+              <ArrowRight className="w-5 h-5 ml-2 max-[375px]:w-4 max-[375px]:h-4" />
             </Button>
           </motion.div>
         </motion.div>

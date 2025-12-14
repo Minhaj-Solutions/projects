@@ -61,7 +61,7 @@ const industries = [
 
 export function Industries() {
   return (
-    <section className="py-16 md:py-24 bg-gradient-to-b from-white to-gray-50 relative overflow-hidden">
+    <section className="py-10 md:py-10 bg-gradient-to-b from-white to-gray-50 relative overflow-hidden">
       {/* Subtle Background Elements */}
       <div className="absolute inset-0 opacity-[0.03]">
         <div

@@ -101,7 +101,7 @@ const ProcessTimeline = () => {
   ];
 
   return (
-    <section className="py-12 md:py-20 lg:py-28 bg-linear-to-b from-white to-gray-50 relative overflow-hidden">
+    <section className="py-10 md:py-16 lg:py-20 bg-linear-to-b from-white to-gray-50 relative overflow-hidden">
       {/* Decorative elements */}
       <div className="absolute top-0 left-0 w-48 h-48 md:w-72 md:h-72 bg-primary/10 rounded-full -translate-y-1/3 -translate-x-1/3 blur-3xl"></div>
       <div className="absolute bottom-0 right-0 w-48 h-48 md:w-72 md:h-72 bg-primary/10 rounded-full translate-y-1/3 translate-x-1/3 blur-3xl"></div>
@@ -157,15 +157,13 @@ const ProcessTimeline = () => {
                 className="group"
               >
                 <div
-                  className={`mb-6 md:mb-0 flex flex-col md:flex-row items-center ${
-                    index % 2 !== 0 ? "md:flex-row-reverse" : ""
-                  }`}
+                  className={`mb-6 md:mb-0 flex flex-col md:flex-row items-center ${index % 2 !== 0 ? "md:flex-row-reverse" : ""
+                    }`}
                 >
                   <div className="md:w-1/2 mb-6 md:mb-0 md:px-6 lg:px-10 w-full">
                     <div
-                      className={`text-center ${
-                        index % 2 === 0 ? "md:text-right" : "md:text-left"
-                      }`}
+                      className={`text-center ${index % 2 === 0 ? "md:text-right" : "md:text-left"
+                        }`}
                     >
                       <div className="inline-flex items-center mb-2 text-primary">
                         <span className="text-xs md:text-sm font-semibold mr-2">
@@ -182,9 +180,8 @@ const ProcessTimeline = () => {
 
                       {/* Feature list - optional */}
                       <ul
-                        className={`mt-3 md:mt-4 space-y-1.5 md:space-y-2 text-xs md:text-sm text-gray-600 ${
-                          index % 2 === 0 ? "md:ml-auto" : ""
-                        } inline-block text-left`}
+                        className={`mt-3 md:mt-4 space-y-1.5 md:space-y-2 text-xs md:text-sm text-gray-600 ${index % 2 === 0 ? "md:ml-auto" : ""
+                          } inline-block text-left`}
                       >
                         {index === 0 && (
                           <>

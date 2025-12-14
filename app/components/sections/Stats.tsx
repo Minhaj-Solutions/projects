@@ -12,7 +12,7 @@ const icons = [Users, TrendingUp, CheckCircle, Clock];
 
 export function Stats() {
   return (
-    <section className="py-16 md:py-20 bg-gradient-to-br from-primary to-primary-dark relative overflow-hidden">
+    <section className="py-10 md:py-16 bg-gradient-to-br from-primary to-primary-dark relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div
