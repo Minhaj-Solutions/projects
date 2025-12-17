@@ -14,7 +14,6 @@ import {
   CheckCircle,
   Eye,
   Globe,
-  Linkedin,
   Mail,
   MapPin,
   Phone,
@@ -152,75 +151,38 @@ const coreValues = [
 
 const offices = [
   {
-    city: "Lahore",
+    city: "Pakistan",
     country: "Pakistan",
     type: "Head Office",
-    address: "123 Business Street, Lahore, Punjab",
-    phone: "+92 000 0000000",
+    address: "84 A, Sahara City, Renala Khurrad, Okara, Punjab, Pakistan",
+    phone: "+92 322 0681998",
     email: "info@minhajsolutions.com",
   },
   {
-    city: "Islamabad",
-    country: "Pakistan",
+    city: "United Kingdom",
+    country: "United Kingdom",
     type: "Regional Office",
-    address: "456 Corporate Avenue, Islamabad, ICT",
-    phone: "+92 000 0000001",
-    email: "islamabad@minhajsolutions.com",
-  },
-  {
-    city: "Karachi",
-    country: "Pakistan",
-    type: "Regional Office",
-    address: "789 Tech Hub, Karachi, Sindh",
-    phone: "+92 000 0000002",
-    email: "karachi@minhajsolutions.com",
-  },
-  {
-    city: "Dubai",
-    country: "United Arab Emirates",
-    type: "Regional Office",
-    address: "Business Bay, Dubai, UAE",
-    phone: "+971 4 000 0000",
-    email: "dubai@minhajsolutions.com",
+    address: "124 City Road, London",
+    phone: "+44 7400 719523",
+    email: "info@minhajsolutions.com",
   },
 ];
 
 const leadership = [
   {
-    name: "Minhaj Ahmed",
+    name: "Wajid Maqsood",
     title: "Founder & CEO",
-    linkedin: "#",
-    image: "/team/placeholder.jpg", // Replace with real images
+    image: "/images/team/wajid-maqsood.png",
   },
   {
-    name: "Ahmed Khan",
-    title: "Chief Technology Officer",
-    linkedin: "#",
-    image: "/team/placeholder.jpg",
+    name: "Javed Ahmad",
+    title: "Marketplace Operations Manager",
+    image: "/images/team/javed-ahmad.png",
   },
   {
-    name: "Sara Ali",
-    title: "Chief Operating Officer",
-    linkedin: "#",
-    image: "/team/placeholder.jpg",
-  },
-  {
-    name: "Usman Malik",
-    title: "Head of Digital Marketing",
-    linkedin: "#",
-    image: "/team/placeholder.jpg",
-  },
-  {
-    name: "Fatima Hassan",
-    title: "Head of Design",
-    linkedin: "#",
-    image: "/team/placeholder.jpg",
-  },
-  {
-    name: "Zain Abbas",
-    title: "Head of Development",
-    linkedin: "#",
-    image: "/team/placeholder.jpg",
+    name: "Imdad Hussain",
+    title: "Mobile Application Developer",
+    image: "/images/team/imdad-hussain.png",
   },
 ];
 
@@ -455,7 +417,7 @@ export default function AboutPage() {
           </ScrollAnimation>
 
           <ScrollContainer
-            className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6"
+            className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto"
             stagger={0.1}
           >
             {offices.map((office, index) => (
@@ -546,20 +508,9 @@ export default function AboutPage() {
                   <h3 className="text-xl font-bold text-gray-900 mb-1 max-[425px]:text-lg max-[375px]:text-base">
                     {leader.name}
                   </h3>
-                  <p className="text-gray-600 mb-4 max-[425px]:text-sm max-[375px]:text-xs">
+                  <p className="text-gray-600 max-[425px]:text-sm max-[375px]:text-xs">
                     {leader.title}
                   </p>
-                  <a
-                    href={leader.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-primary hover:text-primary-dark transition-colors"
-                  >
-                    <Linkedin className="w-5 h-5 max-[375px]:w-4 max-[375px]:h-4" />
-                    <span className="text-sm font-medium max-[375px]:text-xs">
-                      LinkedIn
-                    </span>
-                  </a>
                 </Card>
               </ScrollItem>
             ))}

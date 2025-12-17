@@ -1,19 +1,19 @@
-import Link from "next/link";
-import Image from "next/image";
 import {
-  Facebook,
-  Twitter,
-  Linkedin,
-  Instagram,
-  Mail,
-  Phone,
-  MapPin,
-} from "lucide-react";
-import {
-  SITE_NAME,
   NAVIGATION_ITEMS,
   SERVICE_CATEGORIES,
+  SITE_NAME,
 } from "@/app/lib/constants";
+import {
+  Facebook,
+  Instagram,
+  Linkedin,
+  Mail,
+  MapPin,
+  Phone,
+  Twitter,
+} from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -130,20 +130,31 @@ export function Footer() {
               </li>
               <li className="flex items-start gap-2">
                 <Phone className="w-4 h-4 md:w-5 md:h-5 flex-shrink-0 mt-0.5" />
-                <a
-                  href="tel:+1234567890"
-                  className="text-xs md:text-sm hover:text-white transition-colors"
-                >
-                  +1 (234) 567-890
-                </a>
+                <div className="text-xs md:text-sm">
+                  <a
+                    href="tel:+447400719523"
+                    className="hover:text-white transition-colors block"
+                  >
+                    +44 7400 719523 (UK)
+                  </a>
+                  <a
+                    href="https://wa.me/923220681998"
+                    className="hover:text-white transition-colors block"
+                  >
+                    +92 322 0681998 (WhatsApp)
+                  </a>
+                </div>
               </li>
               <li className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 md:w-5 md:h-5 flex-shrink-0 mt-0.5" />
-                <span className="text-xs md:text-sm">
-                  123 Business Street
-                  <br />
-                  City, State 12345
-                </span>
+                <div className="text-xs md:text-sm space-y-1">
+                  <p>
+                    <strong>Pakistan:</strong> 84 A, Sahara City, Renala Khurrad, Okara, Punjab, Pakistan
+                  </p>
+                  <p>
+                    <strong>UK:</strong> 124 City Road, London
+                  </p>
+                </div>
               </li>
             </ul>
           </div>

@@ -13,10 +13,10 @@ import {
 } from "../ui/ScrollAnimation";
 
 const featuredServiceSlugs = [
+  "custom-software-enterprise-solutions",
+  "web-platform-development",
   "mobile-app-development",
-  "web-development",
-  "artificial-intelligence",
-  "cybersecurity",
+  "ai-data-intelligent-automation",
 ];
 
 const featuredServices = featuredServiceSlugs

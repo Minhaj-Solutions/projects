@@ -236,40 +236,61 @@ export default function ContactPage() {
                     </div>
                   </div>
 
-                  {/* Phone */}
+                  {/* Phone - UK */}
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0">
                       <Phone className="w-6 h-6" />
                     </div>
                     <div>
                       <h3 className="font-semibold mb-1 max-[425px]:text-sm">
-                        Phone
+                        Phone (UK)
                       </h3>
                       <a
-                        href="tel:+92-000-0000000"
+                        href="tel:+447400719523"
                         className="text-white/90 hover:text-white transition-colors text-sm max-[425px]:text-xs"
                       >
-                        +92 000 0000000
+                        +44 7400 719523
                       </a>
                     </div>
                   </div>
 
-                  {/* Address */}
+                  {/* WhatsApp - Pakistan */}
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Phone className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold mb-1 max-[425px]:text-sm">
+                        WhatsApp (Pakistan)
+                      </h3>
+                      <a
+                        href="https://wa.me/923220681998"
+                        className="text-white/90 hover:text-white transition-colors text-sm max-[425px]:text-xs"
+                      >
+                        +92 322 0681998
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Locations */}
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0">
                       <MapPin className="w-6 h-6" />
                     </div>
                     <div>
                       <h3 className="font-semibold mb-1 max-[425px]:text-sm">
-                        Office
+                        Locations
                       </h3>
-                      <address className="text-white/90 text-sm not-italic leading-relaxed max-[425px]:text-xs">
-                        123 Business Street
-                        <br />
-                        City, State 12345
-                        <br />
-                        Pakistan
-                      </address>
+                      <div className="text-white/90 text-sm not-italic leading-relaxed max-[425px]:text-xs space-y-2">
+                        <p>
+                          <strong>Pakistan:</strong><br />
+                          84 A, Sahara City, Renala Khurrad, Okara, Punjab, Pakistan
+                        </p>
+                        <p>
+                          <strong>United Kingdom:</strong><br />
+                          124 City Road, London
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -662,13 +683,20 @@ export default function ContactPage() {
                 <p className="text-gray-600 mb-4">
                   Speak directly with our team during business hours
                 </p>
-                <a
-                  href="tel:+92-000-0000000"
-                  className="inline-flex items-center text-primary font-semibold hover:text-primary-dark transition-colors"
-                >
-                  +92 000 0000000
-                  <Phone className="w-4 h-4 ml-2" />
-                </a>
+                <div className="space-y-2">
+                  <a
+                    href="tel:+447400719523"
+                    className="flex items-center justify-center text-primary font-semibold hover:text-primary-dark transition-colors"
+                  >
+                    +44 7400 719523 (UK)
+                  </a>
+                  <a
+                    href="https://wa.me/923220681998"
+                    className="flex items-center justify-center text-primary font-semibold hover:text-primary-dark transition-colors"
+                  >
+                    +92 322 0681998 (WhatsApp)
+                  </a>
+                </div>
               </Card>
             </ScrollItem>
 
@@ -678,15 +706,24 @@ export default function ContactPage() {
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
                   <MapPin className="w-8 h-8 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">Visit Us</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">Our Locations</h3>
                 <p className="text-gray-600 mb-4">
-                  Come visit our office for an in-person consultation
+                  We have offices in two countries
                 </p>
-                <address className="text-primary font-semibold not-italic">
-                  123 Business Street<br />
-                  City, State 12345<br />
-                  Pakistan
-                </address>
+                <div className="text-primary font-semibold not-italic space-y-3 text-sm">
+                  <div>
+                    <p className="font-bold mb-1">🇵🇰 Pakistan</p>
+                    <p className="text-gray-600 font-normal">
+                      84 A, Sahara City, Renala Khurrad, Okara, Punjab, Pakistan
+                    </p>
+                  </div>
+                  <div>
+                    <p className="font-bold mb-1">🇬🇧 United Kingdom</p>
+                    <p className="text-gray-600 font-normal">
+                      124 City Road, London
+                    </p>
+                  </div>
+                </div>
               </Card>
             </ScrollItem>
           </ScrollContainer>

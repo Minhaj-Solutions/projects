@@ -206,62 +206,82 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
                   defaultServiceImage ||
                   "/images/services/services-hero.jpg";
                 return (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
-                    className="group relative rounded-2xl overflow-hidden shadow-lg border-2 border-primary/20 hover:border-primary hover:shadow-2xl transition-all duration-500 h-[450px] max-[968px]:h-[380px]"
+                  <Link
+                    key={serviceDetail.slug}
+                    href={`/services/${service.slug}/${serviceDetail.slug}`}
                   >
-                    {/* Background Image */}
-                    <div className="absolute inset-0">
-                      <Image
-                        src={serviceDetailImage}
-                        alt={serviceDetail.title}
-                        fill
-                        className="object-cover transition-transform duration-700 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/70 to-black/40 group-hover:from-black/90 group-hover:via-black/80 group-hover:to-black/60 transition-all duration-500"></div>
-                    </div>
-
-                    {/* Content */}
-                    <div className="relative h-full flex flex-col justify-end p-8 max-[968px]:p-6">
-                      {/* Title - Always Visible */}
-                      <h3 className="text-2xl font-bold text-white mb-3 transform transition-transform duration-500 group-hover:-translate-y-2 max-[968px]:text-xl">
-                        {serviceDetail.title}
-                      </h3>
-
-                      {/* Description and Features - Visible on Hover */}
-                      <div className="max-h-0 opacity-0 overflow-hidden group-hover:max-h-[300px] group-hover:opacity-100 transition-all duration-500">
-                        <p className="text-gray-200 mb-4 leading-relaxed">
-                          {serviceDetail.description}
-                        </p>
-                        <ul className="space-y-2">
-                          {serviceDetail.features
-                            .slice(0, 4)
-                            .map((feature, i) => (
-                              <li key={i} className="flex items-start text-sm">
-                                <svg
-                                  className="w-4 h-4 text-primary-light mt-0.5 mr-2 flex-shrink-0"
-                                  fill="none"
-                                  viewBox="0 0 24 24"
-                                  stroke="currentColor"
-                                >
-                                  <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                    d="M5 13l4 4L19 7"
-                                  />
-                                </svg>
-                                <span className="text-gray-100">{feature}</span>
-                              </li>
-                            ))}
-                        </ul>
+                    <motion.div
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: index * 0.1 }}
+                      className="group relative rounded-2xl overflow-hidden shadow-lg border-2 border-primary/20 hover:border-primary hover:shadow-2xl transition-all duration-500 h-[450px] max-[968px]:h-[380px] cursor-pointer"
+                    >
+                      {/* Background Image */}
+                      <div className="absolute inset-0">
+                        <Image
+                          src={serviceDetailImage}
+                          alt={serviceDetail.title}
+                          fill
+                          className="object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/70 to-black/40 group-hover:from-black/90 group-hover:via-black/80 group-hover:to-black/60 transition-all duration-500"></div>
                       </div>
-                    </div>
-                  </motion.div>
+
+                      {/* Content */}
+                      <div className="relative h-full flex flex-col justify-end p-8 max-[968px]:p-6">
+                        {/* Title - Always Visible */}
+                        <h3 className="text-2xl font-bold text-white mb-3 transform transition-transform duration-500 group-hover:-translate-y-2 max-[968px]:text-xl">
+                          {serviceDetail.title}
+                        </h3>
+
+                        {/* Description and Features - Visible on Hover */}
+                        <div className="max-h-0 opacity-0 overflow-hidden group-hover:max-h-[300px] group-hover:opacity-100 transition-all duration-500">
+                          <p className="text-gray-200 mb-4 leading-relaxed">
+                            {serviceDetail.description}
+                          </p>
+                          <ul className="space-y-2">
+                            {serviceDetail.features
+                              .slice(0, 4)
+                              .map((feature, i) => (
+                                <li key={i} className="flex items-start text-sm">
+                                  <svg
+                                    className="w-4 h-4 text-primary-light mt-0.5 mr-2 flex-shrink-0"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                  >
+                                    <path
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      strokeWidth="2"
+                                      d="M5 13l4 4L19 7"
+                                    />
+                                  </svg>
+                                  <span className="text-gray-100">{feature}</span>
+                                </li>
+                              ))}
+                          </ul>
+                          <div className="mt-4 flex items-center text-primary-light text-sm font-medium">
+                            Learn More
+                            <svg
+                              className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                d="M9 5l7 7-7 7"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  </Link>
                 );
               })}
             </div>

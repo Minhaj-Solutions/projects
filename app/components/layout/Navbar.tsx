@@ -1,12 +1,20 @@
 "use client";
 
 import { NAVIGATION_ITEMS, SITE_NAME } from "@/app/lib/constants";
-import { ArrowUpRight, Menu, PhoneCall, X } from "lucide-react";
+import { services } from "@/data/services";
+import { ArrowUpRight, ChevronDown, Menu, PhoneCall, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "../ui/Button";
+
+// Service menu items derived from services data
+const serviceMenuItems = services.map((service) => ({
+  label: service.title,
+  href: `/services/${service.slug}`,
+  description: service.hero.subtitle.slice(0, 80) + "...",
+}));
 
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -14,126 +22,6 @@ export function Navbar() {
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const pathname = usePathname();
   const servicesRef = useRef<HTMLDivElement | null>(null);
-
-  const getComingSoonLink = (label: string) =>
-    `/coming-soon?topic=${encodeURIComponent(label.toLowerCase())}`;
-
-  const megaMenuColumns = [
-    {
-      title: "Capabilities",
-      sections: [
-        {
-          heading: "Digital Transformation",
-          items: [
-            { label: "Web development", href: "/services/web-development" },
-            {
-              label: "App Development",
-              href: "/services/mobile-app-development",
-            },
-            {
-              label: "Custom Software Development",
-              href: "/services/web-development",
-            },
-            { label: "UX/UI Design", href: getComingSoonLink("UX/UI Design") },
-          ],
-        },
-        {
-          heading: "Business Applications",
-          items: [
-            {
-              label: "Dynamics 365 ERP",
-              href: getComingSoonLink("Dynamics 365 ERP"),
-            },
-            {
-              label: "Dynamics 365 CRM",
-              href: getComingSoonLink("Dynamics 365 CRM"),
-            },
-            { label: "Power Apps", href: getComingSoonLink("Power Apps") },
-            { label: "Salesforce", href: getComingSoonLink("Salesforce") },
-          ],
-        },
-        {
-          heading: "Emerging Technologies",
-          items: [
-            { label: "Metaverse", href: getComingSoonLink("Metaverse") },
-            {
-              label: "Augmented reality",
-              href: getComingSoonLink("Augmented reality"),
-            },
-            {
-              label: "Blockchain & Cryptography",
-              href: getComingSoonLink("Blockchain & Cryptography"),
-            },
-            { label: "Gen AI", href: "/services/generative-ai" },
-            { label: "Data Analytics", href: "/services/data" },
-          ],
-        },
-        {
-          heading: "Staff Augmentation",
-          items: [{ label: "Staff Augmentation", href: "/services/staffing" }],
-        },
-      ],
-    },
-    {
-      title: "",
-      sections: [
-        {
-          heading: "Quality Assurance",
-          items: [
-            {
-              label: "Quality Assurance",
-              href: getComingSoonLink("Quality Assurance"),
-            },
-          ],
-        },
-        {
-          heading: "DevOps",
-          items: [{ label: "DevOps", href: "/services/cloud" }],
-        },
-        {
-          heading: "Cybersecurity",
-          items: [{ label: "Cybersecurity", href: "/services/cybersecurity" }],
-        },
-        {
-          heading: "SaaS",
-          items: [{ label: "SaaS", href: getComingSoonLink("SaaS") }],
-        },
-        {
-          heading: "E-commerce",
-          items: [
-            {
-              label: "Design & Development",
-              href: "/services/web-development",
-            },
-            { label: "Maintenance & Support", href: "/services/consulting" },
-            { label: "Automation & Apps", href: "/services/generative-ai" },
-          ],
-        },
-        {
-          heading: "Gaming",
-          items: [
-            {
-              label: "Art & Design",
-              href: getComingSoonLink("Gaming Art & Design"),
-            },
-            { label: "Web3", href: getComingSoonLink("Gaming Web3") },
-            { label: "AR/VR/XR", href: getComingSoonLink("Gaming AR/VR/XR") },
-          ],
-        },
-        {
-          heading: "Cloud",
-          items: [
-            { label: "Cloud Application", href: "/services/cloud" },
-            { label: "Cloud Ops & Migration", href: "/services/cloud" },
-            {
-              label: "Cloud maintenance & integration",
-              href: "/services/cloud",
-            },
-          ],
-        },
-      ],
-    },
-  ];
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -198,76 +86,57 @@ export function Navbar() {
                 <Link
                   key={homeNav.name}
                   href={homeNav.href}
-                  className={`group relative px-3 py-2 text-sm font-medium transition-colors duration-200 ${
-                    pathname === homeNav.href
-                      ? "text-primary"
-                      : "text-gray-700 hover:text-primary"
-                  }`}
+                  className={`group relative px-3 py-2 text-sm font-medium transition-colors duration-200 ${pathname === homeNav.href
+                    ? "text-primary"
+                    : "text-gray-700 hover:text-primary"
+                    }`}
                 >
                   {homeNav.name}
                   <span
-                    className={`absolute inset-x-3 -bottom-1 h-0.5 rounded-full bg-primary transition-all duration-200 ${
-                      pathname === homeNav.href
-                        ? "scale-x-100 opacity-100"
-                        : "scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-100"
-                    }`}
+                    className={`absolute inset-x-3 -bottom-1 h-0.5 rounded-full bg-primary transition-all duration-200 ${pathname === homeNav.href
+                      ? "scale-x-100 opacity-100"
+                      : "scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-100"
+                      }`}
                   />
                 </Link>
               )}
 
               <div className="relative" ref={servicesRef}>
                 <button
-                  className="group relative px-3 py-2 text-sm font-semibold tracking-wide text-gray-700 transition-colors duration-200 hover:text-primary"
+                  className="group relative px-3 py-2 text-sm font-semibold tracking-wide text-gray-700 transition-colors duration-200 hover:text-primary inline-flex items-center gap-1"
                   aria-haspopup="true"
                   aria-expanded={servicesOpen}
                   onClick={() => setServicesOpen((open) => !open)}
                 >
                   Services
+                  <ChevronDown
+                    className={`w-4 h-4 transition-transform duration-200 ${servicesOpen ? "rotate-180" : ""
+                      }`}
+                  />
                   <span
-                    className={`absolute inset-x-3 -bottom-1 h-0.5 rounded-full bg-primary transition-all duration-200 ${
-                      servicesOpen
-                        ? "scale-x-100 opacity-100"
-                        : "scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-100"
-                    }`}
+                    className={`absolute inset-x-3 -bottom-1 h-0.5 rounded-full bg-primary transition-all duration-200 ${servicesOpen
+                      ? "scale-x-100 opacity-100"
+                      : "scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-100"
+                      }`}
                   />
                 </button>
                 {servicesOpen && (
-                  <div className="absolute left-0 top-full mt-3 w-screen max-w-5xl rounded-2xl border border-gray-100 bg-white shadow-2xl shadow-primary/10 p-6 md:p-8">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-                      {megaMenuColumns.map((column, columnIndex) => (
-                        <div key={columnIndex} className="space-y-6">
-                          {column.title && (
-                            <h3 className="text-3xl font-black text-gray-900">
-                              {column.title}
-                            </h3>
-                          )}
-                          <div className="space-y-6">
-                            {column.sections.map((section) => (
-                              <div key={section.heading} className="space-y-2">
-                                <p className="text-lg font-semibold text-gray-900">
-                                  {section.heading}
-                                </p>
-                                {section.items.length > 0 && (
-                                  <ul className="space-y-1">
-                                    {section.items.map((item) => (
-                                      <li key={item.label}>
-                                        <Link
-                                          href={item.href}
-                                          className="text-sm text-gray-700 leading-6 hover:text-primary transition-colors"
-                                          onClick={() => setServicesOpen(false)}
-                                        >
-                                          {item.label}
-                                        </Link>
-                                      </li>
-                                    ))}
-                                  </ul>
-                                )}
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
+                  <div className="absolute left-0 top-full mt-3 w-80 rounded-xl border border-gray-100 bg-white shadow-2xl shadow-primary/10 py-2 overflow-hidden">
+                    {serviceMenuItems.map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        className="block px-4 py-3 hover:bg-primary/5 transition-colors group/item"
+                        onClick={() => setServicesOpen(false)}
+                      >
+                        <span className="block text-sm font-semibold text-gray-900 group-hover/item:text-primary transition-colors">
+                          {item.label}
+                        </span>
+                        <span className="block text-xs text-gray-500 mt-0.5 line-clamp-1">
+                          {item.description}
+                        </span>
+                      </Link>
+                    ))}
                   </div>
                 )}
               </div>
@@ -278,19 +147,17 @@ export function Navbar() {
                   <Link
                     key={item.name}
                     href={item.href}
-                    className={`group relative px-3 py-2 text-sm font-medium transition-colors duration-200 ${
-                      isActive
-                        ? "text-primary"
-                        : "text-gray-700 hover:text-primary"
-                    }`}
+                    className={`group relative px-3 py-2 text-sm font-medium transition-colors duration-200 ${isActive
+                      ? "text-primary"
+                      : "text-gray-700 hover:text-primary"
+                      }`}
                   >
                     {item.name}
                     <span
-                      className={`absolute inset-x-3 -bottom-1 h-0.5 rounded-full bg-primary transition-all duration-200 ${
-                        isActive
-                          ? "scale-x-100 opacity-100"
-                          : "scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-100"
-                      }`}
+                      className={`absolute inset-x-3 -bottom-1 h-0.5 rounded-full bg-primary transition-all duration-200 ${isActive
+                        ? "scale-x-100 opacity-100"
+                        : "scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-100"
+                        }`}
                     />
                   </Link>
                 );
@@ -300,13 +167,13 @@ export function Navbar() {
             {/* Desktop CTAs */}
             <div className="hidden lg:flex items-center gap-3">
               <Link
-                href="tel:+92-000-0000000"
+                href="tel:+447400719523"
                 className="inline-flex items-center gap-2 rounded-full border border-gray-200 px-3 lg:px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:border-primary/60 hover:text-primary"
               >
                 <PhoneCall className="h-4 w-4 flex-shrink-0" />
                 <span className="hidden xl:inline">Call</span>
                 <span className="font-semibold lg:font-medium whitespace-nowrap">
-                  +92 000 0000000
+                  +44 7400 719523
                 </span>
               </Link>
               <Button
@@ -348,11 +215,10 @@ export function Navbar() {
               <Link
                 key={item.name}
                 href={item.href}
-                className={`block rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
-                  pathname === item.href
-                    ? "bg-primary/5 text-primary"
-                    : "text-gray-700 hover:bg-gray-50 hover:text-primary"
-                }`}
+                className={`block rounded-lg px-3 py-2 text-sm font-medium transition-colors ${pathname === item.href
+                  ? "bg-primary/5 text-primary"
+                  : "text-gray-700 hover:bg-gray-50 hover:text-primary"
+                  }`}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {item.name}
@@ -366,45 +232,27 @@ export function Navbar() {
                 aria-controls="mobile-services-menu"
               >
                 <span>Services</span>
-                <span
-                  className={`transition-transform ${
-                    mobileServicesOpen ? "rotate-180" : ""
-                  }`}
-                >
-                  ˅
-                </span>
+                <ChevronDown
+                  className={`w-4 h-4 transition-transform ${mobileServicesOpen ? "rotate-180" : ""
+                    }`}
+                />
               </button>
               {mobileServicesOpen && (
-                <div id="mobile-services-menu" className="space-y-4">
-                  {megaMenuColumns.map((column, columnIdx) => (
-                    <div key={columnIdx} className="space-y-4">
-                      {column.title && (
-                        <p className="px-3 text-base font-bold text-gray-900">
-                          {column.title}
-                        </p>
-                      )}
-                      {column.sections.map((section) => (
-                        <div key={section.heading} className="space-y-2">
-                          <p className="px-3 text-sm font-semibold text-gray-900">
-                            {section.heading}
-                          </p>
-                          {section.items.length > 0 && (
-                            <div className="space-y-1">
-                              {section.items.map((item) => (
-                                <Link
-                                  key={item.label}
-                                  href={item.href}
-                                  className="block rounded-lg px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 hover:text-primary"
-                                  onClick={() => setMobileMenuOpen(false)}
-                                >
-                                  {item.label}
-                                </Link>
-                              ))}
-                            </div>
-                          )}
-                        </div>
-                      ))}
-                    </div>
+                <div id="mobile-services-menu" className="space-y-1 pl-2">
+                  {serviceMenuItems.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className="block rounded-lg px-3 py-3 transition-colors hover:bg-gray-50"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      <span className="block text-sm font-semibold text-gray-900">
+                        {item.label}
+                      </span>
+                      <span className="block text-xs text-gray-500 mt-0.5 line-clamp-2">
+                        {item.description}
+                      </span>
+                    </Link>
                   ))}
                 </div>
               )}
@@ -417,11 +265,11 @@ export function Navbar() {
                 Get Started <ArrowUpRight className="w-4 h-4" />
               </Button>
               <Link
-                href="tel:+92-000-0000000"
+                href="tel:+447400719523"
                 className="flex items-center justify-center gap-2 rounded-lg border border-gray-200 px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:border-primary/60 hover:text-primary"
               >
                 <PhoneCall className="w-4 h-4" />
-                +92 000 0000000
+                +44 7400 719523
               </Link>
             </div>
           </div>
