@@ -13,7 +13,6 @@ import { Button } from "../ui/Button";
 const serviceMenuItems = services.map((service) => ({
   label: service.title,
   href: `/services/${service.slug}`,
-  description: service.hero.subtitle.slice(0, 80) + "...",
 }));
 
 export function Navbar() {
@@ -132,9 +131,6 @@ export function Navbar() {
                         <span className="block text-sm font-semibold text-gray-900 group-hover/item:text-primary transition-colors">
                           {item.label}
                         </span>
-                        <span className="block text-xs text-gray-500 mt-0.5 line-clamp-1">
-                          {item.description}
-                        </span>
                       </Link>
                     ))}
                   </div>
@@ -248,9 +244,6 @@ export function Navbar() {
                     >
                       <span className="block text-sm font-semibold text-gray-900">
                         {item.label}
-                      </span>
-                      <span className="block text-xs text-gray-500 mt-0.5 line-clamp-2">
-                        {item.description}
                       </span>
                     </Link>
                   ))}
