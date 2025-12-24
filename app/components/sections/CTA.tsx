@@ -17,11 +17,10 @@ export function CTA() {
           {/* Background Image */}
           <div className="absolute inset-0">
             <Image
-              src="/images/2Ready to Transform BG.png"
+              src="https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=2074&auto=format&fit=crop"
               alt="Contact us"
               fill
-              className="opacity-100 "
-              sizes="100vw"
+              className="object-cover opacity-10"
             />
           </div>
 
@@ -63,8 +62,8 @@ export function CTA() {
                 </Button>
                 <Button
                   size="lg"
-                  variant="outline"
-                  className="border-2 border-white text-white hover:bg-white hover:text-gray-900 max-[375px]:text-sm max-[375px]:py-2.5"
+                  variant="ghost"
+                  className="border-2 border-white/80 text-white hover:bg-white/10 hover:border-white backdrop-blur-sm max-[375px]:text-sm max-[375px]:py-2.5"
                 >
                   <Phone className="w-5 h-5 mr-2 max-[375px]:w-4 max-[375px]:h-4 max-[375px]:mr-1.5" />
                   Schedule a Call
