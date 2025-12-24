@@ -17,10 +17,11 @@ export function CTA() {
           {/* Background Image */}
           <div className="absolute inset-0">
             <Image
-              src="https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=2074&auto=format&fit=crop"
+              src="/images/2Ready to Transform BG.png"
               alt="Contact us"
               fill
-              className="object-cover opacity-10"
+              className="opacity-100 "
+              sizes="100vw"
             />
           </div>
 

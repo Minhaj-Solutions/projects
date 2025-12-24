@@ -2,6 +2,7 @@
 
 import { STATS } from "@/app/lib/constants";
 import { CheckCircle, Clock, TrendingUp, Users } from "lucide-react";
+import Image from "next/image";
 import {
   ScrollAnimation,
   ScrollContainer,
@@ -12,20 +13,18 @@ const icons = [Users, TrendingUp, CheckCircle, Clock];
 
 export function Stats() {
   return (
-    <section className="py-10 md:py-16 bg-gradient-to-br from-primary to-primary-dark relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 2px 2px, white 1px, transparent 0)",
-            backgroundSize: "30px 30px",
-          }}
-        ></div>
+    <section className="py-10 md:py-16 relative overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <Image
+          src="/images/TBW.png"
+          alt="Trusted by Businesses Worldwide"
+          fill
+          sizes="100vw"
+        />
       </div>
 
-      <div className="section-shell relative">
+      <div className="section-shell relative z-10">
         <ScrollAnimation>
           <div className="text-center mb-12">
             <h2 className="text-3xl max-[375px]:text-2xl md:text-4xl font-bold text-white mb-4">
