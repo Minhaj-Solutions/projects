@@ -172,17 +172,42 @@ const leadership = [
   {
     name: "Wajid Maqsood",
     title: "Founder & CEO",
-    image: "/images/team/wajid-maqsood.png",
+    image: "/images/team/Wajid Maqsood (Founder & CEO) .png",
   },
   {
     name: "Javed Ahmad",
     title: "Marketplace Operations Manager",
-    image: "/images/team/javed-ahmad.png",
+    image: "/images/team/Javed Ahmad ( Marketplace Operations Manager).png",
   },
   {
     name: "Imdad Hussain",
     title: "Mobile Application Developer",
-    image: "/images/team/imdad-hussain.png",
+    image: "/images/team/Imdad Hussain ( Mobile Application Developer ).png",
+  },
+  {
+    name: "Abd ul Rehman Zaki",
+    title: "Senior mern stack developer",
+    image: "/images/team/Abd ul Rehman Zaki (Senior mern stack developer) .png",
+  },
+  {
+    name: "Hassan Raza",
+    title: "Junior mern stack developer",
+    image: "/images/team/Hassan Raza ( Junior mern stack developer  ).png",
+  },
+  {
+    name: "Sadia Aziz",
+    title: "Graphic Designer",
+    image: "/images/team/Sadia Aziz ( Graphic Designer ).png",
+  },
+  {
+    name: "Waqar Rafique",
+    title: "Motion Graphic Designer",
+    image: "/images/team/Waqar Rafique ( Motion Graphic Designer ).png",
+  },
+  {
+    name: "Zeeshan",
+    title: "Mobile Application Developer",
+    image: "/images/team/Zeeshan ( Mobile Application Developer ).png",
   },
 ];
 
@@ -499,10 +524,7 @@ export default function AboutPage() {
                       alt={leader.name}
                       fill
                       className="object-cover"
-                      onError={(e) => {
-                        // Fallback to placeholder if image doesn't exist
-                        e.currentTarget.style.display = "none";
-                      }}
+                      unoptimized
                     />
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-1 max-[425px]:text-lg max-[375px]:text-base">

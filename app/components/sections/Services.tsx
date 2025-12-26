@@ -103,8 +103,8 @@ export function Services() {
             <Link href="/contact">
               <Button
                 size="lg"
-                variant="outline"
-                className="border-2 border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300 max-[375px]:text-sm"
+                variant="primary"
+                className="group shadow-lg hover:shadow-xl transition-all duration-300 max-[375px]:text-sm"
               >
                 Let's Talk
                 <ArrowRight className="w-5 h-5 ml-2 max-[375px]:w-4 max-[375px]:h-4" />
