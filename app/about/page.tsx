@@ -175,6 +175,11 @@ const leadership = [
     image: "/images/team/Wajid Maqsood (Founder & CEO) .png",
   },
   {
+    name: "Tayyab Saleem",
+    title: "Co-Founder & CTO",
+    image: "/images/team/tayyab-saleem-cto.png",
+  },
+  {
     name: "Javed Ahmad",
     title: "Marketplace Operations Manager",
     image: "/images/team/Javed Ahmad ( Marketplace Operations Manager).png",
