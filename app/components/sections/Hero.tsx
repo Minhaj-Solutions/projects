@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { Button } from "../ui/Button";
 
 const containerVariants = {
@@ -153,21 +154,25 @@ export function Hero() {
             variants={itemVariants}
             className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center"
           >
-            <Button
-              size="lg"
-              className="cursor-pointer bg-primary hover:bg-primary-dark text-white shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 transition-all duration-300 max-[375px]:text-sm"
-            >
-              Let's Talk
-              <ArrowRight className="w-5 h-5 ml-2 max-[375px]:w-4 max-[375px]:h-4" />
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="cursor-pointer border-2 border-white/30 text-white hover:bg-white/10 hover:border-white/50 backdrop-blur-sm transition-all duration-300 max-[375px]:text-sm"
-            >
-              Explore Our Services
-              <ArrowRight className="w-5 h-5 ml-2 max-[375px]:w-4 max-[375px]:h-4" />
-            </Button>
+            <Link href="/contact">
+              <Button
+                size="lg"
+                className="cursor-pointer bg-primary hover:bg-primary-dark text-white shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 transition-all duration-300 max-[375px]:text-sm"
+              >
+                Let's Talk
+                <ArrowRight className="w-5 h-5 ml-2 max-[375px]:w-4 max-[375px]:h-4" />
+              </Button>
+            </Link>
+            <Link href="#services">
+              <Button
+                size="lg"
+                variant="outline"
+                className="cursor-pointer border-2 border-white/30 text-white hover:bg-white/10 hover:border-white/50 backdrop-blur-sm transition-all duration-300 max-[375px]:text-sm"
+              >
+                Explore Our Services
+                <ArrowRight className="w-5 h-5 ml-2 max-[375px]:w-4 max-[375px]:h-4" />
+              </Button>
+            </Link>
           </motion.div>
         </motion.div>
 
