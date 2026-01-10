@@ -102,10 +102,7 @@ export function Industries() {
               const Icon = industry.icon;
               return (
                 <ScrollItem key={industry.id} delay={index * 0.1}>
-                  <Link
-                    href={`/industries/${industry.id}`}
-                    className="group block h-full"
-                  >
+                  <div className="group block h-full">
                     <div className="relative bg-white rounded-2xl p-6 md:p-8 border border-gray-200/80 hover:border-primary/40 transition-all duration-500 ease-out hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-2 h-full">
                       {/* Icon Container with gradient background */}
                       <div className="flex max-[375px]:flex-col items-start gap-5 md:gap-6">
@@ -134,14 +131,6 @@ export function Industries() {
                               {industry.description}
                             </p>
                           </div>
-
-                          {/* Learn more indicator */}
-                          <div className="flex max-[375px]:justify-center items-center mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <span className="text-sm max-[375px]:text-xs font-medium text-primary mr-2">
-                              Learn more
-                            </span>
-                            <ArrowRight className="w-4 h-4 max-[375px]:w-3 max-[375px]:h-3 text-primary group-hover:translate-x-1.5 transition-transform duration-300" />
-                          </div>
                         </div>
                       </div>
 
@@ -153,7 +142,7 @@ export function Industries() {
                         <div className="absolute -inset-10 -skew-x-12 bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:animate-shimmer" />
                       </div>
                     </div>
-                  </Link>
+                  </div>
                 </ScrollItem>
               );
             })}
@@ -166,7 +155,7 @@ export function Industries() {
                 <Button
                   size="lg"
                   variant="primary"
-                  className="group shadow-lg hover:shadow-xl transition-all duration-300 max-[375px]:text-sm"
+                  className="cursor-pointer group shadow-lg hover:shadow-xl transition-all duration-300 max-[375px]:text-sm"
                 >
                   Let's Talk Business
                   <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300 max-[375px]:w-4 max-[375px]:h-4" />

@@ -132,14 +132,14 @@ export function Testimonials() {
           {/* Navigation Buttons */}
           <button
             onClick={prevSlide}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 bg-white rounded-full p-2 shadow-lg border border-gray-200 hover:bg-gray-50 transition-colors z-10"
+            className="cursor-pointer absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 bg-white rounded-full p-2 shadow-lg border border-gray-200 hover:bg-gray-50 transition-colors z-10"
             aria-label="Previous testimonial"
           >
             <ChevronLeft className="w-5 h-5 text-gray-700" />
           </button>
           <button
             onClick={nextSlide}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 bg-white rounded-full p-2 shadow-lg border border-gray-200 hover:bg-gray-50 transition-colors z-10"
+            className="cursor-pointer absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 bg-white rounded-full p-2 shadow-lg border border-gray-200 hover:bg-gray-50 transition-colors z-10"
             aria-label="Next testimonial"
           >
             <ChevronRight className="w-5 h-5 text-gray-700" />
@@ -151,7 +151,7 @@ export function Testimonials() {
               <button
                 key={index}
                 onClick={() => setCurrentSlide(index)}
-                className={`w-2 h-2 rounded-full transition-all ${
+                className={`cursor-pointer w-2 h-2 rounded-full transition-all ${
                   currentSlide === index ? "bg-primary w-6" : "bg-gray-300"
                 }`}
                 aria-label={`Go to testimonial ${index + 1}`}

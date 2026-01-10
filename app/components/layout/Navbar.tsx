@@ -102,7 +102,10 @@ export function Navbar() {
 
               <div className="relative" ref={servicesRef}>
                 <button
-                  className="group relative px-3 py-2 text-sm font-semibold tracking-wide text-gray-700 transition-colors duration-200 hover:text-primary inline-flex items-center gap-1"
+                  className={`group relative px-3 py-2 text-sm font-semibold tracking-wide transition-colors duration-200 hover:text-primary inline-flex items-center gap-1 ${pathname.startsWith("/services/")
+                    ? "text-primary"
+                    : "text-gray-700"
+                    }`}
                   aria-haspopup="true"
                   aria-expanded={servicesOpen}
                   onClick={() => setServicesOpen((open) => !open)}
@@ -113,7 +116,7 @@ export function Navbar() {
                       }`}
                   />
                   <span
-                    className={`absolute inset-x-3 -bottom-1 h-0.5 rounded-full bg-primary transition-all duration-200 ${servicesOpen
+                    className={`absolute inset-x-3 -bottom-1 h-0.5 rounded-full bg-primary transition-all duration-200 ${pathname.startsWith("/services/") || servicesOpen
                       ? "scale-x-100 opacity-100"
                       : "scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-100"
                       }`}
@@ -121,18 +124,27 @@ export function Navbar() {
                 </button>
                 {servicesOpen && (
                   <div className="absolute left-0 top-full mt-3 w-80 rounded-xl border border-gray-100 bg-white shadow-2xl shadow-primary/10 py-2 overflow-hidden">
-                    {serviceMenuItems.map((item) => (
-                      <Link
-                        key={item.href}
-                        href={item.href}
-                        className="block px-4 py-3 hover:bg-primary/5 transition-colors group/item"
-                        onClick={() => setServicesOpen(false)}
-                      >
-                        <span className="block text-sm font-semibold text-gray-900 group-hover/item:text-primary transition-colors">
-                          {item.label}
-                        </span>
-                      </Link>
-                    ))}
+                    {serviceMenuItems.map((item) => {
+                      const isServiceActive = pathname === item.href;
+                      return (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          className={`block px-4 py-3 transition-colors group/item ${isServiceActive
+                            ? "bg-primary/5"
+                            : "hover:bg-primary/5"
+                            }`}
+                          onClick={() => setServicesOpen(false)}
+                        >
+                          <span className={`block text-sm font-semibold transition-colors ${isServiceActive
+                            ? "text-primary"
+                            : "text-gray-900 group-hover/item:text-primary"
+                            }`}>
+                            {item.label}
+                          </span>
+                        </Link>
+                      );
+                    })}
                   </div>
                 )}
               </div>
@@ -172,19 +184,23 @@ export function Navbar() {
                   +44 7400 719523
                 </span>
               </Link>
-              <Button
-                size="sm"
-                className="hidden xl:inline-flex items-center gap-2 shadow-md shadow-primary/20 whitespace-nowrap"
-              >
-                Get Started <ArrowUpRight className="w-4 h-4" />
-              </Button>
-              <Button
-                size="sm"
-                variant="outline"
-                className="xl:hidden border-primary/60 text-primary whitespace-nowrap"
-              >
-                Get Started
-              </Button>
+              <Link href="/contact">
+                <Button
+                  size="sm"
+                  className="cursor-pointer hidden xl:inline-flex items-center gap-2 shadow-md shadow-primary/20 whitespace-nowrap"
+                >
+                  Get Started <ArrowUpRight className="w-4 h-4" />
+                </Button>
+              </Link>
+              <Link href="/contact">
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="cursor-pointer xl:hidden border-primary/60 text-primary whitespace-nowrap"
+                >
+                  Get Started
+                </Button>
+              </Link>
             </div>
 
             {/* Mobile Menu Button */}
@@ -207,6 +223,19 @@ export function Navbar() {
       {mobileMenuOpen && (
         <div className="lg:hidden fixed inset-x-0 top-20 bottom-0 bg-white z-40 overflow-y-auto">
           <div className="px-4 py-4 space-y-2 min-h-full">
+            {homeNav && (
+              <Link
+                key={homeNav.name}
+                href={homeNav.href}
+                className={`block rounded-lg px-3 py-2 text-sm font-medium transition-colors ${pathname === homeNav.href
+                  ? "bg-primary/5 text-primary"
+                  : "text-gray-700 hover:bg-gray-50 hover:text-primary"
+                  }`}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {homeNav.name}
+              </Link>
+            )}
             {otherNav.map((item) => (
               <Link
                 key={item.name}
@@ -222,7 +251,10 @@ export function Navbar() {
             ))}
             <div className="pt-3 space-y-3">
               <button
-                className="flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm font-semibold uppercase tracking-wide text-gray-900 transition-colors hover:bg-gray-50"
+                className={`flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm font-semibold uppercase tracking-wide transition-colors hover:bg-gray-50 ${pathname.startsWith("/services/")
+                  ? "bg-primary/5 text-primary"
+                  : "text-gray-900"
+                  }`}
                 onClick={() => setMobileServicesOpen((open) => !open)}
                 aria-expanded={mobileServicesOpen}
                 aria-controls="mobile-services-menu"
@@ -235,28 +267,39 @@ export function Navbar() {
               </button>
               {mobileServicesOpen && (
                 <div id="mobile-services-menu" className="space-y-1 pl-2">
-                  {serviceMenuItems.map((item) => (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      className="block rounded-lg px-3 py-3 transition-colors hover:bg-gray-50"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      <span className="block text-sm font-semibold text-gray-900">
-                        {item.label}
-                      </span>
-                    </Link>
-                  ))}
+                  {serviceMenuItems.map((item) => {
+                    const isServiceActive = pathname === item.href;
+                    return (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        className={`block rounded-lg px-3 py-3 transition-colors ${isServiceActive
+                          ? "bg-primary/5"
+                          : "hover:bg-gray-50"
+                          }`}
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        <span className={`block text-sm font-semibold ${isServiceActive
+                          ? "text-primary"
+                          : "text-gray-900"
+                          }`}>
+                          {item.label}
+                        </span>
+                      </Link>
+                    );
+                  })}
                 </div>
               )}
             </div>
             <div className="pt-2 space-y-2">
-              <Button
-                fullWidth
-                className="flex items-center justify-center gap-2"
-              >
-                Get Started <ArrowUpRight className="w-4 h-4" />
-              </Button>
+              <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
+                <Button
+                  fullWidth
+                  className="cursor-pointer flex items-center justify-center gap-2"
+                >
+                  Get Started <ArrowUpRight className="w-4 h-4" />
+                </Button>
+              </Link>
               <Link
                 href="tel:+447400719523"
                 className="flex items-center justify-center gap-2 rounded-lg border border-gray-200 px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:border-primary/60 hover:text-primary"

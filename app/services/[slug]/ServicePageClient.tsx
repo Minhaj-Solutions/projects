@@ -28,24 +28,110 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
   });
 
   const techLogoMap: Record<string, string> = {
-    Docker: "/images/tech-logos/docker.avif",
-    Kubernetes: "/images/tech-logos/kubernnetes.avif",
+    // Frontend
     React: "/images/tech-logos/react.avif",
     "React Native": "/images/tech-logos/react.avif",
+    "Next.js": "/tech-logos/nextjs.svg",
     Vue: "/images/tech-logos/vuejs.avif",
     "Vue.js": "/images/tech-logos/vuejs.avif",
     Angular: "/images/tech-logos/angular.avif",
     Bootstrap: "/images/tech-logos/bootstrap.avif",
-    Firebase: "/images/tech-logos/firebase.avif",
-    AWS: "/images/tech-logos/aws.avif",
-    "AWS Amplify": "/images/tech-logos/aws.avif",
     "Tailwind CSS": "/images/tech-logos/tailwindcss.avif",
     Tailwind: "/images/tech-logos/tailwindcss.avif",
+    
+    // Languages
     TypeScript: "/images/tech-logos/ts.avif",
+    Python: "/tech-logos/python.svg",
+    Java: "/tech-logos/java.svg",
+    Swift: "/tech-logos/swift.svg",
+    Kotlin: "/tech-logos/kotlin.svg",
+    R: "/tech-logos/r.svg",
+    
+    // Backend
+    "Node.js": "/tech-logos/nodejs.svg",
+    ".NET": "/tech-logos/dotnet.svg",
+    Django: "/tech-logos/django.svg",
+    Laravel: "/tech-logos/laravel.svg",
+    
+    // Databases
     MongoDB: "/images/tech-logos/mongodb.avif",
     MySQL: "/images/tech-logos/mysql.avif",
     PostgreSQL: "/images/tech-logos/postgresql.avif",
+    Redis: "/tech-logos/redis.svg",
+    Elasticsearch: "/tech-logos/elasticsearch.svg",
+    
+    // Cloud & Hosting
+    AWS: "/images/tech-logos/aws.avif",
+    "AWS Amplify": "/images/tech-logos/aws.avif",
+    "AWS SageMaker": "/images/tech-logos/aws.avif",
+    Azure: "/tech-logos/azure.svg",
+    Vercel: "/tech-logos/vercel.svg",
+    Cloudflare: "/tech-logos/cloudflare.svg",
+    
+    // DevOps & Tools
+    Docker: "/images/tech-logos/docker.avif",
+    Kubernetes: "/images/tech-logos/kubernnetes.avif",
+    Jenkins: "/tech-logos/jenkins.svg",
+    Terraform: "/tech-logos/terraform.svg",
+    Fastlane: "/tech-logos/fastlane.svg",
+    
+    // APIs & Messaging
+    GraphQL: "/tech-logos/graphql.svg",
+    RabbitMQ: "/tech-logos/rabbitmq.svg",
+    "Socket.io": "/tech-logos/socketio.svg",
+    
+    // State Management
+    Redux: "/tech-logos/redux.svg",
+    
+    // Mobile
+    Flutter: "/tech-logos/flutter.svg",
+    
+    // Backend Services
+    Firebase: "/images/tech-logos/firebase.avif",
+    
+    // Testing & Monitoring
     Selenium: "/images/tech-logos/selenium.avif",
+    TestFlight: "/tech-logos/testflight.svg",
+    Crashlytics: "/tech-logos/crashlytics.svg",
+    AppCenter: "/tech-logos/appcenter.svg",
+    
+    // Payments
+    Stripe: "/tech-logos/stripe.svg",
+    
+    // AI & ML
+    TensorFlow: "/tech-logos/tensorflow.svg",
+    PyTorch: "/tech-logos/pytorch.svg",
+    "Scikit-learn": "/tech-logos/scikit-learn.svg",
+    "OpenAI GPT": "/tech-logos/openai.svg",
+    LangChain: "/tech-logos/langchain.svg",
+    "Hugging Face": "/tech-logos/huggingface.svg",
+    OpenCV: "/tech-logos/opencv.svg",
+    
+    // Big Data & Analytics
+    "Apache Spark": "/tech-logos/spark.svg",
+    Databricks: "/tech-logos/databricks.svg",
+    Snowflake: "/tech-logos/snowflake.svg",
+    Tableau: "/tech-logos/tableau.svg",
+    "Power BI": "/tech-logos/powerbi.svg",
+    
+    // MLOps
+    MLflow: "/tech-logos/mlflow.svg",
+    Kubeflow: "/tech-logos/kubeflow.svg",
+    
+    // Academic & Research Tools
+    SPSS: "/tech-logos/spss.svg",
+    MATLAB: "/tech-logos/matlab.svg",
+    NVivo: "/tech-logos/nvivo.svg",
+    Mendeley: "/tech-logos/mendeley.svg",
+    Zotero: "/tech-logos/zotero.svg",
+    EndNote: "/tech-logos/EndNote.svg",
+    LaTeX: "/tech-logos/latex.svg",
+    Overleaf: "/tech-logos/overleaf.svg",
+    "ATLAS.ti": "/tech-logos/ATLASti.svg",
+    Stata: "/tech-logos/stata.svg",
+    SAS: "/tech-logos/sas.svg",
+    "GPT-4": "/tech-logos/openai.svg",
+    "Semantic Scholar": "/tech-logos/semanticscholar.svg",
   };
 
   const defaultServiceImage =
@@ -310,8 +396,8 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
               </p>
             </motion.div>
 
-            <div className="relative max-w-5xl mx-auto">
-              <div className="absolute left-6 md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary/40 via-primary/20 to-transparent pointer-events-none" />
+            <div className="relative max-w-4xl mx-auto">
+              <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary/40 via-primary/20 to-transparent pointer-events-none hidden md:block" />
               <div className="space-y-8">
                 {service.process.map((step, index) => (
                   <motion.div
@@ -323,11 +409,11 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
                         : { opacity: 0, y: 20 }
                     }
                     transition={{ duration: 0.45, delay: index * 0.08 }}
-                    className="relative"
+                    className="relative flex justify-center"
                   >
-                    <div className="bg-white rounded-2xl shadow-lg border-2 border-primary/20 hover:border-primary hover:shadow-xl transition-all duration-300 p-6 md:p-7 max-[968px]:p-5 grid md:grid-cols-[auto,1fr] gap-4 md:gap-6 max-[968px]:gap-4">
-                      <div className="flex md:flex-col items-center md:items-start gap-4 md:gap-2">
-                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-primary-dark text-white font-semibold text-lg flex items-center justify-center shadow-lg max-[968px]:w-10 max-[968px]:h-10 max-[425px]:w-9 max-[425px]:h-9 max-[425px]:text-base">
+                    <div className="bg-white rounded-2xl shadow-lg border-2 border-primary/20 hover:border-primary hover:shadow-xl transition-all duration-300 p-6 md:p-8 max-[968px]:p-5 max-w-2xl w-full text-center">
+                      <div className="flex flex-col items-center gap-4 mb-4">
+                        <div className="w-14 h-14 rounded-full bg-gradient-to-br from-primary to-primary-dark text-white font-semibold text-lg flex items-center justify-center shadow-lg max-[968px]:w-12 max-[968px]:h-12 max-[425px]:w-10 max-[425px]:h-10 max-[425px]:text-base">
                           {step.number}
                         </div>
                         <h3 className="text-xl font-bold text-gray-900 max-[968px]:text-lg max-[425px]:text-base max-[375px]:text-sm">
@@ -452,12 +538,38 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
                   <div className="flex flex-col items-center justify-center h-24">
                     {techLogoMap[tech.name] ? (
                       <div className="relative w-20 h-20 mx-auto">
-                        <Image
-                          src={techLogoMap[tech.name]}
-                          alt={tech.name}
-                          fill
-                          className="object-contain"
-                        />
+                        {techLogoMap[tech.name].startsWith("http") || 
+                         techLogoMap[tech.name].startsWith("data:") || 
+                         techLogoMap[tech.name].endsWith(".svg") ? (
+                          <img
+                            src={techLogoMap[tech.name]}
+                            alt={tech.name}
+                            className="w-full h-full object-contain"
+                            loading="lazy"
+                            onError={(e) => {
+                              // Fallback to text if image fails to load
+                              const target = e.target as HTMLImageElement;
+                              const parent = target.parentElement;
+                              if (parent && !parent.querySelector('.fallback-text')) {
+                                target.style.display = "none";
+                                const fallback = document.createElement("div");
+                                fallback.className = "fallback-text text-sm font-bold text-gray-900 text-center w-full h-full flex items-center justify-center";
+                                fallback.textContent = tech.name;
+                                parent.appendChild(fallback);
+                              }
+                            }}
+                          />
+                        ) : (
+                          <Image
+                            src={techLogoMap[tech.name]}
+                            alt={tech.name}
+                            fill
+                            className="object-contain"
+                            onError={() => {
+                              // Fallback handled by Next.js Image component
+                            }}
+                          />
+                        )}
                       </div>
                     ) : (
                       <div className="text-lg font-bold text-gray-900">

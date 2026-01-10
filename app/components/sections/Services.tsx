@@ -25,7 +25,7 @@ const featuredServices = featuredServiceSlugs
 
 export function Services() {
   return (
-    <section className="py-10 md:py-16 bg-white">
+    <section id="services" className="py-10 md:py-16 bg-white">
       <div className="section-shell">
         {/* Section Header */}
         <ScrollAnimation>
@@ -104,7 +104,7 @@ export function Services() {
               <Button
                 size="lg"
                 variant="primary"
-                className="group shadow-lg hover:shadow-xl transition-all duration-300 max-[375px]:text-sm"
+                className="cursor-pointer group shadow-lg hover:shadow-xl transition-all duration-300 max-[375px]:text-sm"
               >
                 Let's Talk
                 <ArrowRight className="w-5 h-5 ml-2 max-[375px]:w-4 max-[375px]:h-4" />

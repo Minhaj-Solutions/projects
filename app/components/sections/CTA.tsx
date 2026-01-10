@@ -2,6 +2,7 @@
 
 import { Mail, Phone } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { Button } from "../ui/Button";
 import {
   ScrollAnimation,
@@ -27,8 +28,8 @@ export function CTA() {
           {/* Content */}
           <div className="relative p-8 max-[375px]:p-5 md:p-16 text-center">
             <ScrollAnimation>
-              <div className="inline-block bg-primary/10 border border-primary/30 rounded-full px-4 max-[375px]:px-3 py-2 max-[375px]:py-1.5 mb-6 max-[375px]:mb-4">
-                <span className="text-primary font-semibold text-sm max-[375px]:text-xs">
+              <div className="inline-block bg-primary/20 border border-primary/50 rounded-full px-4 max-[375px]:px-3 py-2 max-[375px]:py-1.5 mb-6 max-[375px]:mb-4">
+                <span className="text-primary-light font-semibold text-sm max-[375px]:text-xs">
                   Start Your Journey
                 </span>
               </div>
@@ -53,21 +54,25 @@ export function CTA() {
 
             <ScrollAnimation delay={0.3}>
               <div className="flex flex-col sm:flex-row gap-4 max-[375px]:gap-3 justify-center mb-8 max-[375px]:mb-6">
-                <Button
-                  size="lg"
-                  className="bg-primary hover:bg-primary-dark text-white shadow-lg shadow-primary/30 max-[375px]:text-sm max-[375px]:py-2.5"
-                >
-                  <Mail className="w-5 h-5 mr-2 max-[375px]:w-4 max-[375px]:h-4 max-[375px]:mr-1.5" />
-                  Get Free Consultation
-                </Button>
-                <Button
-                  size="lg"
-                  variant="ghost"
-                  className="border-2 border-white/80 text-white hover:bg-white/10 hover:border-white backdrop-blur-sm max-[375px]:text-sm max-[375px]:py-2.5"
-                >
-                  <Phone className="w-5 h-5 mr-2 max-[375px]:w-4 max-[375px]:h-4 max-[375px]:mr-1.5" />
-                  Schedule a Call
-                </Button>
+                <Link href="/contact">
+                  <Button
+                    size="lg"
+                    className="cursor-pointer bg-primary hover:bg-primary-dark text-white shadow-lg shadow-primary/30 max-[375px]:text-sm max-[375px]:py-2.5"
+                  >
+                    <Mail className="w-5 h-5 mr-2 max-[375px]:w-4 max-[375px]:h-4 max-[375px]:mr-1.5" />
+                    Get Free Consultation
+                  </Button>
+                </Link>
+                <Link href="/contact">
+                  <Button
+                    size="lg"
+                    variant="ghost"
+                    className="cursor-pointer border-2 border-white/80 text-white hover:bg-white/10 hover:border-white backdrop-blur-sm max-[375px]:text-sm max-[375px]:py-2.5"
+                  >
+                    <Phone className="w-5 h-5 mr-2 max-[375px]:w-4 max-[375px]:h-4 max-[375px]:mr-1.5" />
+                    Schedule a Call
+                  </Button>
+                </Link>
               </div>
             </ScrollAnimation>
 
