@@ -132,7 +132,7 @@ export function Footer() {
                 <Phone className="w-4 h-4 md:w-5 md:h-5 flex-shrink-0 mt-0.5" />
                 <div className="text-xs md:text-sm">
                   <a
-                    href="tel:+447400719523"
+                    href="tel:+447763121866"
                     className="hover:text-white transition-colors block"
                   >
                     +44 7400 719523 (UK)
@@ -141,7 +141,7 @@ export function Footer() {
                     href="https://wa.me/923220681998"
                     className="hover:text-white transition-colors block"
                   >
-                    +92 322 0681998 (WhatsApp)
+                    +92 325 6954764 (WhatsApp)
                   </a>
                 </div>
               </li>
@@ -149,7 +149,8 @@ export function Footer() {
                 <MapPin className="w-4 h-4 md:w-5 md:h-5 flex-shrink-0 mt-0.5" />
                 <div className="text-xs md:text-sm space-y-1">
                   <p>
-                    <strong>Pakistan:</strong> 84 A, Sahara City, Renala Khurrad, Okara, Punjab, Pakistan
+                    <strong>Pakistan:</strong> 84 A, Sahara City, Renala
+                    Khurrad, Okara, Punjab, Pakistan
                   </p>
                   <p>
                     <strong>UK:</strong> 124 City Road, London

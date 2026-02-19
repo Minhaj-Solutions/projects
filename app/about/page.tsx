@@ -155,7 +155,7 @@ const offices = [
     country: "Pakistan",
     type: "Head Office",
     address: "84 A, Sahara City, Renala Khurrad, Okara, Punjab, Pakistan",
-    phone: "+92 322 0681998",
+    phone: "+92 325 6954764",
     email: "info@minhajsolutions.com",
   },
   {

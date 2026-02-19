@@ -1,7 +1,11 @@
 "use client";
 
 import { Button } from "@/app/components/ui/Button";
-import { ScrollAnimation, ScrollContainer, ScrollItem } from "@/app/components/ui/ScrollAnimation";
+import {
+  ScrollAnimation,
+  ScrollContainer,
+  ScrollItem,
+} from "@/app/components/ui/ScrollAnimation";
 import { SITE_NAME } from "@/app/lib/constants";
 import {
   AlertCircle,
@@ -132,7 +136,7 @@ export default function ContactPage() {
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+    >,
   ) => {
     const { name, value, type } = e.target;
     const checked = (e.target as HTMLInputElement).checked;
@@ -246,7 +250,7 @@ export default function ContactPage() {
                         Phone (UK)
                       </h3>
                       <a
-                        href="tel:+447400719523"
+                        href="tel:+447763121866"
                         className="text-white/90 hover:text-white transition-colors text-sm max-[425px]:text-xs"
                       >
                         +44 7400 719523
@@ -267,7 +271,7 @@ export default function ContactPage() {
                         href="https://wa.me/923220681998"
                         className="text-white/90 hover:text-white transition-colors text-sm max-[425px]:text-xs"
                       >
-                        +92 322 0681998
+                        +92 325 6954764
                       </a>
                     </div>
                   </div>
@@ -283,11 +287,14 @@ export default function ContactPage() {
                       </h3>
                       <div className="text-white/90 text-sm not-italic leading-relaxed max-[425px]:text-xs space-y-2">
                         <p>
-                          <strong>Pakistan:</strong><br />
-                          84 A, Sahara City, Renala Khurrad, Okara, Punjab, Pakistan
+                          <strong>Pakistan:</strong>
+                          <br />
+                          84 A, Sahara City, Renala Khurrad, Okara, Punjab,
+                          Pakistan
                         </p>
                         <p>
-                          <strong>United Kingdom:</strong><br />
+                          <strong>United Kingdom:</strong>
+                          <br />
                           124 City Road, London
                         </p>
                       </div>
@@ -373,10 +380,11 @@ export default function ContactPage() {
                             name="firstName"
                             value={formData.firstName}
                             onChange={handleChange}
-                            className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all max-[425px]:px-3 max-[425px]:py-2 max-[425px]:text-sm ${errors.firstName
-                              ? "border-error focus:ring-error focus:border-error"
-                              : "border-gray-300"
-                              }`}
+                            className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all max-[425px]:px-3 max-[425px]:py-2 max-[425px]:text-sm ${
+                              errors.firstName
+                                ? "border-error focus:ring-error focus:border-error"
+                                : "border-gray-300"
+                            }`}
                             placeholder="John"
                           />
                           {errors.firstName && (
@@ -400,10 +408,11 @@ export default function ContactPage() {
                             name="lastName"
                             value={formData.lastName}
                             onChange={handleChange}
-                            className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all max-[425px]:px-3 max-[425px]:py-2 max-[425px]:text-sm ${errors.lastName
-                              ? "border-error focus:ring-error focus:border-error"
-                              : "border-gray-300"
-                              }`}
+                            className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all max-[425px]:px-3 max-[425px]:py-2 max-[425px]:text-sm ${
+                              errors.lastName
+                                ? "border-error focus:ring-error focus:border-error"
+                                : "border-gray-300"
+                            }`}
                             placeholder="Doe"
                           />
                           {errors.lastName && (
@@ -429,10 +438,11 @@ export default function ContactPage() {
                           name="businessEmail"
                           value={formData.businessEmail}
                           onChange={handleChange}
-                          className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all max-[425px]:px-3 max-[425px]:py-2 max-[425px]:text-sm ${errors.businessEmail
-                            ? "border-error focus:ring-error focus:border-error"
-                            : "border-gray-300"
-                            }`}
+                          className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all max-[425px]:px-3 max-[425px]:py-2 max-[425px]:text-sm ${
+                            errors.businessEmail
+                              ? "border-error focus:ring-error focus:border-error"
+                              : "border-gray-300"
+                          }`}
                           placeholder="john.doe@company.com"
                         />
                         {errors.businessEmail && (
@@ -458,10 +468,11 @@ export default function ContactPage() {
                             name="company"
                             value={formData.company}
                             onChange={handleChange}
-                            className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all max-[425px]:px-3 max-[425px]:py-2 max-[425px]:text-sm ${errors.company
-                              ? "border-error focus:ring-error focus:border-error"
-                              : "border-gray-300"
-                              }`}
+                            className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all max-[425px]:px-3 max-[425px]:py-2 max-[425px]:text-sm ${
+                              errors.company
+                                ? "border-error focus:ring-error focus:border-error"
+                                : "border-gray-300"
+                            }`}
                             placeholder="Company Name"
                           />
                           {errors.company && (
@@ -485,10 +496,11 @@ export default function ContactPage() {
                             name="jobTitle"
                             value={formData.jobTitle}
                             onChange={handleChange}
-                            className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all max-[425px]:px-3 max-[425px]:py-2 max-[425px]:text-sm ${errors.jobTitle
-                              ? "border-error focus:ring-error focus:border-error"
-                              : "border-gray-300"
-                              }`}
+                            className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all max-[425px]:px-3 max-[425px]:py-2 max-[425px]:text-sm ${
+                              errors.jobTitle
+                                ? "border-error focus:ring-error focus:border-error"
+                                : "border-gray-300"
+                            }`}
                             placeholder="CEO, CTO, Manager"
                           />
                           {errors.jobTitle && (
@@ -515,10 +527,11 @@ export default function ContactPage() {
                             name="phone"
                             value={formData.phone}
                             onChange={handleChange}
-                            className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all max-[425px]:px-3 max-[425px]:py-2 max-[425px]:text-sm ${errors.phone
-                              ? "border-error focus:ring-error focus:border-error"
-                              : "border-gray-300"
-                              }`}
+                            className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all max-[425px]:px-3 max-[425px]:py-2 max-[425px]:text-sm ${
+                              errors.phone
+                                ? "border-error focus:ring-error focus:border-error"
+                                : "border-gray-300"
+                            }`}
                             placeholder="+1 (234) 567-890"
                           />
                           {errors.phone && (
@@ -541,10 +554,11 @@ export default function ContactPage() {
                             name="location"
                             value={formData.location}
                             onChange={handleChange}
-                            className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all bg-white max-[425px]:px-3 max-[425px]:py-2 max-[425px]:text-sm ${errors.location
-                              ? "border-error focus:ring-error focus:border-error"
-                              : "border-gray-300"
-                              }`}
+                            className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all bg-white max-[425px]:px-3 max-[425px]:py-2 max-[425px]:text-sm ${
+                              errors.location
+                                ? "border-error focus:ring-error focus:border-error"
+                                : "border-gray-300"
+                            }`}
                           >
                             {countries.map((country) => (
                               <option key={country.value} value={country.value}>
@@ -659,7 +673,9 @@ export default function ContactPage() {
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
                   <Mail className="w-8 h-8 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">Email Us</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">
+                  Email Us
+                </h3>
                 <p className="text-gray-600 mb-4">
                   Send us an email and we'll get back to you within 24 hours
                 </p>
@@ -679,13 +695,15 @@ export default function ContactPage() {
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
                   <Phone className="w-8 h-8 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">Call Us</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">
+                  Call Us
+                </h3>
                 <p className="text-gray-600 mb-4">
                   Speak directly with our team during business hours
                 </p>
                 <div className="space-y-2">
                   <a
-                    href="tel:+447400719523"
+                    href="tel:+447763121866"
                     className="flex items-center justify-center text-primary font-semibold hover:text-primary-dark transition-colors"
                   >
                     +44 7400 719523 (UK)
@@ -694,7 +712,7 @@ export default function ContactPage() {
                     href="https://wa.me/923220681998"
                     className="flex items-center justify-center text-primary font-semibold hover:text-primary-dark transition-colors"
                   >
-                    +92 322 0681998 (WhatsApp)
+                    +92 325 6954764 (WhatsApp)
                   </a>
                 </div>
               </Card>
@@ -706,7 +724,9 @@ export default function ContactPage() {
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
                   <MapPin className="w-8 h-8 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">Our Locations</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">
+                  Our Locations
+                </h3>
                 <p className="text-gray-600 mb-4">
                   We have offices in two countries
                 </p>
