@@ -45,7 +45,7 @@ export function Navbar() {
 
   const homeNav = NAVIGATION_ITEMS.find((item) => item.name === "Home");
   const otherNav = NAVIGATION_ITEMS.filter(
-    (item) => item.name !== "Home" && item.name !== "Services"
+    (item) => item.name !== "Home" && item.name !== "Services",
   );
 
   return (
@@ -85,41 +85,46 @@ export function Navbar() {
                 <Link
                   key={homeNav.name}
                   href={homeNav.href}
-                  className={`group relative px-3 py-2 text-sm font-medium transition-colors duration-200 ${pathname === homeNav.href
-                    ? "text-primary"
-                    : "text-gray-700 hover:text-primary"
-                    }`}
+                  className={`group relative px-3 py-2 text-sm font-medium transition-colors duration-200 ${
+                    pathname === homeNav.href
+                      ? "text-primary"
+                      : "text-gray-700 hover:text-primary"
+                  }`}
                 >
                   {homeNav.name}
                   <span
-                    className={`absolute inset-x-3 -bottom-1 h-0.5 rounded-full bg-primary transition-all duration-200 ${pathname === homeNav.href
-                      ? "scale-x-100 opacity-100"
-                      : "scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-100"
-                      }`}
+                    className={`absolute inset-x-3 -bottom-1 h-0.5 rounded-full bg-primary transition-all duration-200 ${
+                      pathname === homeNav.href
+                        ? "scale-x-100 opacity-100"
+                        : "scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-100"
+                    }`}
                   />
                 </Link>
               )}
 
               <div className="relative" ref={servicesRef}>
                 <button
-                  className={`group relative px-3 py-2 text-sm font-semibold tracking-wide transition-colors duration-200 hover:text-primary inline-flex items-center gap-1 ${pathname.startsWith("/services/")
-                    ? "text-primary"
-                    : "text-gray-700"
-                    }`}
+                  className={`group relative px-3 py-2 text-sm font-semibold tracking-wide transition-colors duration-200 hover:text-primary inline-flex items-center gap-1 ${
+                    pathname.startsWith("/services/")
+                      ? "text-primary"
+                      : "text-gray-700"
+                  }`}
                   aria-haspopup="true"
                   aria-expanded={servicesOpen}
                   onClick={() => setServicesOpen((open) => !open)}
                 >
                   Services
                   <ChevronDown
-                    className={`w-4 h-4 transition-transform duration-200 ${servicesOpen ? "rotate-180" : ""
-                      }`}
+                    className={`w-4 h-4 transition-transform duration-200 ${
+                      servicesOpen ? "rotate-180" : ""
+                    }`}
                   />
                   <span
-                    className={`absolute inset-x-3 -bottom-1 h-0.5 rounded-full bg-primary transition-all duration-200 ${pathname.startsWith("/services/") || servicesOpen
-                      ? "scale-x-100 opacity-100"
-                      : "scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-100"
-                      }`}
+                    className={`absolute inset-x-3 -bottom-1 h-0.5 rounded-full bg-primary transition-all duration-200 ${
+                      pathname.startsWith("/services/") || servicesOpen
+                        ? "scale-x-100 opacity-100"
+                        : "scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-100"
+                    }`}
                   />
                 </button>
                 {servicesOpen && (
@@ -130,16 +135,20 @@ export function Navbar() {
                         <Link
                           key={item.href}
                           href={item.href}
-                          className={`block px-4 py-3 transition-colors group/item ${isServiceActive
-                            ? "bg-primary/5"
-                            : "hover:bg-primary/5"
-                            }`}
+                          className={`block px-4 py-3 transition-colors group/item ${
+                            isServiceActive
+                              ? "bg-primary/5"
+                              : "hover:bg-primary/5"
+                          }`}
                           onClick={() => setServicesOpen(false)}
                         >
-                          <span className={`block text-sm font-semibold transition-colors ${isServiceActive
-                            ? "text-primary"
-                            : "text-gray-900 group-hover/item:text-primary"
-                            }`}>
+                          <span
+                            className={`block text-sm font-semibold transition-colors ${
+                              isServiceActive
+                                ? "text-primary"
+                                : "text-gray-900 group-hover/item:text-primary"
+                            }`}
+                          >
                             {item.label}
                           </span>
                         </Link>
@@ -155,17 +164,19 @@ export function Navbar() {
                   <Link
                     key={item.name}
                     href={item.href}
-                    className={`group relative px-3 py-2 text-sm font-medium transition-colors duration-200 ${isActive
-                      ? "text-primary"
-                      : "text-gray-700 hover:text-primary"
-                      }`}
+                    className={`group relative px-3 py-2 text-sm font-medium transition-colors duration-200 ${
+                      isActive
+                        ? "text-primary"
+                        : "text-gray-700 hover:text-primary"
+                    }`}
                   >
                     {item.name}
                     <span
-                      className={`absolute inset-x-3 -bottom-1 h-0.5 rounded-full bg-primary transition-all duration-200 ${isActive
-                        ? "scale-x-100 opacity-100"
-                        : "scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-100"
-                        }`}
+                      className={`absolute inset-x-3 -bottom-1 h-0.5 rounded-full bg-primary transition-all duration-200 ${
+                        isActive
+                          ? "scale-x-100 opacity-100"
+                          : "scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-100"
+                      }`}
                     />
                   </Link>
                 );
@@ -175,7 +186,7 @@ export function Navbar() {
             {/* Desktop CTAs */}
             <div className="hidden lg:flex items-center gap-3">
               <Link
-                href="tel:+447400719523"
+                href="tel:+447763121866"
                 className="inline-flex items-center gap-2 rounded-full border border-gray-200 px-3 lg:px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:border-primary/60 hover:text-primary"
               >
                 <PhoneCall className="h-4 w-4 flex-shrink-0" />
@@ -227,10 +238,11 @@ export function Navbar() {
               <Link
                 key={homeNav.name}
                 href={homeNav.href}
-                className={`block rounded-lg px-3 py-2 text-sm font-medium transition-colors ${pathname === homeNav.href
-                  ? "bg-primary/5 text-primary"
-                  : "text-gray-700 hover:bg-gray-50 hover:text-primary"
-                  }`}
+                className={`block rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
+                  pathname === homeNav.href
+                    ? "bg-primary/5 text-primary"
+                    : "text-gray-700 hover:bg-gray-50 hover:text-primary"
+                }`}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {homeNav.name}
@@ -240,10 +252,11 @@ export function Navbar() {
               <Link
                 key={item.name}
                 href={item.href}
-                className={`block rounded-lg px-3 py-2 text-sm font-medium transition-colors ${pathname === item.href
-                  ? "bg-primary/5 text-primary"
-                  : "text-gray-700 hover:bg-gray-50 hover:text-primary"
-                  }`}
+                className={`block rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
+                  pathname === item.href
+                    ? "bg-primary/5 text-primary"
+                    : "text-gray-700 hover:bg-gray-50 hover:text-primary"
+                }`}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {item.name}
@@ -251,18 +264,20 @@ export function Navbar() {
             ))}
             <div className="pt-3 space-y-3">
               <button
-                className={`flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm font-semibold uppercase tracking-wide transition-colors hover:bg-gray-50 ${pathname.startsWith("/services/")
-                  ? "bg-primary/5 text-primary"
-                  : "text-gray-900"
-                  }`}
+                className={`flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm font-semibold uppercase tracking-wide transition-colors hover:bg-gray-50 ${
+                  pathname.startsWith("/services/")
+                    ? "bg-primary/5 text-primary"
+                    : "text-gray-900"
+                }`}
                 onClick={() => setMobileServicesOpen((open) => !open)}
                 aria-expanded={mobileServicesOpen}
                 aria-controls="mobile-services-menu"
               >
                 <span>Services</span>
                 <ChevronDown
-                  className={`w-4 h-4 transition-transform ${mobileServicesOpen ? "rotate-180" : ""
-                    }`}
+                  className={`w-4 h-4 transition-transform ${
+                    mobileServicesOpen ? "rotate-180" : ""
+                  }`}
                 />
               </button>
               {mobileServicesOpen && (
@@ -273,16 +288,16 @@ export function Navbar() {
                       <Link
                         key={item.href}
                         href={item.href}
-                        className={`block rounded-lg px-3 py-3 transition-colors ${isServiceActive
-                          ? "bg-primary/5"
-                          : "hover:bg-gray-50"
-                          }`}
+                        className={`block rounded-lg px-3 py-3 transition-colors ${
+                          isServiceActive ? "bg-primary/5" : "hover:bg-gray-50"
+                        }`}
                         onClick={() => setMobileMenuOpen(false)}
                       >
-                        <span className={`block text-sm font-semibold ${isServiceActive
-                          ? "text-primary"
-                          : "text-gray-900"
-                          }`}>
+                        <span
+                          className={`block text-sm font-semibold ${
+                            isServiceActive ? "text-primary" : "text-gray-900"
+                          }`}
+                        >
                           {item.label}
                         </span>
                       </Link>
@@ -301,7 +316,7 @@ export function Navbar() {
                 </Button>
               </Link>
               <Link
-                href="tel:+447400719523"
+                href="tel:+447763121866"
                 className="flex items-center justify-center gap-2 rounded-lg border border-gray-200 px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:border-primary/60 hover:text-primary"
               >
                 <PhoneCall className="w-4 h-4" />
