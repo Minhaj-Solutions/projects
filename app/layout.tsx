@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "./components/layout/Navbar";
@@ -15,6 +15,12 @@ export const metadata: Metadata = {
   description: "Professional software development, website design, digital marketing, and e-commerce solutions. 134 specialized services across 4 main categories.",
 };
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -24,7 +30,7 @@ export default function RootLayout({
     <html lang="en" className={inter.variable}>
       <body className="font-sans antialiased">
         <Navbar />
-        <main>{children}</main>
+        <main className="min-w-0 overflow-x-clip">{children}</main>
         <Footer />
       </body>
     </html>

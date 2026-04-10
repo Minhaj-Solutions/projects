@@ -7,6 +7,7 @@ export const NAVIGATION_ITEMS = [
   { name: 'Portfolio', href: '/portfolio' },
   { name: 'Blog', href: '/blog' },
   { name: 'About', href: '/about' },
+  { name: 'AI Training', href: '/courses/ai-training' },
   { name: 'Contact', href: '/contact' },
 ]
 
