@@ -135,7 +135,7 @@ export function Footer() {
                     href="tel:+447763121866"
                     className="hover:text-white transition-colors block"
                   >
-                    +44 7400 719523 (UK)
+                    +44 7763 121866 (UK)
                   </a>
                   <a
                     href="https://wa.me/923220681998"

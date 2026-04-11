@@ -253,7 +253,7 @@ export default function ContactPage() {
                         href="tel:+447763121866"
                         className="text-white/90 hover:text-white transition-colors text-sm max-[425px]:text-xs"
                       >
-                        +44 7400 719523
+                        +44 7763 121866
                       </a>
                     </div>
                   </div>
@@ -380,11 +380,10 @@ export default function ContactPage() {
                             name="firstName"
                             value={formData.firstName}
                             onChange={handleChange}
-                            className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all max-[425px]:px-3 max-[425px]:py-2 max-[425px]:text-sm ${
-                              errors.firstName
+                            className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all max-[425px]:px-3 max-[425px]:py-2 max-[425px]:text-sm ${errors.firstName
                                 ? "border-error focus:ring-error focus:border-error"
                                 : "border-gray-300"
-                            }`}
+                              }`}
                             placeholder="John"
                           />
                           {errors.firstName && (
@@ -408,11 +407,10 @@ export default function ContactPage() {
                             name="lastName"
                             value={formData.lastName}
                             onChange={handleChange}
-                            className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all max-[425px]:px-3 max-[425px]:py-2 max-[425px]:text-sm ${
-                              errors.lastName
+                            className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all max-[425px]:px-3 max-[425px]:py-2 max-[425px]:text-sm ${errors.lastName
                                 ? "border-error focus:ring-error focus:border-error"
                                 : "border-gray-300"
-                            }`}
+                              }`}
                             placeholder="Doe"
                           />
                           {errors.lastName && (
@@ -438,11 +436,10 @@ export default function ContactPage() {
                           name="businessEmail"
                           value={formData.businessEmail}
                           onChange={handleChange}
-                          className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all max-[425px]:px-3 max-[425px]:py-2 max-[425px]:text-sm ${
-                            errors.businessEmail
+                          className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all max-[425px]:px-3 max-[425px]:py-2 max-[425px]:text-sm ${errors.businessEmail
                               ? "border-error focus:ring-error focus:border-error"
                               : "border-gray-300"
-                          }`}
+                            }`}
                           placeholder="john.doe@company.com"
                         />
                         {errors.businessEmail && (
@@ -468,11 +465,10 @@ export default function ContactPage() {
                             name="company"
                             value={formData.company}
                             onChange={handleChange}
-                            className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all max-[425px]:px-3 max-[425px]:py-2 max-[425px]:text-sm ${
-                              errors.company
+                            className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all max-[425px]:px-3 max-[425px]:py-2 max-[425px]:text-sm ${errors.company
                                 ? "border-error focus:ring-error focus:border-error"
                                 : "border-gray-300"
-                            }`}
+                              }`}
                             placeholder="Company Name"
                           />
                           {errors.company && (
@@ -496,11 +492,10 @@ export default function ContactPage() {
                             name="jobTitle"
                             value={formData.jobTitle}
                             onChange={handleChange}
-                            className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all max-[425px]:px-3 max-[425px]:py-2 max-[425px]:text-sm ${
-                              errors.jobTitle
+                            className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all max-[425px]:px-3 max-[425px]:py-2 max-[425px]:text-sm ${errors.jobTitle
                                 ? "border-error focus:ring-error focus:border-error"
                                 : "border-gray-300"
-                            }`}
+                              }`}
                             placeholder="CEO, CTO, Manager"
                           />
                           {errors.jobTitle && (
@@ -527,11 +522,10 @@ export default function ContactPage() {
                             name="phone"
                             value={formData.phone}
                             onChange={handleChange}
-                            className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all max-[425px]:px-3 max-[425px]:py-2 max-[425px]:text-sm ${
-                              errors.phone
+                            className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all max-[425px]:px-3 max-[425px]:py-2 max-[425px]:text-sm ${errors.phone
                                 ? "border-error focus:ring-error focus:border-error"
                                 : "border-gray-300"
-                            }`}
+                              }`}
                             placeholder="+1 (234) 567-890"
                           />
                           {errors.phone && (
@@ -554,11 +548,10 @@ export default function ContactPage() {
                             name="location"
                             value={formData.location}
                             onChange={handleChange}
-                            className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all bg-white max-[425px]:px-3 max-[425px]:py-2 max-[425px]:text-sm ${
-                              errors.location
+                            className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all bg-white max-[425px]:px-3 max-[425px]:py-2 max-[425px]:text-sm ${errors.location
                                 ? "border-error focus:ring-error focus:border-error"
                                 : "border-gray-300"
-                            }`}
+                              }`}
                           >
                             {countries.map((country) => (
                               <option key={country.value} value={country.value}>
@@ -706,7 +699,7 @@ export default function ContactPage() {
                     href="tel:+447763121866"
                     className="flex items-center justify-center text-primary font-semibold hover:text-primary-dark transition-colors"
                   >
-                    +44 7400 719523 (UK)
+                    +44 7763 121866 (UK)
                   </a>
                   <a
                     href="https://wa.me/923220681998"

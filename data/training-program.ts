@@ -35,8 +35,8 @@ export const TRAINING_WHY_US = [
 export const TRAINING_CONTACT_EMAIL = "info@minhajsolutions.com";
 
 /** Course marketing / flyer phone lines */
-export const TRAINING_PHONE_UK_HREF = "tel:+447400719523";
-export const TRAINING_PHONE_UK_DISPLAY = "+44 7400 719523";
+export const TRAINING_PHONE_UK_HREF = "tel:+44 7763 121866";
+export const TRAINING_PHONE_UK_DISPLAY = "+44 7763 121866";
 export const TRAINING_PHONE_PK_HREF = "tel:+923256956764";
 export const TRAINING_PHONE_PK_DISPLAY = "+92 325 6956764";
 

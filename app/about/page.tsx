@@ -163,7 +163,7 @@ const offices = [
     country: "United Kingdom",
     type: "Regional Office",
     address: "124 City Road, London",
-    phone: "+44 7400 719523",
+    phone: "+44 7763 121866",
     email: "info@minhajsolutions.com",
   },
 ];
