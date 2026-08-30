@@ -40,7 +40,7 @@ export const TRAINING_PHONE_UK_DISPLAY = "+44 7763 121866";
 export const TRAINING_PHONE_PK_HREF = "tel:+923256956764";
 export const TRAINING_PHONE_PK_DISPLAY = "+92 325 6956764";
 
-export const TRAINING_VENUE = "Riaz Town, Renala Khurd";
+// export const TRAINING_VENUE = "Riaz Town, Renala Khurd";
 
 export const TRAINING_WHATSAPP_DISPLAY = TRAINING_PHONE_PK_DISPLAY;
 

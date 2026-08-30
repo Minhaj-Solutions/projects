@@ -727,7 +727,7 @@ export default function ContactPage() {
                   <div>
                     <p className="font-bold mb-1">🇵🇰 Pakistan</p>
                     <p className="text-gray-600 font-normal">
-                      84 A, Sahara City, Renala Khurrad, Okara, Punjab, Pakistan
+                      Pakistan: Lahore , Pakistan , 54000
                     </p>
                   </div>
                   <div>

@@ -496,7 +496,7 @@ export default function AboutPage() {
       </section>
 
       {/* Leadership Team Section */}
-      <section className="py-16 md:py-24 bg-white">
+      {/* <section className="py-16 md:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 md:px-6">
           <ScrollAnimation>
             <div className="text-center mb-12">
@@ -543,7 +543,7 @@ export default function AboutPage() {
             ))}
           </ScrollContainer>
         </div>
-      </section>
+      </section> */}
 
       {/* Code of Conduct Section */}
       <section className="py-16 md:py-24 bg-gray-50">
