@@ -289,8 +289,7 @@ export default function ContactPage() {
                         <p>
                           <strong>Pakistan:</strong>
                           <br />
-                          84 A, Sahara City, Renala Khurrad, Okara, Punjab,
-                          Pakistan
+                         Lahore , Pakistan, 54000
                         </p>
                         <p>
                           <strong>United Kingdom:</strong>
