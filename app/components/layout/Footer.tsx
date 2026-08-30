@@ -149,11 +149,10 @@ export function Footer() {
                 <MapPin className="w-4 h-4 md:w-5 md:h-5 flex-shrink-0 mt-0.5" />
                 <div className="text-xs md:text-sm space-y-1">
                   <p>
-                    <strong>Pakistan:</strong> 84 A, Sahara City, Renala
-                    Khurrad, Okara, Punjab, Pakistan
+                    <strong>Pakistan:</strong> Lahore , Pakistan <br />54000
                   </p>
                   <p>
-                    <strong>UK:</strong> 124 City Road, London
+                    <strong>UK:</strong> 124 City Road, <br />London , United Kingdom
                   </p>
                 </div>
               </li>
