@@ -152,7 +152,7 @@ export function Footer() {
                     <strong>Pakistan:</strong> Lahore , Pakistan <br />54000
                   </p>
                   <p>
-                    <strong>UK:</strong> 124 City Road, <br />London , United Kingdom
+                    <strong>UK:</strong> 124 City Road, <br />London , United Kingdom 
                   </p>
                 </div>
               </li>
