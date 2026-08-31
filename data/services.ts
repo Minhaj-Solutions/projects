@@ -1755,6 +1755,1018 @@ export const services: Service[] = [
             secondaryButtonLink: "/services",
         },
     },
+       
+
+// 5. E-Commerce Solutions
+{
+    slug: "ecommerce",
+    title: "E-Commerce Solutions",
+    category: "E-COMMERCE",
+    hero: {
+        title: "E-Commerce Solutions",
+        subtitle:
+            "Build, optimize, and scale high-performing e-commerce businesses across Shopify, WooCommerce, Amazon, eBay, and Daraz with conversion-focused development, marketplace optimization, SEO, automation, and growth strategies.",
+        imagePath:
+            "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1600&q=80"
+    },
+
+    overview: {
+        heading: "OVERVIEW",
+        paragraphs: [
+            "A successful e-commerce business needs more than an attractive online store. It requires a reliable commerce platform, seamless customer experiences, optimized product pages, efficient operations, strong search visibility, and a strategy designed for sustainable growth.",
+            "Our e-commerce specialists help businesses build, optimize, and scale online stores and marketplace operations across Shopify, WooCommerce, Amazon, eBay, and Daraz. From store development and migration to product listings, marketplace SEO, conversion optimization, integrations, and ongoing management, we provide end-to-end e-commerce solutions tailored to your business goals.",
+            "Whether you are launching your first online store, expanding into marketplaces, or scaling an established e-commerce operation, we combine development, design, SEO, automation, analytics, and digital commerce expertise to create experiences that attract qualified customers, improve conversions, and support measurable business growth.",
+        ],
+        image:
+            "https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=1200&q=80",
+    },
+
+    specificServices: [
+        // ============================================================
+        // SHOPIFY
+        // ============================================================
+
+        {
+            slug: "shopify",
+            title: "Shopify E-Commerce Solutions",
+            description:
+                "Build, customize, optimize, and scale professional Shopify stores designed for performance, conversions, usability, and long-term e-commerce growth.",
+            detailedDescription:
+                "Shopify provides a powerful foundation for modern e-commerce businesses, but a successful store requires more than installing a theme and adding products. We build and optimize Shopify stores around your brand, products, customers, and business objectives. From store setup and custom theme development to migration, SEO, integrations, performance optimization, and conversion-focused improvements, our Shopify services support the complete lifecycle of your online store.",
+            image:
+                "https://images.unsplash.com/photo-1586880244386-8b3e34c8382c?auto=format&fit=crop&w=900&q=80",
+            heroImage:
+                "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1600&q=80",
+            features: [
+                "Shopify store development",
+                "Custom Shopify theme development",
+                "Shopify store customization",
+                "Store migration",
+                "Shopify SEO optimization",
+                "Payment and shipping integration",
+                "Third-party app integration",
+                "Performance and conversion optimization",
+            ],
+            benefits: [
+                "Launch a professional online store faster",
+                "Create a distinctive branded shopping experience",
+                "Improve store performance and usability",
+                "Increase organic search visibility",
+                "Integrate essential business and marketing tools",
+                "Build a scalable e-commerce foundation",
+            ],
+            useCases: [
+                "New Shopify store launches",
+                "Existing store redesigns",
+                "D2C brands",
+                "Fashion and beauty stores",
+                "Consumer product businesses",
+                "International e-commerce stores",
+            ],
+        },
+
+        {
+            slug: "shopify-store-development",
+            title: "Shopify Store Development",
+            description:
+                "Launch a complete Shopify store with professional design, product setup, collections, navigation, payments, shipping, analytics, and essential integrations.",
+            detailedDescription:
+                "We develop Shopify stores from the ground up with a focus on usability, performance, mobile responsiveness, SEO-friendly architecture, and conversion optimization. Our development process covers store structure, collections, product configuration, navigation, checkout settings, payment methods, shipping rules, essential apps, analytics, tracking, and launch preparation.",
+            image:
+                "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=900&q=80",
+            heroImage:
+                "https://images.unsplash.com/photo-1556742111-a301076d9d18?auto=format&fit=crop&w=1600&q=80",
+            features: [
+                "Shopify store setup",
+                "Theme configuration",
+                "Product and collection setup",
+                "Navigation architecture",
+                "Payment gateway configuration",
+                "Shipping configuration",
+                "Analytics and tracking integration",
+                "Mobile optimization",
+                "SEO-friendly store structure",
+            ],
+            benefits: [
+                "Get your store launch-ready",
+                "Provide customers with a smooth shopping experience",
+                "Reduce technical setup complexity",
+                "Improve mobile shopping and conversions",
+                "Create a scalable product and collection structure",
+                "Establish a strong foundation for future growth",
+            ],
+            useCases: [
+                "New online businesses",
+                "D2C brands",
+                "Retail businesses moving online",
+                "Product launches",
+                "Existing stores needing redevelopment",
+            ],
+        },
+
+        {
+            slug: "shopify-theme-development",
+            title: "Shopify Theme Development",
+            description:
+                "Create custom Shopify themes and storefront experiences that reflect your brand while delivering responsive design, fast performance, and conversion-focused UX.",
+            detailedDescription:
+                "A custom Shopify theme helps your store stand apart from competitors while providing greater control over design, usability, functionality, and customer journeys. We create responsive storefront experiences with clean layouts, custom sections, reusable components, optimized product pages, collection experiences, landing pages, and performance-conscious implementation.",
+            image:
+                "https://images.unsplash.com/photo-1556745757-8d76bdb6984b?auto=format&fit=crop&w=900&q=80",
+            heroImage:
+                "https://images.unsplash.com/photo-1523726491678-bf852e717f6a?auto=format&fit=crop&w=1600&q=80",
+            features: [
+                "Custom Shopify theme design",
+                "Responsive storefront development",
+                "Custom sections and components",
+                "Product page customization",
+                "Collection page optimization",
+                "Landing page development",
+                "Reusable storefront components",
+                "Performance optimization",
+            ],
+            benefits: [
+                "Build a unique and memorable brand experience",
+                "Improve storefront usability and navigation",
+                "Increase conversion opportunities",
+                "Reduce dependence on generic templates",
+                "Create reusable and scalable storefront components",
+                "Deliver a consistent experience across devices",
+            ],
+            useCases: [
+                "Premium D2C brands",
+                "Fashion stores",
+                "Beauty and skincare brands",
+                "High-growth Shopify stores",
+                "Stores requiring custom functionality",
+            ],
+        },
+
+        {
+            slug: "shopify-migration",
+            title: "Shopify Migration",
+            description:
+                "Migrate your existing e-commerce store to Shopify while protecting products, customers, URLs, SEO value, media, and essential business functionality.",
+            detailedDescription:
+                "Moving an e-commerce business to a new platform can create significant risks when product data, customer information, URLs, redirects, media, integrations, and SEO signals are not handled correctly. Our Shopify migration service focuses on structured data migration, URL preservation, redirect planning, product and customer transfer, collection mapping, integration setup, testing, SEO protection, and launch support.",
+            image:
+                "https://images.unsplash.com/photo-1688561807440-8a57dfa77ee3?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHNob3BpZnklMjBtaWdyYXRpb258ZW58MHx8MHx8fDA%3D",
+            heroImage:
+                "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1600&q=80",
+            features: [
+                "Platform migration planning",
+                "Product migration",
+                "Customer data migration",
+                "Collection migration",
+                "Media migration",
+                "URL and redirect mapping",
+                "SEO preservation",
+                "Integration migration",
+                "Post-migration testing",
+            ],
+            benefits: [
+                "Move to Shopify with lower migration risk",
+                "Protect valuable organic search visibility",
+                "Reduce data migration errors",
+                "Preserve important store information",
+                "Maintain essential business integrations",
+                "Launch confidently on your new platform",
+            ],
+            useCases: [
+                "WooCommerce to Shopify",
+                "Magento to Shopify",
+                "Custom platform to Shopify",
+                "Legacy e-commerce migrations",
+                "Growing businesses changing platforms",
+            ],
+        },
+
+        {
+            slug: "shopify-seo-optimization",
+            title: "Shopify SEO Optimization",
+            description:
+                "Improve Shopify search visibility with technical SEO, product and collection optimization, structured data, internal linking, content, and performance improvements.",
+            detailedDescription:
+                "Shopify SEO requires optimization across technical structure, product pages, collections, metadata, URLs, internal linking, structured data, content, images, and website performance. We optimize your Shopify store to make it easier for search engines to crawl, understand, and rank your products and categories while improving the experience for potential customers.",
+            image:
+                "https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?auto=format&fit=crop&w=900&q=80",
+            heroImage:
+                "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1600&q=80",
+            features: [
+                "Technical Shopify SEO",
+                "Product page optimization",
+                "Collection SEO",
+                "Metadata optimization",
+                "URL optimization",
+                "Internal linking",
+                "Structured data",
+                "Image optimization",
+                "Core Web Vitals optimization",
+            ],
+            benefits: [
+                "Increase organic search visibility",
+                "Improve product discoverability",
+                "Build stronger category architecture",
+                "Improve crawlability and indexability",
+                "Generate more qualified organic traffic",
+                "Create a stronger foundation for long-term SEO growth",
+            ],
+            useCases: [
+                "Low-traffic Shopify stores",
+                "New Shopify stores",
+                "Product-heavy stores",
+                "D2C businesses",
+                "Stores targeting competitive keywords",
+            ],
+        },
+
+        // ============================================================
+        // WOOCOMMERCE
+        // ============================================================
+
+        {
+            slug: "woocommerce",
+            title: "WooCommerce E-Commerce Solutions",
+            description:
+                "Build powerful, flexible WooCommerce stores with custom development, integrations, optimization, migration, performance improvements, and SEO.",
+            detailedDescription:
+                "WooCommerce provides extensive flexibility for businesses that need control over their e-commerce experience and WordPress infrastructure. We build, customize, migrate, optimize, and maintain WooCommerce stores using scalable WordPress architecture, custom functionality, conversion-focused design, secure integrations, performance optimization, and search-friendly structures.",
+            image:
+                "https://images.unsplash.com/photo-1556742111-a301076d9d18?auto=format&fit=crop&w=900&q=80",
+            heroImage:
+                "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1600&q=80",
+            features: [
+                "WooCommerce store development",
+                "Custom WooCommerce development",
+                "WooCommerce migration",
+                "WooCommerce SEO",
+                "Payment integration",
+                "Shipping integration",
+                "Plugin and API integration",
+                "Performance optimization",
+                "Conversion optimization",
+            ],
+            benefits: [
+                "Build a highly customizable e-commerce store",
+                "Maintain greater control over your commerce architecture",
+                "Add custom business functionality",
+                "Improve store performance and usability",
+                "Increase organic search visibility",
+                "Scale your product catalog and operations",
+            ],
+            useCases: [
+                "Retail businesses",
+                "Large product catalogs",
+                "Custom e-commerce businesses",
+                "B2B stores",
+                "Subscription businesses",
+                "Content-driven commerce",
+            ],
+        },
+
+        {
+            slug: "woocommerce-store-development",
+            title: "WooCommerce Store Development",
+            description:
+                "Develop professional WooCommerce stores with custom layouts, product catalogs, checkout, payments, shipping, analytics, security, and business integrations.",
+            detailedDescription:
+                "We develop WooCommerce stores tailored to your products, customers, and operational requirements. Our development process includes WordPress configuration, WooCommerce setup, product architecture, custom templates, responsive storefront design, checkout optimization, payment integration, shipping configuration, analytics, security, SEO foundations, and launch testing.",
+            image:
+                "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=900&q=80",
+            heroImage:
+                "https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=1600&q=80",
+            features: [
+                "WordPress and WooCommerce setup",
+                "Custom storefront development",
+                "Product catalog architecture",
+                "Custom WooCommerce templates",
+                "Checkout optimization",
+                "Payment gateway integration",
+                "Shipping configuration",
+                "Analytics setup",
+                "Security configuration",
+            ],
+            benefits: [
+                "Launch a complete professional WooCommerce store",
+                "Create a faster and smoother shopping experience",
+                "Support complex product catalogs",
+                "Integrate essential business systems",
+                "Build a scalable WordPress commerce foundation",
+                "Create a strong foundation for SEO and growth",
+            ],
+            useCases: [
+                "New WooCommerce stores",
+                "Retail websites",
+                "Wholesale stores",
+                "Local businesses",
+                "Growing online brands",
+            ],
+        },
+
+        {
+            slug: "woocommerce-custom-development",
+            title: "WooCommerce Custom Development",
+            description:
+                "Extend WooCommerce with custom functionality, product logic, pricing rules, integrations, workflows, dashboards, automation, and business-specific features.",
+            detailedDescription:
+                "Standard WooCommerce functionality does not always fit every business model. We develop custom WooCommerce solutions for advanced product logic, pricing rules, checkout workflows, customer roles, API integrations, custom dashboards, automation, order processes, and specialized business requirements. Our goal is to make WooCommerce work around your business rather than forcing your operations into a standard setup.",
+            image:
+                "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=900&q=80",
+            heroImage:
+                "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1600&q=80",
+            features: [
+                "Custom WooCommerce functionality",
+                "Custom product logic",
+                "Advanced pricing rules",
+                "Custom checkout workflows",
+                "API integrations",
+                "Custom customer roles",
+                "Custom dashboards",
+                "Business automation",
+                "Third-party system integration",
+            ],
+            benefits: [
+                "Support unique business requirements",
+                "Reduce manual operational work",
+                "Automate repetitive workflows",
+                "Improve customer and staff experiences",
+                "Connect existing business systems",
+                "Create more efficient commerce operations",
+            ],
+            useCases: [
+                "B2B e-commerce",
+                "Wholesale pricing",
+                "Custom product businesses",
+                "Complex checkout requirements",
+                "ERP and CRM integrations",
+            ],
+        },
+
+        {
+            slug: "woocommerce-migration",
+            title: "WooCommerce Migration",
+            description:
+                "Migrate your e-commerce store to WooCommerce while protecting product data, customer information, URLs, media, integrations, and SEO performance.",
+            detailedDescription:
+                "Our WooCommerce migration service helps businesses move from existing e-commerce platforms while minimizing downtime, data loss, and SEO disruption. We handle product and customer migration, categories, URLs, redirects, media, orders where applicable, integrations, SEO preservation, testing, and launch preparation to provide a controlled transition to WooCommerce.",
+            image:
+                "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=900&q=80",
+            heroImage:
+                "https://images.unsplash.com/photo-1556742111-a301076d9d18?auto=format&fit=crop&w=1600&q=80",
+            features: [
+                "Migration planning",
+                "Product migration",
+                "Customer migration",
+                "Category migration",
+                "Media migration",
+                "URL mapping",
+                "301 redirect planning",
+                "SEO preservation",
+                "Post-migration testing",
+            ],
+            benefits: [
+                "Reduce migration risks",
+                "Protect valuable organic traffic",
+                "Preserve important store data",
+                "Minimize potential downtime",
+                "Maintain essential integrations",
+                "Move to a flexible commerce platform",
+            ],
+            useCases: [
+                "Shopify to WooCommerce",
+                "Magento to WooCommerce",
+                "Custom platform to WooCommerce",
+                "Legacy store migrations",
+            ],
+        },
+
+        {
+            slug: "woocommerce-seo-optimization",
+            title: "WooCommerce SEO Optimization",
+            description:
+                "Optimize WooCommerce stores for higher search visibility through technical SEO, product and category optimization, schema, internal linking, and performance improvements.",
+            detailedDescription:
+                "WooCommerce SEO requires a strong technical foundation combined with optimized product, category, and content pages. We improve crawlability, metadata, URLs, internal linking, structured data, image optimization, website speed, category architecture, and content signals to help search engines better understand your store and products.",
+            image:
+                "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80",
+            heroImage:
+                "https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?auto=format&fit=crop&w=1600&q=80",
+            features: [
+                "Technical WooCommerce SEO",
+                "Product SEO",
+                "Category SEO",
+                "Schema markup",
+                "Metadata optimization",
+                "Internal linking",
+                "Image optimization",
+                "URL optimization",
+                "Performance optimization",
+            ],
+            benefits: [
+                "Improve organic search visibility",
+                "Increase product discoverability",
+                "Strengthen category rankings",
+                "Improve crawl efficiency",
+                "Create stronger internal site architecture",
+                "Generate more qualified search traffic",
+            ],
+            useCases: [
+                "Product-heavy stores",
+                "Local e-commerce businesses",
+                "Competitive online stores",
+                "WooCommerce stores with declining traffic",
+            ],
+        },
+
+        // ============================================================
+        // AMAZON
+        // ============================================================
+
+        {
+            slug: "amazon",
+            title: "Amazon Marketplace Solutions",
+            description:
+                "Launch, optimize, and grow your Amazon business with professional product listings, marketplace SEO, A+ Content, keyword research, and PPC management.",
+            detailedDescription:
+                "Amazon success depends on product discoverability, listing quality, conversion rate, customer trust, competitive positioning, and advertising efficiency. We help sellers build optimized product listings, improve marketplace visibility, create compelling A+ Content, conduct keyword research, analyze competitors, and manage PPC campaigns around measurable business objectives.",
+            image:
+                "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=80",
+            heroImage:
+                "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1600&q=80",
+            features: [
+                "Amazon product listing",
+                "Listing optimization",
+                "Amazon SEO",
+                "A+ Content",
+                "Keyword research",
+                "Amazon PPC management",
+                "Product content optimization",
+                "Competitor analysis",
+            ],
+            benefits: [
+                "Improve Amazon search visibility",
+                "Increase product discoverability",
+                "Create stronger product pages",
+                "Improve conversion opportunities",
+                "Build stronger marketplace branding",
+                "Improve advertising efficiency",
+            ],
+            useCases: [
+                "Amazon sellers",
+                "Private-label brands",
+                "Consumer product businesses",
+                "New marketplace launches",
+                "Established brands scaling Amazon",
+            ],
+        },
+
+        {
+            slug: "amazon-product-listing",
+            title: "Amazon Product Listing",
+            description:
+                "Create professional, search-friendly Amazon product listings with optimized titles, bullet points, descriptions, keywords, specifications, and product content.",
+            detailedDescription:
+                "Your Amazon product listing is one of the most important assets in your marketplace business. We create structured product listings designed to communicate product value clearly while incorporating relevant search terms naturally across titles, bullet points, descriptions, and backend fields. Our approach combines marketplace SEO with customer-focused copy to support both discoverability and conversions.",
+            image:
+                "https://images.unsplash.com/photo-1607083206968-13611e3d76db?auto=format&fit=crop&w=900&q=80",
+            heroImage:
+                "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1600&q=80",
+            features: [
+                "Product title creation",
+                "Bullet point optimization",
+                "Product descriptions",
+                "Keyword research",
+                "Backend search terms",
+                "Product feature research",
+                "Content structuring",
+                "Competitor research",
+            ],
+            benefits: [
+                "Create clearer product communication",
+                "Improve marketplace discoverability",
+                "Increase buyer confidence",
+                "Present product benefits effectively",
+                "Build stronger product pages",
+                "Create a consistent listing structure",
+            ],
+            useCases: [
+                "New Amazon products",
+                "Private-label listings",
+                "Product catalog expansion",
+                "Listing content replacement",
+            ],
+        },
+
+        {
+            slug: "amazon-listing-optimization",
+            title: "Amazon Listing Optimization",
+            description:
+                "Optimize existing Amazon listings for search visibility, click-through rates, conversions, customer engagement, and stronger marketplace performance.",
+            detailedDescription:
+                "Existing Amazon listings often contain missed opportunities in keywords, content structure, product benefits, images, competitive positioning, and conversion messaging. We audit your listings and optimize the areas that influence discoverability and purchasing decisions while maintaining accurate, clear, and customer-focused messaging.",
+            image:
+                "https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&w=900&q=80",
+            heroImage:
+                "https://images.unsplash.com/photo-1607082349566-187342175e2f?auto=format&fit=crop&w=1600&q=80",
+            features: [
+                "Listing audits",
+                "Keyword optimization",
+                "Title optimization",
+                "Bullet point optimization",
+                "Description optimization",
+                "Conversion-focused copy",
+                "Competitor analysis",
+                "Content gap analysis",
+            ],
+            benefits: [
+                "Improve overall listing quality",
+                "Increase organic discoverability",
+                "Improve conversion opportunities",
+                "Identify content and keyword gaps",
+                "Communicate product benefits more effectively",
+                "Compete more effectively within your category",
+            ],
+            useCases: [
+                "Underperforming listings",
+                "Low-conversion products",
+                "Competitive product categories",
+                "Existing sellers seeking growth",
+            ],
+        },
+
+        {
+            slug: "amazon-a-plus-content",
+            title: "Amazon A+ Content",
+            description:
+                "Create engaging Amazon A+ Content that communicates product value, strengthens brand identity, answers customer questions, and supports purchase decisions.",
+            detailedDescription:
+                "A+ Content gives eligible brands additional space to communicate product benefits, features, comparisons, use cases, and brand stories. We design structured A+ experiences that complement your product listing, explain important benefits, address customer concerns, strengthen trust, and create a more compelling shopping experience.",
+            image:
+                "https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=900&q=80",
+            heroImage:
+                "https://images.unsplash.com/photo-1607083206968-13611e3d76db?auto=format&fit=crop&w=1600&q=80",
+            features: [
+                "A+ Content strategy",
+                "Content architecture",
+                "Product benefit presentation",
+                "Comparison sections",
+                "Brand storytelling",
+                "Conversion-focused layouts",
+                "Product education sections",
+            ],
+            benefits: [
+                "Improve product presentation",
+                "Strengthen brand perception",
+                "Explain complex product benefits",
+                "Increase customer confidence",
+                "Support informed purchase decisions",
+                "Create a consistent marketplace brand experience",
+            ],
+            useCases: [
+                "Brand-registered sellers",
+                "Premium products",
+                "Complex product categories",
+                "Competitive Amazon listings",
+            ],
+        },
+
+        {
+            slug: "amazon-ppc-management",
+            title: "Amazon PPC Management",
+            description:
+                "Manage and optimize Amazon advertising campaigns with structured targeting, keyword strategy, bid optimization, search-term analysis, and performance reporting.",
+            detailedDescription:
+                "Amazon PPC requires continuous optimization to balance visibility, sales, and advertising efficiency. We structure campaigns around product goals, search behavior, keyword intent, competition, and performance data. Our management process includes campaign structure, keyword targeting, bid optimization, search-term analysis, negative keyword management, budget monitoring, and performance reporting.",
+            image:
+                "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80",
+            heroImage:
+                "https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?auto=format&fit=crop&w=1600&q=80",
+            features: [
+                "Campaign structure",
+                "Keyword research",
+                "Sponsored Products",
+                "Sponsored Brands",
+                "Bid optimization",
+                "Search term analysis",
+                "Negative keyword management",
+                "Budget optimization",
+                "Performance reporting",
+            ],
+            benefits: [
+                "Improve advertising efficiency",
+                "Increase qualified product traffic",
+                "Reduce wasted advertising spend",
+                "Identify high-performing keywords",
+                "Improve campaign targeting",
+                "Scale successful campaigns systematically",
+            ],
+            useCases: [
+                "New product launches",
+                "Established Amazon brands",
+                "Competitive product categories",
+                "Businesses scaling Amazon advertising",
+            ],
+        },
+
+        // ============================================================
+        // EBAY
+        // ============================================================
+
+        {
+            slug: "ebay",
+            title: "eBay Marketplace Solutions",
+            description:
+                "Build and manage a professional eBay presence with store setup, optimized product listings, marketplace SEO, catalog organization, and ongoing store management.",
+            detailedDescription:
+                "eBay provides businesses with access to a large marketplace audience, but strong performance depends on listing quality, store organization, competitive positioning, customer experience, pricing, and consistent management. We help sellers establish, optimize, and manage their eBay presence from initial setup through ongoing marketplace operations.",
+            image:
+                "https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&w=900&q=80",
+            heroImage:
+                "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1600&q=80",
+            features: [
+                "eBay store setup",
+                "Product listing",
+                "Listing optimization",
+                "eBay SEO",
+                "Store management",
+                "Category organization",
+                "Product catalog optimization",
+                "Marketplace optimization",
+            ],
+            benefits: [
+                "Establish a professional eBay presence",
+                "Improve product discoverability",
+                "Create consistent store branding",
+                "Reduce manual marketplace workload",
+                "Keep product catalogs organized",
+                "Scale listings more efficiently",
+            ],
+            useCases: [
+                "New eBay sellers",
+                "Retail businesses",
+                "Resellers",
+                "Product brands",
+                "Established eBay stores",
+            ],
+        },
+
+        {
+            slug: "ebay-store-setup",
+            title: "eBay Store Setup",
+            description:
+                "Set up a professional eBay store with optimized categories, branding, product structure, seller policies, shipping settings, and marketplace configuration.",
+            detailedDescription:
+                "We configure your eBay store to create a professional, organized, and customer-friendly shopping experience. Our setup process covers store structure, categories, branding, seller policies, shipping configuration, product organization, listing standards, and essential marketplace settings to establish a strong foundation for selling.",
+            image:
+                "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=900&q=80",
+            heroImage:
+                "https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&w=1600&q=80",
+            features: [
+                "eBay store configuration",
+                "Store branding",
+                "Category structure",
+                "Seller policy setup",
+                "Shipping configuration",
+                "Product organization",
+                "Listing structure",
+                "Store optimization",
+            ],
+            benefits: [
+                "Launch a professional marketplace store",
+                "Improve customer navigation",
+                "Create consistent marketplace branding",
+                "Reduce configuration errors",
+                "Organize products efficiently",
+                "Build a scalable store structure",
+            ],
+            useCases: [
+                "New eBay businesses",
+                "Existing sellers upgrading stores",
+                "Retailers entering eBay",
+            ],
+        },
+
+        {
+            slug: "ebay-listing-optimization",
+            title: "eBay Listing Optimization",
+            description:
+                "Optimize eBay product listings with stronger titles, descriptions, keywords, categories, product attributes, images, and conversion-focused content.",
+            detailedDescription:
+                "Optimized eBay listings make products easier to discover, understand, compare, and purchase. We improve listing structure, search terms, titles, product attributes, descriptions, images, and customer-focused messaging to create stronger marketplace product pages and better opportunities for conversion.",
+            image:
+                "https://images.unsplash.com/photo-1607082349566-187342175e2f?auto=format&fit=crop&w=900&q=80",
+            heroImage:
+                "https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=1600&q=80",
+            features: [
+                "Listing audits",
+                "Title optimization",
+                "Keyword research",
+                "Description optimization",
+                "Product attributes",
+                "Category optimization",
+                "Image recommendations",
+                "Conversion-focused content",
+            ],
+            benefits: [
+                "Improve marketplace visibility",
+                "Create clearer product listings",
+                "Increase buyer confidence",
+                "Improve conversion opportunities",
+                "Reduce listing content gaps",
+                "Strengthen product discoverability",
+            ],
+            useCases: [
+                "Low-performing listings",
+                "Large product catalogs",
+                "Competitive product categories",
+                "eBay sellers seeking growth",
+            ],
+        },
+
+        {
+            slug: "ebay-store-management",
+            title: "eBay Store Management",
+            description:
+                "Manage your eBay marketplace operations with listing updates, product organization, catalog maintenance, optimization, performance monitoring, and ongoing store support.",
+            detailedDescription:
+                "Consistent marketplace management is essential for maintaining product quality, accurate information, organized catalogs, and efficient operations. We support ongoing eBay store management through listing updates, product organization, catalog maintenance, optimization, promotional support, marketplace monitoring, and performance-focused improvements.",
+            image:
+                "https://images.unsplash.com/photo-1556742111-a301076d9d18?auto=format&fit=crop&w=900&q=80",
+            heroImage:
+                "https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&w=1600&q=80",
+            features: [
+                "Listing management",
+                "Product updates",
+                "Store organization",
+                "Catalog maintenance",
+                "Listing optimization",
+                "Performance monitoring",
+                "Marketplace support",
+                "Ongoing store maintenance",
+            ],
+            benefits: [
+                "Reduce daily marketplace workload",
+                "Keep product information organized and updated",
+                "Maintain consistent listing quality",
+                "Improve operational efficiency",
+                "Support ongoing marketplace growth",
+                "Free your team to focus on core business activities",
+            ],
+            useCases: [
+                "Growing eBay sellers",
+                "Large product catalogs",
+                "Outsourced marketplace operations",
+                "Businesses managing multiple sales channels",
+            ],
+        },
+
+        // ============================================================
+        // DARAZ
+        // ============================================================
+
+        {
+            slug: "daraz",
+            title: "Daraz Marketplace Solutions",
+            description:
+                "Launch, optimize, and grow your Daraz business with professional store setup, product listings, marketplace SEO, catalog optimization, and ongoing store management.",
+            detailedDescription:
+                "Daraz provides an important marketplace opportunity for businesses targeting customers in Pakistan and regional markets. We help sellers establish professional Daraz stores, optimize product listings, improve marketplace discoverability, organize catalogs, strengthen product content, and manage marketplace operations efficiently.",
+            image:
+                "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=900&q=80",
+            heroImage:
+                "https://images.unsplash.com/photo-1607083206968-13611e3d76db?auto=format&fit=crop&w=1600&q=80",
+            features: [
+                "Daraz store setup",
+                "Product listing",
+                "Listing optimization",
+                "Marketplace SEO",
+                "Store management",
+                "Product catalog organization",
+                "Product content optimization",
+                "Marketplace growth support",
+            ],
+            benefits: [
+                "Launch a professional Daraz store",
+                "Improve product discoverability",
+                "Create stronger product listings",
+                "Reduce marketplace management workload",
+                "Scale your product catalog efficiently",
+                "Build a stronger local e-commerce presence",
+            ],
+            useCases: [
+                "New Daraz sellers",
+                "Pakistani product brands",
+                "Retail businesses",
+                "Local manufacturers",
+                "Growing online businesses",
+            ],
+        },
+
+        {
+            slug: "daraz-store-setup",
+            title: "Daraz Store Setup",
+            description:
+                "Set up and organize your Daraz seller store with professional branding, categories, product structure, seller information, policies, and marketplace configuration.",
+            detailedDescription:
+                "A properly configured Daraz store provides the foundation for marketplace growth. We help sellers organize their storefront, categories, products, branding, seller information, and essential marketplace settings to create a professional, trustworthy, and easy-to-navigate shopping experience.",
+            image:
+                "https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&w=900&q=80",
+            heroImage:
+                "https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=1600&q=80",
+            features: [
+                "Daraz seller store setup",
+                "Store organization",
+                "Category setup",
+                "Product structure",
+                "Branding setup",
+                "Seller information configuration",
+                "Product catalog organization",
+                "Marketplace optimization",
+            ],
+            benefits: [
+                "Start selling with a structured store",
+                "Improve customer navigation",
+                "Create a professional marketplace presence",
+                "Organize products efficiently",
+                "Build a scalable catalog foundation",
+                "Reduce setup and configuration complexity",
+            ],
+            useCases: [
+                "New Daraz sellers",
+                "Retail stores entering online commerce",
+                "Local brands",
+                "Small and medium businesses",
+            ],
+        },
+
+        {
+            slug: "daraz-product-listing",
+            title: "Daraz Product Listing",
+            description:
+                "Create optimized Daraz product listings with clear titles, descriptions, specifications, images, keywords, product benefits, and customer-focused content.",
+            detailedDescription:
+                "Product listings directly influence how customers discover, evaluate, and purchase products on Daraz. We create structured listings with clear product titles, descriptions, specifications, images, keywords, and benefit-focused content designed to make products easier to understand while improving marketplace discoverability.",
+            image:
+                "https://images.unsplash.com/photo-1607082349566-187342175e2f?auto=format&fit=crop&w=900&q=80",
+            heroImage:
+                "https://images.unsplash.com/photo-1607083206968-13611e3d76db?auto=format&fit=crop&w=1600&q=80",
+            features: [
+                "Product title optimization",
+                "Product descriptions",
+                "Product specifications",
+                "Keyword optimization",
+                "Image recommendations",
+                "Category selection",
+                "Product content structuring",
+                "Feature and benefit optimization",
+            ],
+            benefits: [
+                "Improve product discoverability",
+                "Communicate product benefits clearly",
+                "Increase buyer confidence",
+                "Create consistent product pages",
+                "Improve listing quality",
+                "Scale product catalog creation",
+            ],
+            useCases: [
+                "New Daraz products",
+                "Large product catalogs",
+                "Product listing cleanup",
+                "Existing sellers improving listings",
+            ],
+        },
+
+        {
+            slug: "daraz-store-management",
+            title: "Daraz Store Management",
+            description:
+                "Manage and optimize your Daraz store with ongoing product updates, listing management, catalog organization, content optimization, monitoring, and marketplace support.",
+            detailedDescription:
+                "Managing a growing Daraz store requires consistent attention to products, listings, catalog organization, product content, pricing updates, and marketplace operations. Our store management service helps businesses maintain an organized and professional marketplace presence while reducing the daily workload associated with managing a growing product catalog.",
+            image:
+                "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=900&q=80",
+            heroImage:
+                "https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&w=1600&q=80",
+            features: [
+                "Store management",
+                "Product updates",
+                "Listing management",
+                "Catalog organization",
+                "Content optimization",
+                "Marketplace monitoring",
+                "Store maintenance",
+                "Product information updates",
+            ],
+            benefits: [
+                "Reduce marketplace management workload",
+                "Keep product information updated",
+                "Maintain organized and consistent listings",
+                "Improve operational efficiency",
+                "Support continuous store growth",
+                "Maintain a professional marketplace presence",
+            ],
+            useCases: [
+                "Growing Daraz stores",
+                "Large product catalogs",
+                "Brands selling multiple categories",
+                "Businesses outsourcing marketplace management",
+            ],
+        },
+    ],
+
+    process: [
+        {
+            number: "01",
+            title: "E-Commerce Strategy & Planning",
+            description:
+                "We understand your products, target customers, business model, sales channels, competition, operational requirements, and growth objectives before defining the right e-commerce strategy.",
+        },
+        {
+            number: "02",
+            title: "Store & Marketplace Development",
+            description:
+                "We build or configure your e-commerce storefront or marketplace presence with optimized architecture, product structure, responsive customer experiences, integrations, and essential commerce functionality.",
+        },
+        {
+            number: "03",
+            title: "Optimization & Integration",
+            description:
+                "We optimize product pages, marketplace listings, SEO, website performance, analytics, payments, shipping, tracking, automation, and third-party integrations to improve the overall commerce experience.",
+        },
+        {
+            number: "04",
+            title: "Launch, Growth & Management",
+            description:
+                "After launch, we monitor performance and continuously improve your store, listings, SEO, marketplace presence, customer experience, and conversion opportunities based on business goals and performance data.",
+        },
+    ],
+
+    industries: [
+        {
+            name: "Retail & Consumer Products",
+            description:
+                "Complete e-commerce solutions for retailers and consumer product businesses looking to build, optimize, and scale their online sales across stores and marketplaces.",
+        },
+        {
+            name: "Fashion & Apparel",
+            description:
+                "High-converting online stores and marketplace solutions for clothing, accessories, footwear, fashion retailers, and growing apparel brands.",
+        },
+        {
+            name: "Beauty & Skincare",
+            description:
+                "E-commerce development, product optimization, SEO, conversion optimization, and marketplace services for beauty, cosmetics, skincare, and personal care brands.",
+        },
+        {
+            name: "Electronics & Technology",
+            description:
+                "Scalable e-commerce solutions for electronics retailers, technology brands, accessories, gadgets, and consumer technology products.",
+        },
+        {
+            name: "Home & Lifestyle",
+            description:
+                "Online stores and marketplace solutions for furniture, home accessories, appliances, lifestyle products, household goods, and home-focused brands.",
+        },
+        {
+            name: "B2B & Wholesale",
+            description:
+                "Custom e-commerce experiences supporting wholesale pricing, customer accounts, product catalogs, bulk orders, business rules, and specialized B2B workflows.",
+        },
+    ],
+
+    techStack: [
+        { name: "Shopify", category: "E-Commerce Platform" },
+        { name: "Shopify Plus", category: "Enterprise Commerce" },
+        { name: "WooCommerce", category: "E-Commerce Platform" },
+        { name: "WordPress", category: "CMS" },
+        { name: "Amazon", category: "Marketplace" },
+        { name: "eBay", category: "Marketplace" },
+        { name: "Daraz", category: "Marketplace" },
+        { name: "Stripe", category: "Payments" },
+        { name: "PayPal", category: "Payments" },
+        { name: "Google Analytics", category: "Analytics" },
+        { name: "Google Search Console", category: "SEO" },
+        { name: "Google Merchant Center", category: "Commerce" },
+        { name: "Meta Commerce", category: "Social Commerce" },
+        { name: "REST APIs", category: "Integration" },
+        { name: "Webhooks", category: "Automation" },
+        { name: "Node.js", category: "Backend" },
+        { name: "PHP", category: "Backend" },
+        { name: "MySQL", category: "Database" },
+    ],
+
+    cta: {
+        heading: "Ready to Grow Your E-Commerce Business?",
+        description:
+            "Let's build, optimize, and scale your online store or marketplace presence across Shopify, WooCommerce, Amazon, eBay, or Daraz. Contact our e-commerce team to discuss your goals, requirements, and growth opportunities.",
+        primaryButtonText: "Get in Touch",
+        primaryButtonLink: "/contact",
+        secondaryButtonText: "View All Services",
+        secondaryButtonLink: "/services",
+    },
+},
+
+
 
     // 5. Smart Academic & Scientific Writing
     {
