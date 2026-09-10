@@ -1,362 +1,577 @@
 "use client";
 
 import { CTA } from "@/app/components/sections/CTA";
-import type { Service, ServiceFeature } from "@/data/services";
+import {
+    getEcommercePublicServiceSlug,
+    type Service,
+    type ServiceFeature,
+} from "@/data/services";
 import { motion } from "framer-motion";
-import { ArrowLeft, ArrowRight, CheckCircle2, Lightbulb, Target } from "lucide-react";
+import {
+    ArrowLeft,
+    ArrowRight,
+    CheckCircle2,
+    Lightbulb,
+    Target,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
 interface SubServicePageClientProps {
     service: Service;
     subService: ServiceFeature;
+    platform?: ServiceFeature;
 }
 
-export default function SubServicePageClient({ service, subService }: SubServicePageClientProps) {
-    return (
-        <div className="bg-white text-gray-900">
-            {/* Hero Section */}
-            <section className="relative min-h-[500px] flex items-center justify-center bg-gradient-to-br from-primary to-primary-dark overflow-hidden">
-                {/* Background Pattern */}
-                <div className="absolute inset-0 opacity-10">
-                    <div
-                        className="absolute inset-0"
-                        style={{
-                            backgroundImage:
-                                "radial-gradient(circle at 2px 2px, white 1px, transparent 0)",
-                            backgroundSize: "30px 30px",
-                        }}
-                    ></div>
-                </div>
+function getCircularRelatedServices(
+    services: ServiceFeature[],
+    currentSlug: string,
+): ServiceFeature[] {
+    if (services.length <= 1) {
+        return [];
+    }
 
-                {/* Background Image with Overlay */}
-                <div className="absolute inset-0 z-0">
+    const currentIndex = services.findIndex(
+        (service) => service.slug === currentSlug,
+    );
+
+    if (currentIndex === -1) {
+        return services;
+    }
+
+    const results: ServiceFeature[] = [];
+
+    for (let offset = 1; offset < services.length; offset++) {
+        const service =
+            services[
+                (currentIndex + offset) %
+                    services.length
+            ];
+
+        if (service.slug !== currentSlug) {
+            results.push(service);
+        }
+    }
+
+    return results;
+}
+export default function SubServicePageClient({
+    service,
+    subService,
+    platform,
+}: SubServicePageClientProps) {
+    const isEcommerce =
+        service.slug === "ecommerce";
+
+    const isEcommercePlatformPage =
+        isEcommerce && !platform;
+
+    const isEcommerceDetailPage =
+        isEcommerce && !!platform;
+
+    // --------------------------------------------------------
+    // Determine the navigation scope.
+    //
+    // Generic service:
+    // service.specificServices
+    //
+    // E-Commerce platform:
+    // subService.nestedServices
+    //
+    // E-Commerce detail:
+    // platform.nestedServices
+    // --------------------------------------------------------
+
+    let relatedServices: ServiceFeature[] = [];
+
+  if (isEcommercePlatformPage) {
+    relatedServices =
+        subService.nestedServices || [];
+} else if (isEcommerceDetailPage) {
+    relatedServices =
+        getCircularRelatedServices(
+            platform.nestedServices || [],
+            subService.slug,
+        );
+} else {
+    relatedServices =
+        service.specificServices
+            .filter(
+                (item) =>
+                    item.slug !==
+                    subService.slug,
+            )
+            .slice(0, 3);
+}
+
+    // --------------------------------------------------------
+    // Breadcrumb / back navigation
+    // --------------------------------------------------------
+
+    const backHref = isEcommerceDetailPage
+        ? `/services/ecommerce/${platform.slug}`
+        : `/services/${service.slug}`;
+
+    const backLabel = isEcommerceDetailPage
+        ? `Back to ${platform.title}`
+        : isEcommercePlatformPage
+          ? "Back to E-Commerce"
+          : `Back to ${service.title}`;
+
+    // --------------------------------------------------------
+    // Related section title
+    // --------------------------------------------------------
+
+    let relatedHeading = "Related Services";
+
+    if (isEcommercePlatformPage) {
+        relatedHeading = `${subService.title} Services`;
+    } else if (isEcommerceDetailPage) {
+        relatedHeading = `More ${platform.title} Services`;
+    } else {
+        relatedHeading = `More ${service.title} Services`;
+    }
+
+    // --------------------------------------------------------
+    // Bottom navigation
+    // --------------------------------------------------------
+
+    const bottomHref = isEcommerceDetailPage
+        ? `/services/ecommerce/${platform.slug}`
+        : `/services/${service.slug}`;
+
+    const bottomLabel = isEcommerceDetailPage
+        ? `View All ${platform.title} Services`
+        : isEcommercePlatformPage
+          ? "View All E-Commerce Services"
+          : `View All ${service.title} Services`;
+
+    return (
+        <main className="min-h-screen bg-background">
+            {/* =====================================================
+                HERO
+            ===================================================== */}
+
+            <section className="relative overflow-hidden py-20 md:py-28">
+                <div className="absolute inset-0 -z-10">
                     <Image
                         src={subService.heroImage}
                         alt={subService.title}
                         fill
-                        className="object-cover opacity-20"
                         priority
+                        className="object-cover"
+                        sizes="100vw"
                     />
+
+                    <div className="absolute inset-0 bg-black/70" />
                 </div>
 
-                {/* Content */}
-                <div className="section-shell py-12 md:py-16 relative z-10 max-[968px]:py-10 max-[425px]:py-8">
-                    <div className="max-w-4xl">
+                <div className="container mx-auto px-4">
+                    <div className="mx-auto max-w-5xl">
                         <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8 }}
+                            initial={{
+                                opacity: 0,
+                                y: 20,
+                            }}
+                            animate={{
+                                opacity: 1,
+                                y: 0,
+                            }}
+                            transition={{
+                                duration: 0.6,
+                            }}
                         >
                             {/* Breadcrumb */}
+
                             <Link
-                                href={`/services/${service.slug}`}
-                                className="inline-flex items-center gap-2 text-white/80 hover:text-white mb-6 transition-colors"
+                                href={backHref}
+                                className="mb-8 inline-flex items-center gap-2 text-sm font-medium text-white/80 transition-colors hover:text-white"
                             >
-                                <ArrowLeft className="w-4 h-4" />
-                                <span className="text-sm font-medium">{service.title}</span>
+                                <ArrowLeft className="h-4 w-4" />
+
+                                {backLabel}
                             </Link>
 
-                            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-6 border border-white/20 ml-4">
-                                <div className="w-2 h-2 bg-white rounded-full"></div>
-                                <span className="text-white font-semibold text-sm tracking-wider uppercase">
-                                    {service.category}
-                                </span>
-                            </div>
+                            {/* Platform context */}
 
-                            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight max-[968px]:text-2xl max-[425px]:text-xl max-[375px]:text-lg">
+                            {isEcommerceDetailPage && (
+                                <div className="mb-5">
+                                    <span className="inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm">
+                                        {platform.title}
+                                    </span>
+                                </div>
+                            )}
+
+                            {/* Title */}
+
+                            <h1 className="max-w-4xl text-4xl font-bold tracking-tight text-white md:text-6xl">
                                 {subService.title}
                             </h1>
-                            <p className="text-lg md:text-xl text-white/90 mb-8 leading-relaxed max-w-3xl max-[968px]:text-base max-[425px]:text-sm max-[375px]:text-xs">
+
+                            {/* Description */}
+
+                            <p className="mt-6 max-w-3xl text-lg leading-relaxed text-white/85 md:text-xl">
                                 {subService.description}
                             </p>
-                            <Link
-                                href="/contact"
-                                className="inline-flex items-center gap-2 px-6 py-3 bg-white text-primary hover:bg-primary-light hover:text-primary-dark font-semibold rounded-lg transition-all duration-300 shadow-xl hover:shadow-2xl hover:-translate-y-1 max-[968px]:px-5 max-[968px]:py-2.5 max-[968px]:text-sm max-[425px]:px-4 max-[425px]:py-2 max-[425px]:text-xs"
-                            >
-                                Get Started
-                                <ArrowRight className="w-5 h-5 max-[968px]:w-4 max-[968px]:h-4 max-[425px]:w-3.5 max-[425px]:h-3.5" />
-                            </Link>
+
+                            {/* CTA */}
+
+                            <div className="mt-8">
+                                <Link
+                                    href="/contact"
+                                    className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 font-semibold text-primary-foreground transition-all hover:scale-105"
+                                >
+                                    Get Started
+
+                                    <ArrowRight className="h-4 w-4" />
+                                </Link>
+                            </div>
                         </motion.div>
                     </div>
                 </div>
             </section>
 
-            {/* Detailed Description Section */}
-            <section className="py-20 bg-white">
-                <div className="section-shell">
-                    <div className="max-w-7xl mx-auto">
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                            <motion.div
-                                initial={{ opacity: 0, x: -30 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.6 }}
-                            >
-                                <div className="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full mb-6">
-                                    <div className="w-2 h-2 bg-primary rounded-full"></div>
-                                    <span className="text-primary font-semibold text-sm uppercase tracking-wider">
-                                        About This Service
-                                    </span>
-                                </div>
-                                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 max-[968px]:text-2xl max-[425px]:text-xl">
-                                    {subService.title}
-                                </h2>
-                                <p className="text-lg text-gray-700 leading-relaxed max-[968px]:text-base max-[425px]:text-sm">
-                                    {subService.detailedDescription}
-                                </p>
-                            </motion.div>
-                            <motion.div
-                                initial={{ opacity: 0, x: 30 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.6 }}
-                                className="relative h-[400px] rounded-2xl overflow-hidden shadow-xl"
-                            >
-                                <Image
-                                    src={subService.image}
-                                    alt={subService.title}
-                                    fill
-                                    className="object-cover"
-                                />
-                            </motion.div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            {/* =====================================================
+                OVERVIEW
+            ===================================================== */}
 
-            {/* Features Section */}
-            <section className="py-20 bg-gray-50">
-                <div className="section-shell">
-                    <div className="max-w-7xl mx-auto">
+            <section className="py-20 md:py-28">
+                <div className="container mx-auto px-4">
+                    <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2 lg:items-center">
                         <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6 }}
-                            className="text-center mb-16"
+                            initial={{
+                                opacity: 0,
+                                x: -30,
+                            }}
+                            whileInView={{
+                                opacity: 1,
+                                x: 0,
+                            }}
+                            viewport={{
+                                once: true,
+                                amount: 0.2,
+                            }}
+                            transition={{
+                                duration: 0.6,
+                            }}
                         >
-                            <div className="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full mb-4">
-                                <CheckCircle2 className="w-4 h-4 text-primary" />
-                                <span className="text-primary font-semibold text-sm uppercase tracking-wider">
-                                    Key Features
+                            <div className="mb-4 flex items-center gap-3">
+                                <div className="h-px w-10 bg-primary" />
+
+                                <span className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">
+                                    Overview
                                 </span>
                             </div>
-                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 max-[968px]:text-2xl max-[425px]:text-xl">
-                                What We <span className="text-primary">Deliver</span>
+
+                            <h2 className="text-3xl font-bold md:text-4xl">
+                                {subService.title}
                             </h2>
-                            <p className="text-lg text-gray-600 max-w-3xl mx-auto max-[968px]:text-base max-[425px]:text-sm">
-                                Comprehensive capabilities designed to meet your specific needs
+
+                            <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
+                                {
+                                    subService.detailedDescription
+                                }
                             </p>
                         </motion.div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {subService.features.map((feature, index) => (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                                    className="bg-white rounded-xl p-6 shadow-lg border-2 border-primary/10 hover:border-primary hover:shadow-xl transition-all duration-300"
-                                >
-                                    <div className="flex items-start gap-4">
-                                        <div className="bg-gradient-to-br from-primary to-primary-dark text-white w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0">
-                                            <CheckCircle2 className="w-5 h-5" />
+                        <motion.div
+                            initial={{
+                                opacity: 0,
+                                x: 30,
+                            }}
+                            whileInView={{
+                                opacity: 1,
+                                x: 0,
+                            }}
+                            viewport={{
+                                once: true,
+                                amount: 0.2,
+                            }}
+                            transition={{
+                                duration: 0.6,
+                            }}
+                            className="relative min-h-[350px] overflow-hidden rounded-3xl"
+                        >
+                            <Image
+                                src={subService.image}
+                                alt={subService.title}
+                                fill
+                                className="object-cover"
+                                sizes="(max-width: 1024px) 100vw, 50vw"
+                            />
+                        </motion.div>
+                    </div>
+                </div>
+            </section>
+
+            {/* =====================================================
+                FEATURES
+            ===================================================== */}
+
+            <section className="bg-muted/40 py-20 md:py-28">
+                <div className="container mx-auto px-4">
+                    <div className="mx-auto max-w-6xl">
+                        <div className="mb-12">
+                            <div className="mb-4 flex items-center gap-3">
+                                <div className="h-px w-10 bg-primary" />
+
+                                <span className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">
+                                    What We Deliver
+                                </span>
+                            </div>
+
+                            <h2 className="text-3xl font-bold md:text-4xl">
+                                Service Features
+                            </h2>
+                        </div>
+
+                        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                            {subService.features.map(
+                                (
+                                    feature,
+                                    index,
+                                ) => (
+                                    <motion.div
+                                        key={feature}
+                                        initial={{
+                                            opacity: 0,
+                                            y: 20,
+                                        }}
+                                        whileInView={{
+                                            opacity: 1,
+                                            y: 0,
+                                        }}
+                                        viewport={{
+                                            once: true,
+                                            amount: 0.2,
+                                        }}
+                                        transition={{
+                                            duration: 0.4,
+                                            delay:
+                                                index *
+                                                0.05,
+                                        }}
+                                        className="rounded-2xl border bg-background p-6 transition-shadow hover:shadow-lg"
+                                    >
+                                        <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                                            <CheckCircle2 className="h-5 w-5" />
                                         </div>
-                                        <p className="text-gray-800 font-medium text-lg max-[968px]:text-base">
+
+                                        <p className="font-medium leading-relaxed">
                                             {feature}
                                         </p>
-                                    </div>
-                                </motion.div>
-                            ))}
+                                    </motion.div>
+                                ),
+                            )}
                         </div>
                     </div>
                 </div>
             </section>
 
-            {/* Benefits Section */}
-            <section className="py-20 bg-white">
-                <div className="section-shell">
-                    <div className="max-w-7xl mx-auto">
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                            <motion.div
-                                initial={{ opacity: 0, x: -30 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.6 }}
-                                className="relative h-[500px] rounded-2xl overflow-hidden shadow-xl order-2 lg:order-1"
-                            >
-                                <Image
-                                    src={subService.heroImage}
-                                    alt="Benefits"
-                                    fill
-                                    className="object-cover"
-                                />
-                            </motion.div>
-                            <motion.div
-                                initial={{ opacity: 0, x: 30 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.6 }}
-                                className="order-1 lg:order-2"
-                            >
-                                <div className="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full mb-6">
-                                    <Target className="w-4 h-4 text-primary" />
-                                    <span className="text-primary font-semibold text-sm uppercase tracking-wider">
+            {/* =====================================================
+                BENEFITS
+            ===================================================== */}
+
+            <section className="py-20 md:py-28">
+                <div className="container mx-auto px-4">
+                    <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2">
+                        <div>
+                            <div className="mb-4 flex items-center gap-3">
+                                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                                    <Target className="h-6 w-6" />
+                                </div>
+
+                                <div>
+                                    <span className="text-sm font-semibold uppercase tracking-[0.15em] text-primary">
                                         Benefits
                                     </span>
+
+                                    <h2 className="text-3xl font-bold">
+                                        Why Choose This Service
+                                    </h2>
                                 </div>
-                                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 max-[968px]:text-2xl max-[425px]:text-xl">
-                                    Why Choose This <span className="text-primary">Service</span>
-                                </h2>
-                                <div className="space-y-4">
-                                    {subService.benefits.map((benefit, index) => (
-                                        <motion.div
-                                            key={index}
-                                            initial={{ opacity: 0, x: 20 }}
-                                            whileInView={{ opacity: 1, x: 0 }}
-                                            viewport={{ once: true }}
-                                            transition={{ duration: 0.4, delay: index * 0.1 }}
-                                            className="flex items-start gap-4 bg-gray-50 rounded-xl p-4 hover:bg-primary/5 transition-colors"
+                            </div>
+
+                            <div className="mt-8 space-y-4">
+                                {subService.benefits.map(
+                                    (benefit) => (
+                                        <div
+                                            key={benefit}
+                                            className="flex items-start gap-3"
                                         >
-                                            <div className="bg-primary/10 text-primary w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                                                <CheckCircle2 className="w-5 h-5" />
-                                            </div>
-                                            <p className="text-gray-700 leading-relaxed max-[968px]:text-sm">
+                                            <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-primary" />
+
+                                            <p className="text-muted-foreground">
                                                 {benefit}
                                             </p>
-                                        </motion.div>
-                                    ))}
-                                </div>
-                            </motion.div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Use Cases Section */}
-            <section className="py-20 bg-gray-50">
-                <div className="section-shell">
-                    <div className="max-w-7xl mx-auto">
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6 }}
-                            className="text-center mb-16"
-                        >
-                            <div className="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full mb-4">
-                                <Lightbulb className="w-4 h-4 text-primary" />
-                                <span className="text-primary font-semibold text-sm uppercase tracking-wider">
-                                    Use Cases
-                                </span>
+                                        </div>
+                                    ),
+                                )}
                             </div>
-                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 max-[968px]:text-2xl max-[425px]:text-xl">
-                                Real-World <span className="text-primary">Applications</span>
-                            </h2>
-                            <p className="text-lg text-gray-600 max-w-3xl mx-auto max-[968px]:text-base max-[425px]:text-sm">
-                                See how businesses like yours benefit from this service
-                            </p>
-                        </motion.div>
+                        </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            {subService.useCases.map((useCase, index) => (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                                    className="bg-white rounded-2xl p-8 shadow-lg border-2 border-primary/10 hover:border-primary hover:shadow-xl transition-all duration-300"
-                                >
-                                    <div className="flex items-start gap-4">
-                                        <div className="bg-gradient-to-br from-primary to-primary-dark text-white w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0">
-                                            <span className="font-bold text-lg">{index + 1}</span>
+                        <div className="rounded-3xl border bg-muted/40 p-8">
+                            <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                                <Lightbulb className="h-6 w-6" />
+                            </div>
+
+                            <h3 className="text-2xl font-bold">
+                                Ideal Use Cases
+                            </h3>
+
+                            <p className="mt-3 text-muted-foreground">
+                                This service is a strong fit for businesses
+                                with requirements such as:
+                            </p>
+
+                            <div className="mt-6 space-y-3">
+                                {subService.useCases.map(
+                                    (useCase) => (
+                                        <div
+                                            key={useCase}
+                                            className="rounded-xl border bg-background px-4 py-3 text-sm font-medium"
+                                        >
+                                            {useCase}
                                         </div>
-                                        <div>
-                                            <p className="text-gray-800 text-lg leading-relaxed max-[968px]:text-base">
-                                                {useCase}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </motion.div>
-                            ))}
+                                    ),
+                                )}
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            {/* Related Services */}
-            <section className="py-20 bg-white">
-                <div className="section-shell">
-                    <div className="max-w-7xl mx-auto">
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6 }}
-                            className="text-center mb-12"
-                        >
-                            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 max-[968px]:text-2xl max-[425px]:text-xl">
-                                Explore More <span className="text-primary">{service.title}</span>
-                            </h2>
-                            <p className="text-lg text-gray-600 max-[968px]:text-base max-[425px]:text-sm">
-                                Discover other services that complement your needs
-                            </p>
-                        </motion.div>
+            {/* =====================================================
+                RELATED / NEXT SERVICES
+            ===================================================== */}
 
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            {service.specificServices
-                                .filter((s) => s.slug !== subService.slug)
-                                .slice(0, 3)
-                                .map((relatedService, index) => (
-                                    <motion.div
-                                        key={relatedService.slug}
-                                        initial={{ opacity: 0, y: 20 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ duration: 0.5, delay: index * 0.1 }}
-                                    >
-                                        <Link href={`/services/${service.slug}/${relatedService.slug}`}>
-                                            <div className="group relative h-64 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
-                                                <Image
-                                                    src={relatedService.image}
-                                                    alt={relatedService.title}
-                                                    fill
-                                                    className="object-cover transition-transform duration-700 group-hover:scale-110"
-                                                />
-                                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent group-hover:from-black/90 group-hover:via-black/60 transition-all duration-300"></div>
-                                                <div className="absolute bottom-0 left-0 right-0 p-6">
-                                                    <h3 className="text-xl font-bold text-white mb-2 max-[968px]:text-lg">
-                                                        {relatedService.title}
-                                                    </h3>
-                                                    <div className="flex items-center text-white/80 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
-                                                        Learn More
-                                                        <ArrowRight className="w-4 h-4 ml-1" />
+            {relatedServices.length > 0 && (
+                <section className="bg-muted/40 py-20 md:py-28">
+                    <div className="container mx-auto px-4">
+                        <div className="mx-auto max-w-6xl">
+                            <div className="mb-12">
+                                <div className="mb-4 flex items-center gap-3">
+                                    <div className="h-px w-10 bg-primary" />
+
+                                    <span className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">
+                                        Explore More
+                                    </span>
+                                </div>
+
+                                <h2 className="text-3xl font-bold md:text-4xl">
+                                    {relatedHeading}
+                                </h2>
+                            </div>
+
+                            <div className="grid gap-6 md:grid-cols-3">
+                                {relatedServices.map(
+                                    (
+                                        relatedService,
+                                        index,
+                                    ) => {
+                                       const href =
+    isEcommercePlatformPage ||
+    isEcommerceDetailPage
+        ? `/services/ecommerce/${getEcommercePublicServiceSlug(
+              relatedService.slug,
+          )}`
+        : `/services/${service.slug}/${relatedService.slug}`;
+                                        return (
+                                            <motion.div
+                                                key={
+                                                    relatedService.slug
+                                                }
+                                                initial={{
+                                                    opacity: 0,
+                                                    y: 20,
+                                                }}
+                                                whileInView={{
+                                                    opacity: 1,
+                                                    y: 0,
+                                                }}
+                                                viewport={{
+                                                    once: true,
+                                                    amount: 0.2,
+                                                }}
+                                                transition={{
+                                                    duration: 0.4,
+                                                    delay:
+                                                        index *
+                                                        0.08,
+                                                }}
+                                            >
+                                                <Link
+                                                    href={
+                                                        href
+                                                    }
+                                                    className="group block h-full overflow-hidden rounded-2xl border bg-background transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                                                >
+                                                    <div className="relative h-52 overflow-hidden">
+                                                        <Image
+                                                            src={
+                                                                relatedService.image
+                                                            }
+                                                            alt={
+                                                                relatedService.title
+                                                            }
+                                                            fill
+                                                            className="object-cover transition-transform duration-700 group-hover:scale-110"
+                                                            sizes="(max-width: 768px) 100vw, 33vw"
+                                                        />
+
+                                                        <div className="absolute inset-0 bg-linear-to-t from-black/70 to-transparent" />
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </Link>
-                                    </motion.div>
-                                ))}
-                        </div>
 
-                        <div className="text-center mt-10">
-                            <Link
-                                href={`/services/${service.slug}`}
-                                className="inline-flex items-center gap-2 px-6 py-3 border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold rounded-lg transition-all duration-300"
-                            >
-                                View All {service.title} Services
-                                <ArrowRight className="w-5 h-5" />
-                            </Link>
+                                                    <div className="p-6">
+                                                        <h3 className="text-xl font-bold transition-colors group-hover:text-primary">
+                                                            {
+                                                                relatedService.title
+                                                            }
+                                                        </h3>
+
+                                                        <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-muted-foreground">
+                                                            {
+                                                                relatedService.description
+                                                            }
+                                                        </p>
+
+                                                        <div className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-primary">
+                                                            Explore Service
+
+                                                            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                                                        </div>
+                                                    </div>
+                                                </Link>
+                                            </motion.div>
+                                        );
+                                    },
+                                )}
+                            </div>
                         </div>
+                    </div>
+                </section>
+            )}
+
+            {/* =====================================================
+                BOTTOM NAVIGATION
+            ===================================================== */}
+
+            <section className="py-10">
+                <div className="container mx-auto px-4">
+                    <div className="mx-auto max-w-6xl">
+                        <Link
+                            href={bottomHref}
+                            className="group inline-flex items-center gap-2 text-sm font-semibold text-primary"
+                        >
+                            <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
+
+                            {bottomLabel}
+                        </Link>
                     </div>
                 </div>
             </section>
 
-            {/* CTA Section */}
             <CTA />
-        </div>
+        </main>
     );
 }

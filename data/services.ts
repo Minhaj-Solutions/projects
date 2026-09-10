@@ -8,8 +8,13 @@ export interface ServiceFeature {
     useCases: string[];
     image: string;
     heroImage: string;
-}
 
+    /**
+     * Used by hierarchical services such as E-Commerce.
+     * Generic services can leave this undefined.
+     */
+    nestedServices?: ServiceFeature[];
+}
 export interface ProcessStep {
     number: string;
     title: string;
@@ -3420,23 +3425,1964 @@ export const services: Service[] = [
         },
     },
 ];
+// ============================================================
+// E-COMMERCE HIERARCHICAL SERVICE STRUCTURE
+// ============================================================
+// ============================================================
+// E-COMMERCE IMAGES
+// Unique images for every platform + child service
+// ============================================================
 
-export function getServiceBySlug(slug: string): Service | undefined {
-    return services.find((service) => service.slug === slug);
+const ecommerceServiceImages = {
+    // --------------------------------------------------------
+    // SHOPIFY
+    // --------------------------------------------------------
+
+    shopify: {
+        platform:
+            "https://images.unsplash.com/photo-1586880244386-8b3e34c8382c?auto=format&fit=crop&w=1200&q=80",
+
+        "shopify-store-development":
+            "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1200&q=80",
+
+        "shopify-store-design":
+            "https://images.unsplash.com/photo-1523726491678-bf852e717f6a?auto=format&fit=crop&w=1200&q=80",
+
+        "shopify-theme-customization":
+            "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80",
+
+        "shopify-seo":
+            "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
+
+        "shopify-technical-seo":
+            "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
+
+        "shopify-product-seo":
+            "https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=1200&q=80",
+
+        "shopify-store-migration":
+            "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80",
+
+        "shopify-speed-optimization":
+            "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=1200&q=80",
+
+        "shopify-api-integration":
+            "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200&q=80",
+    },
+
+    // --------------------------------------------------------
+    // WOOCOMMERCE
+    // --------------------------------------------------------
+
+    woocommerce: {
+        platform:
+            "https://images.unsplash.com/photo-1556742111-a301076d9d18?auto=format&fit=crop&w=1200&q=80",
+
+        "woocommerce-store-development":
+            "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=80",
+
+        "woocommerce-store-design":
+            "https://images.unsplash.com/photo-1523726491678-bf852e717f6a?auto=format&fit=crop&w=1200&q=80",
+
+        "woocommerce-theme-customization":
+            "https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=1200&q=80",
+
+        "woocommerce-seo":
+            "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
+
+        "woocommerce-technical-seo":
+            "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
+
+        "woocommerce-product-seo":
+            "https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=1200&q=80",
+
+        "woocommerce-migration":
+            "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80",
+
+        "woocommerce-api-integration":
+            "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1200&q=80",
+    },
+
+    // --------------------------------------------------------
+    // AMAZON
+    // --------------------------------------------------------
+
+    amazon: {
+        platform:
+            "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1200&q=80",
+
+        "amazon-seller-services":
+            "https://images.unsplash.com/photo-1586528116493-da8b7f8f4b2f?auto=format&fit=crop&w=1200&q=80",
+
+        "amazon-product-listing":
+            "https://images.unsplash.com/photo-1607082349566-187342175e2f?auto=format&fit=crop&w=1200&q=80",
+
+        "amazon-listing-optimization":
+            "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1200&q=80",
+
+        "amazon-seo":
+            "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
+
+        "amazon-a-plus-content":
+            "https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=1200&q=80",
+
+        "amazon-storefront":
+            "https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=1200&q=80",
+
+        "amazon-ppc-management":
+            "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
+    },
+
+    // --------------------------------------------------------
+    // EBAY
+    // --------------------------------------------------------
+
+    ebay: {
+        platform:
+            "https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&w=1200&q=80",
+
+        "ebay-store-setup":
+            "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1200&q=80",
+
+        "ebay-listing-creation":
+            "https://images.unsplash.com/photo-1607082349566-187342175e2f?auto=format&fit=crop&w=1200&q=80",
+
+        "ebay-listing-optimization":
+            "https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=1200&q=80",
+
+        "ebay-seo":
+            "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
+
+        "ebay-store-management":
+            "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200&q=80",
+
+        "ebay-product-catalog-management":
+            "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=80",
+    },
+
+    // --------------------------------------------------------
+    // DARAZ
+    // --------------------------------------------------------
+
+    daraz: {
+        platform:
+            "https://images.unsplash.com/photo-1607083206968-13611e3d76db?auto=format&fit=crop&w=1200&q=80",
+
+        "daraz-seller-store-setup":
+            "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1200&q=80",
+
+        "daraz-product-listing":
+            "https://images.unsplash.com/photo-1607082349566-187342175e2f?auto=format&fit=crop&w=1200&q=80",
+
+        "daraz-listing-optimization":
+            "https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=1200&q=80",
+
+        "daraz-seo":
+            "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
+
+        "daraz-store-management":
+            "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200&q=80",
+
+        "daraz-catalog-management":
+            "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1200&q=80",
+    },
+
+    // --------------------------------------------------------
+    // ETSY
+    // --------------------------------------------------------
+
+    etsy: {
+        platform:
+            "https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?auto=format&fit=crop&w=1200&q=80",
+
+        "etsy-shop-setup":
+            "https://images.unsplash.com/photo-1452860606245-08befc0ff44b?auto=format&fit=crop&w=1200&q=80",
+
+        "etsy-shop-design-branding":
+            "https://images.unsplash.com/photo-1542744094-3a31f272c490?auto=format&fit=crop&w=1200&q=80",
+
+        "etsy-product-listing":
+            "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1200&q=80",
+
+        "etsy-seo":
+            "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
+
+        "etsy-listing-optimization":
+            "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
+
+        "etsy-shop-management":
+            "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200&q=80",
+
+        "etsy-product-photography-content":
+            "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=1200&q=80",
+    },
+
+    // --------------------------------------------------------
+    // TIKTOK SHOP
+    // --------------------------------------------------------
+
+    tiktok: {
+        platform:
+            "https://images.unsplash.com/photo-1597075095400-fb3f0de70140?auto=format&fit=crop&w=1200&q=80",
+
+        "tiktok-shop-setup":
+            "https://images.unsplash.com/photo-1512428559087-560fa5ceab42?auto=format&fit=crop&w=1200&q=80",
+
+        "tiktok-shop-product-listing":
+            "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1200&q=80",
+
+        "tiktok-shop-seo":
+            "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
+
+        "tiktok-shop-store-optimization":
+            "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1200&q=80",
+
+        "tiktok-shop-management":
+            "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200&q=80",
+
+        "tiktok-shop-content-strategy":
+            "https://images.unsplash.com/photo-1536240478700-b869070f9279?auto=format&fit=crop&w=1200&q=80",
+
+        "tiktok-shop-integration":
+            "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=80",
+    },
+};
+function createEcommerceService(
+    service: Omit<ServiceFeature, "image" | "heroImage"> & {
+        image?: string;
+        heroImage?: string;
+    },
+): ServiceFeature {
+    return {
+        ...service,
+        image:
+            service.image ||
+            "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=900&q=80",
+        heroImage:
+            service.heroImage ||
+            service.image ||
+            "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1600&q=80",
+    };
+}
+function cloneEcommerceService(
+    source: ServiceFeature | undefined,
+    overrides: Partial<ServiceFeature>,
+): ServiceFeature {
+    if (!source) {
+        throw new Error(
+            `E-Commerce source service not found: ${
+                overrides.slug || "unknown"
+            }`,
+        );
+    }
+
+    const slug = overrides.slug || source.slug;
+
+    const mappedImage =
+        getEcommerceImageBySlug(slug);
+
+    return {
+        ...source,
+        ...overrides,
+        ...(mappedImage
+            ? {
+                  image: mappedImage,
+                  heroImage: mappedImage,
+              }
+            : {}),
+    };
+}
+
+function getEcommerceImageBySlug(
+    slug: string,
+): string | undefined {
+    for (const platform of Object.values(
+        ecommerceServiceImages,
+    )) {
+        if (
+            slug in platform &&
+            slug !== "platform"
+        ) {
+            return platform[
+                slug as keyof typeof platform
+            ];
+        }
+    }
+
+    return undefined;
+}
+
+function makeEcommerceService(
+    slug: string,
+    title: string,
+    description: string,
+    detailedDescription: string,
+    features: string[],
+    benefits: string[],
+    useCases: string[],
+    image?: string,
+): ServiceFeature {
+    const mappedImage =
+        image || getEcommerceImageBySlug(slug);
+
+    return createEcommerceService({
+        slug,
+        title,
+        description,
+        detailedDescription,
+        features,
+        benefits,
+        useCases,
+        image: mappedImage,
+        heroImage: mappedImage,
+    });
+}
+// ------------------------------------------------------------
+// Existing E-Commerce data is reused where possible.
+// This avoids unnecessarily changing your existing content.
+// ------------------------------------------------------------
+
+const ecommerce = services.find(
+    (service) => service.slug === "ecommerce",
+);
+
+if (ecommerce) {
+    const existingEcommerceServices = ecommerce.specificServices;
+
+    const findExisting = (slug: string) =>
+        existingEcommerceServices.find(
+            (service) => service.slug === slug,
+        );
+
+    // ========================================================
+    // SHOPIFY
+    // ========================================================
+
+    const shopifyServices: ServiceFeature[] = [
+        cloneEcommerceService(findExisting("shopify-store-development"), {
+            slug: "shopify-store-development",
+            title: "Shopify Store Development",
+            description:
+                "Launch a complete Shopify store with a structured product catalog, responsive storefront, checkout configuration, payments, shipping, analytics, and essential integrations.",
+        }),
+
+        makeEcommerceService(
+            "shopify-store-design",
+            "Shopify Store Design",
+            "Design a polished Shopify storefront with strong visual hierarchy, intuitive navigation, responsive layouts, and a focused shopping experience.",
+            "We design Shopify storefronts around your brand, products, customers, and conversion goals. From homepage layouts to product and collection experiences, the design focuses on clarity, mobile usability, and a consistent customer journey.",
+            [
+                "Homepage and landing page design",
+                "Product page UX",
+                "Collection page design",
+                "Mobile-first layouts",
+                "Navigation design",
+                "Conversion-focused sections",
+            ],
+            [
+                "Create a stronger first impression",
+                "Improve product discovery",
+                "Strengthen brand presentation",
+                "Improve mobile usability",
+                "Create clearer conversion paths",
+            ],
+            [
+                "D2C brands",
+                "Fashion stores",
+                "Beauty businesses",
+                "Lifestyle brands",
+                "Shopify redesign projects",
+            ],
+            // ecommerceServiceImages.shopify,
+        ),
+
+        makeEcommerceService(
+            "shopify-theme-customization",
+            "Shopify Theme Customization",
+            "Customize Shopify themes with tailored sections, templates, product experiences, collection layouts, and storefront functionality.",
+            "We customize existing Shopify themes to match your brand and business requirements. Custom sections, templates, product layouts, collection experiences, and reusable storefront components are implemented with responsive behavior and maintainability in mind.",
+            [
+                "Custom theme sections",
+                "Template customization",
+                "Product page customization",
+                "Collection layout changes",
+                "Reusable storefront components",
+                "Responsive theme adjustments",
+            ],
+            [
+                "Get more from your existing theme",
+                "Reduce dependence on generic layouts",
+                "Improve storefront flexibility",
+                "Create a consistent brand experience",
+                "Add custom functionality efficiently",
+            ],
+            [
+                "Existing Shopify stores",
+                "Theme redesigns",
+                "Custom product experiences",
+                "Landing page campaigns",
+                "Brand refresh projects",
+            ],
+            // ecommerceServiceImages.shopify,
+        ),
+
+        cloneEcommerceService(findExisting("shopify-seo-optimization"), {
+            slug: "shopify-seo",
+            title: "Shopify SEO",
+            description:
+                "Improve Shopify search visibility with technical SEO, product and collection optimization, structured data, internal linking, content, and performance improvements.",
+        }),
+
+        makeEcommerceService(
+            "shopify-technical-seo",
+            "Shopify Technical SEO",
+            "Resolve Shopify technical SEO issues involving crawlability, indexation, canonicals, redirects, structured data, site architecture, and performance.",
+            "We audit the technical layers that influence how Shopify stores are crawled, indexed, rendered, and understood. The work covers canonical signals, redirects, duplicate-content control, structured data, internal linking, sitemap signals, and performance opportunities.",
+            [
+                "Crawlability audit",
+                "Indexation review",
+                "Canonical optimization",
+                "Redirect management",
+                "Structured data checks",
+                "Core Web Vitals review",
+            ],
+            [
+                "Reduce technical SEO friction",
+                "Improve indexation quality",
+                "Protect important URLs",
+                "Strengthen site architecture",
+                "Support organic growth",
+            ],
+            [
+                "Large Shopify catalogs",
+                "Migration projects",
+                "Indexation problems",
+                "Technical SEO audits",
+                "Performance-focused stores",
+            ],
+            // ecommerceServiceImages.shopify,
+        ),
+
+        makeEcommerceService(
+            "shopify-product-seo",
+            "Shopify Product SEO",
+            "Optimize Shopify product pages around search intent with stronger titles, descriptions, structured data, images, internal links, and product-focused content.",
+            "We optimize Shopify product pages around what customers actually search for. Product titles, descriptions, schema, images, supporting content, and internal links are improved while keeping the copy natural and useful.",
+            [
+                "Product keyword research",
+                "SEO titles and descriptions",
+                "Product schema",
+                "Image optimization",
+                "Internal linking",
+                "Search-intent alignment",
+            ],
+            [
+                "Improve product discoverability",
+                "Attract more relevant traffic",
+                "Strengthen product-page relevance",
+                "Improve organic opportunities",
+                "Create clearer product information",
+            ],
+            [
+                "Large product catalogs",
+                "D2C brands",
+                "New product launches",
+                "Competitive products",
+                "Low-visibility product pages",
+            ],
+            // ecommerceServiceImages.shopify,
+        ),
+
+        cloneEcommerceService(findExisting("shopify-migration"), {
+            slug: "shopify-store-migration",
+            title: "Shopify Store Migration",
+        }),
+
+        makeEcommerceService(
+            "shopify-speed-optimization",
+            "Shopify Speed Optimization",
+            "Improve Shopify storefront performance by optimizing theme code, media, third-party scripts, apps, and Core Web Vitals.",
+            "We review Shopify themes, apps, third-party scripts, media, page structure, and performance metrics to identify practical improvements. The goal is a faster shopping experience without removing essential store functionality.",
+            [
+                "Performance audits",
+                "Theme code optimization",
+                "Image optimization",
+                "Third-party script review",
+                "App overhead analysis",
+                "Core Web Vitals improvements",
+            ],
+            [
+                "Improve page responsiveness",
+                "Create a better mobile experience",
+                "Reduce unnecessary technical overhead",
+                "Support stronger Core Web Vitals",
+                "Help customers reach products faster",
+            ],
+            [
+                "Slow Shopify stores",
+                "High-traffic storefronts",
+                "Mobile-first stores",
+                "Stores with many apps",
+                "Conversion optimization projects",
+            ],
+            // ecommerceServiceImages.shopify,
+        ),
+
+        makeEcommerceService(
+            "shopify-api-integration",
+            "Shopify API Integration",
+            "Connect Shopify with ERP, CRM, fulfillment, analytics, marketing, and other business systems using APIs and webhooks.",
+            "We integrate Shopify with the systems that support your commerce operation. APIs and webhooks can synchronize products, orders, customers, inventory, fulfillment, and other business data while reducing manual work.",
+            [
+                "REST and GraphQL integrations",
+                "Webhook implementation",
+                "ERP integrations",
+                "CRM integrations",
+                "Inventory synchronization",
+                "Order and fulfillment workflows",
+            ],
+            [
+                "Reduce manual data entry",
+                "Keep systems synchronized",
+                "Automate repetitive workflows",
+                "Improve operational visibility",
+                "Connect Shopify with existing infrastructure",
+            ],
+            [
+                "ERP integrations",
+                "CRM integrations",
+                "Inventory systems",
+                "Fulfillment workflows",
+                "Custom commerce systems",
+            ],
+            // ecommerceServiceImages.shopify,
+        ),
+    ];
+
+    // ========================================================
+    // WOOCOMMERCE
+    // ========================================================
+
+    const woocommerceServices: ServiceFeature[] = [
+        cloneEcommerceService(
+            findExisting("woocommerce-store-development"),
+            {
+                slug: "woocommerce-store-development",
+                title: "WooCommerce Store Development",
+            },
+        ),
+
+        makeEcommerceService(
+            "woocommerce-store-design",
+            "WooCommerce Store Design",
+            "Design conversion-focused WooCommerce storefronts with clear product presentation, intuitive navigation, responsive layouts, and brand-consistent UX.",
+            "We design WooCommerce stores around product discovery, mobile usability, brand presentation, and clear conversion paths. Every major customer-facing section is structured to make browsing and purchasing easier.",
+            [
+                "Homepage design",
+                "Product page UX",
+                "Category page design",
+                "Mobile-first layouts",
+                "Navigation architecture",
+                "Conversion-focused sections",
+            ],
+            [
+                "Improve product discovery",
+                "Create stronger brand presentation",
+                "Improve mobile shopping",
+                "Reduce navigation friction",
+                "Support clearer customer journeys",
+            ],
+            [
+                "Retail stores",
+                "B2B storefronts",
+                "Fashion businesses",
+                "Beauty brands",
+                "WooCommerce redesigns",
+            ],
+            // ecommerceServiceImages.woocommerce,
+        ),
+
+        makeEcommerceService(
+            "woocommerce-theme-customization",
+            "WooCommerce Theme Customization",
+            "Customize WooCommerce themes, templates, product layouts, checkout experiences, and reusable components around your business requirements.",
+            "We extend WooCommerce themes beyond their standard layouts with custom templates, product components, category experiences, checkout adjustments, and reusable design elements.",
+            [
+                "Theme customization",
+                "Custom WooCommerce templates",
+                "Product layout changes",
+                "Checkout UI adjustments",
+                "Reusable components",
+                "Responsive refinements",
+            ],
+            [
+                "Get more flexibility from your current theme",
+                "Improve product presentation",
+                "Support unique requirements",
+                "Reduce reliance on generic layouts",
+                "Maintain consistent UX",
+            ],
+            [
+                "Existing WooCommerce stores",
+                "Theme redesigns",
+                "Custom catalogs",
+                "B2B stores",
+                "Brand refresh projects",
+            ],
+            // ecommerceServiceImages.woocommerce,
+        ),
+
+        cloneEcommerceService(
+            findExisting("woocommerce-seo-optimization"),
+            {
+                slug: "woocommerce-seo",
+                title: "WooCommerce SEO",
+                description:
+                    "Improve WooCommerce organic visibility through technical SEO, product and category optimization, structured data, internal linking, and performance improvements.",
+            },
+        ),
+
+        makeEcommerceService(
+            "woocommerce-technical-seo",
+            "WooCommerce Technical SEO",
+            "Fix technical WooCommerce SEO issues across indexation, canonicals, redirects, schema, crawl paths, site architecture, and performance.",
+            "We audit the technical structure behind WooCommerce search performance and address issues that can limit crawling, indexation, or page quality signals.",
+            [
+                "Technical SEO audit",
+                "Indexation checks",
+                "Canonical optimization",
+                "Redirect management",
+                "Schema validation",
+                "Performance review",
+            ],
+            [
+                "Reduce technical SEO problems",
+                "Improve indexation quality",
+                "Protect important URLs",
+                "Strengthen crawl paths",
+                "Create a cleaner SEO foundation",
+            ],
+            [
+                "Large WooCommerce catalogs",
+                "Migration projects",
+                "Technical SEO audits",
+                "Duplicate URL problems",
+                "Performance optimization",
+            ],
+            // ecommerceServiceImages.woocommerce,
+        ),
+
+        makeEcommerceService(
+            "woocommerce-product-seo",
+            "WooCommerce Product SEO",
+            "Optimize WooCommerce product pages around customer search intent with better titles, descriptions, schema, images, internal links, and content structure.",
+            "We improve product-page relevance without keyword stuffing. Research informs titles, descriptions, supporting content, schema, media, and internal links so pages are useful to shoppers and easier for search engines to understand.",
+            [
+                "Product keyword research",
+                "SEO titles and descriptions",
+                "Product schema",
+                "Image optimization",
+                "Internal linking",
+                "Search-intent alignment",
+            ],
+            [
+                "Improve product discoverability",
+                "Attract relevant visitors",
+                "Strengthen product-page relevance",
+                "Support organic conversion opportunities",
+                "Improve product information",
+            ],
+            [
+                "Large catalogs",
+                "D2C stores",
+                "New product launches",
+                "Competitive product niches",
+                "Low-visibility products",
+            ],
+            // ecommerceServiceImages.woocommerce,
+        ),
+
+        cloneEcommerceService(
+            findExisting("woocommerce-migration"),
+            {
+                slug: "woocommerce-migration",
+                title: "WooCommerce Migration",
+            },
+        ),
+
+        makeEcommerceService(
+            "woocommerce-api-integration",
+            "WooCommerce API Integration",
+            "Connect WooCommerce with ERP, CRM, payment, fulfillment, inventory, accounting, and other business systems through APIs and automated workflows.",
+            "We build WooCommerce integrations that keep commerce and business systems synchronized. API workflows and webhooks can automate products, orders, customers, inventory, fulfillment, and operational data.",
+            [
+                "WooCommerce REST API",
+                "Webhook workflows",
+                "ERP integrations",
+                "CRM integrations",
+                "Inventory synchronization",
+                "Order automation",
+            ],
+            [
+                "Reduce manual operations",
+                "Improve data accuracy",
+                "Automate repetitive workflows",
+                "Keep systems synchronized",
+                "Extend WooCommerce around your business",
+            ],
+            [
+                "ERP connections",
+                "CRM workflows",
+                "Inventory systems",
+                "Accounting integrations",
+                "Fulfillment platforms",
+            ],
+            // ecommerceServiceImages.woocommerce,
+        ),
+    ];
+
+    // ========================================================
+    // AMAZON
+    // ========================================================
+
+    const amazonServices: ServiceFeature[] = [
+        makeEcommerceService(
+            "amazon-seller-services",
+            "Amazon Seller Services",
+            "Support your Amazon business with seller-focused listing management, catalog organization, marketplace SEO, content, storefront, and optimization services.",
+            "We help Amazon sellers build and improve the marketplace assets that influence discoverability, trust, and conversions. Services can cover product listings, catalog organization, SEO, A+ Content, Storefronts, and ongoing marketplace support.",
+            [
+                "Seller account support",
+                "Catalog organization",
+                "Listing management",
+                "Amazon SEO",
+                "Content optimization",
+                "Marketplace reporting",
+            ],
+            [
+                "Improve marketplace organization",
+                "Create stronger product pages",
+                "Support better search visibility",
+                "Reduce repetitive catalog work",
+                "Build a consistent seller presence",
+            ],
+            [
+                "New Amazon sellers",
+                "Private-label brands",
+                "Consumer product businesses",
+                "Growing seller accounts",
+            ],
+            // ecommerceServiceImages.amazon,
+        ),
+
+        cloneEcommerceService(
+            findExisting("amazon-product-listing"),
+            {
+                slug: "amazon-product-listing",
+                title: "Amazon Product Listing",
+            },
+        ),
+
+        cloneEcommerceService(
+            findExisting("amazon-listing-optimization"),
+            {
+                slug: "amazon-listing-optimization",
+                title: "Amazon Listing Optimization",
+            },
+        ),
+
+        makeEcommerceService(
+            "amazon-seo",
+            "Amazon SEO",
+            "Improve Amazon search visibility through keyword research, listing relevance, product content, category signals, and marketplace-focused optimization.",
+            "Amazon SEO focuses on how shoppers search and how marketplace listings communicate relevance. We combine keyword research with listing structure, product content, category context, and performance review.",
+            [
+                "Amazon keyword research",
+                "Search-term mapping",
+                "Listing relevance optimization",
+                "Category optimization",
+                "Competitor research",
+                "Performance review",
+            ],
+            [
+                "Improve marketplace visibility",
+                "Reach relevant shoppers",
+                "Strengthen listing relevance",
+                "Build repeatable optimization processes",
+                "Support long-term marketplace growth",
+            ],
+            [
+                "New product launches",
+                "Competitive categories",
+                "Low-visibility listings",
+                "Private-label brands",
+            ],
+            // ecommerceServiceImages.amazon,
+        ),
+
+        cloneEcommerceService(
+            findExisting("amazon-a-plus-content"),
+            {
+                slug: "amazon-a-plus-content",
+                title: "Amazon A+ Content",
+            },
+        ),
+
+        makeEcommerceService(
+            "amazon-storefront",
+            "Amazon Storefront",
+            "Build an organized Amazon Storefront that presents your brand, product categories, collections, and key products cohesively.",
+            "We structure Amazon Storefronts around brand discovery and product navigation. Categories, featured products, brand messaging, and campaign destinations are organized to help shoppers move toward relevant products.",
+            [
+                "Storefront architecture",
+                "Category navigation",
+                "Brand presentation",
+                "Featured product sections",
+                "Campaign landing pages",
+                "Content organization",
+            ],
+            [
+                "Create a stronger branded presence",
+                "Make product ranges easier to browse",
+                "Support campaign traffic",
+                "Improve brand consistency",
+                "Guide shoppers toward relevant products",
+            ],
+            [
+                "Established brands",
+                "Multi-product catalogs",
+                "Seasonal campaigns",
+                "Brand launches",
+            ],
+            // ecommerceServiceImages.amazon,
+        ),
+
+        cloneEcommerceService(
+            findExisting("amazon-ppc-management"),
+            {
+                slug: "amazon-ppc-management",
+                title: "Amazon PPC Management",
+            },
+        ),
+    ];
+
+    // ========================================================
+    // EBAY
+    // ========================================================
+
+    const ebayServices: ServiceFeature[] = [
+        cloneEcommerceService(findExisting("ebay-store-setup"), {
+            slug: "ebay-store-setup",
+            title: "eBay Store Setup",
+        }),
+
+        makeEcommerceService(
+            "ebay-listing-creation",
+            "eBay Listing Creation",
+            "Create accurate, customer-focused eBay listings with strong titles, descriptions, item specifics, categories, images, and selling information.",
+            "We create eBay listings that communicate product details clearly while following marketplace structure. Titles, descriptions, item specifics, categories, and media are organized to help shoppers understand products quickly.",
+            [
+                "Listing titles",
+                "Product descriptions",
+                "Item specifics",
+                "Category selection",
+                "Image guidance",
+                "Listing structure",
+            ],
+            [
+                "Improve listing clarity",
+                "Help shoppers find relevant products",
+                "Present information consistently",
+                "Reduce catalog inconsistencies",
+            ],
+            [
+                "New product catalogs",
+                "Retail sellers",
+                "Multi-SKU stores",
+                "Listing replacement projects",
+            ],
+            // ecommerceServiceImages.ebay,
+        ),
+
+        cloneEcommerceService(
+            findExisting("ebay-listing-optimization"),
+            {
+                slug: "ebay-listing-optimization",
+                title: "eBay Listing Optimization",
+            },
+        ),
+
+        makeEcommerceService(
+            "ebay-seo",
+            "eBay SEO",
+            "Optimize eBay listings around marketplace search intent, product relevance, titles, categories, item specifics, and customer-focused content.",
+            "eBay SEO is built around relevance and clear product information. We research search behavior and improve titles, categories, item specifics, descriptions, and listing structure.",
+            [
+                "eBay keyword research",
+                "Title optimization",
+                "Category optimization",
+                "Item-specific optimization",
+                "Listing relevance",
+                "Competitor analysis",
+            ],
+            [
+                "Improve marketplace visibility",
+                "Reach more relevant shoppers",
+                "Strengthen product relevance",
+                "Create repeatable listing standards",
+            ],
+            [
+                "Competitive categories",
+                "Large catalogs",
+                "New sellers",
+                "Low-visibility listings",
+            ],
+            // ecommerceServiceImages.ebay,
+        ),
+
+        cloneEcommerceService(
+            findExisting("ebay-store-management"),
+            {
+                slug: "ebay-store-management",
+                title: "eBay Store Management",
+            },
+        ),
+
+        makeEcommerceService(
+            "ebay-product-catalog-management",
+            "eBay Product Catalog Management",
+            "Organize and maintain eBay product catalogs with consistent titles, attributes, categories, media, and listing information.",
+            "We standardize product information, review categories and item specifics, maintain media, and keep listing data aligned across growing eBay catalogs.",
+            [
+                "Catalog organization",
+                "Attribute management",
+                "Category mapping",
+                "Product data cleanup",
+                "Media maintenance",
+                "Listing consistency",
+            ],
+            [
+                "Improve catalog quality",
+                "Reduce product-data inconsistencies",
+                "Make large catalogs easier to manage",
+                "Support clearer product discovery",
+            ],
+            [
+                "Large eBay catalogs",
+                "Multi-SKU sellers",
+                "Catalog migrations",
+                "Data cleanup projects",
+            ],
+            // ecommerceServiceImages.ebay,
+        ),
+    ];
+
+    // ========================================================
+    // DARAZ
+    // ========================================================
+
+    const darazServices: ServiceFeature[] = [
+        cloneEcommerceService(findExisting("daraz-store-setup"), {
+            slug: "daraz-seller-store-setup",
+            title: "Daraz Seller Store Setup",
+        }),
+
+        cloneEcommerceService(findExisting("daraz-product-listing"), {
+            slug: "daraz-product-listing",
+            title: "Daraz Product Listing",
+        }),
+
+        makeEcommerceService(
+            "daraz-listing-optimization",
+            "Daraz Listing Optimization",
+            "Improve existing Daraz listings with stronger titles, attributes, descriptions, categories, images, and marketplace-focused content.",
+            "We review Daraz listings for content gaps, unclear product information, weak structure, and discoverability opportunities. Improvements focus on accurate product communication and shopper intent.",
+            [
+                "Listing audits",
+                "Title optimization",
+                "Attribute optimization",
+                "Description refinement",
+                "Category review",
+                "Competitive research",
+            ],
+            [
+                "Improve listing quality",
+                "Make products easier to understand",
+                "Support marketplace visibility",
+                "Reduce catalog inconsistencies",
+            ],
+            [
+                "Underperforming listings",
+                "Competitive categories",
+                "Catalog cleanup",
+                "Existing seller stores",
+            ],
+            // ecommerceServiceImages.daraz,
+        ),
+
+        makeEcommerceService(
+            "daraz-seo",
+            "Daraz SEO",
+            "Improve Daraz marketplace visibility through search-focused titles, product relevance, category alignment, attributes, and listing structure.",
+            "Daraz SEO starts with understanding how shoppers search within the marketplace. We optimize product titles, categories, attributes, descriptions, and listing structure while keeping content natural.",
+            [
+                "Daraz keyword research",
+                "Title optimization",
+                "Category relevance",
+                "Attribute optimization",
+                "Listing structure",
+                "Competitor review",
+            ],
+            [
+                "Improve marketplace visibility",
+                "Reach relevant shoppers",
+                "Strengthen product relevance",
+                "Create repeatable listing standards",
+            ],
+            [
+                "Competitive Daraz categories",
+                "Large catalogs",
+                "New sellers",
+                "Low-visibility products",
+            ],
+            // ecommerceServiceImages.daraz,
+        ),
+
+        cloneEcommerceService(findExisting("daraz-store-management"), {
+            slug: "daraz-store-management",
+            title: "Daraz Store Management",
+        }),
+
+        makeEcommerceService(
+            "daraz-catalog-management",
+            "Daraz Catalog Management",
+            "Organize and maintain Daraz catalogs with consistent product data, categories, attributes, images, and listing information across SKUs.",
+            "As a Daraz catalog grows, consistency becomes important. We organize product information, review category and attribute mapping, maintain media, and improve listing consistency across the catalog.",
+            [
+                "Catalog organization",
+                "Category mapping",
+                "Attribute management",
+                "Product data cleanup",
+                "Media maintenance",
+                "SKU consistency",
+            ],
+            [
+                "Improve catalog quality",
+                "Reduce product-data errors",
+                "Make large catalogs easier to manage",
+                "Support clearer product discovery",
+            ],
+            [
+                "Large Daraz catalogs",
+                "Multi-SKU sellers",
+                "Catalog cleanup",
+                "Marketplace expansion",
+            ],
+            // ecommerceServiceImages.daraz,
+        ),
+    ];
+
+    // ========================================================
+    // ETSY
+    // ========================================================
+
+    const etsyServices: ServiceFeature[] = [
+        makeEcommerceService(
+            "etsy-shop-setup",
+            "Etsy Shop Setup",
+            "Set up an Etsy shop with clear categories, shop policies, branding, product structure, and a customer-friendly foundation.",
+            "We help new Etsy sellers build a complete shop foundation before focusing on individual listings. Shop presentation, policies, product organization, branding, and customer-facing information are structured for trust and usability.",
+            [
+                "Shop setup",
+                "Shop sections",
+                "Policies and information",
+                "Brand presentation",
+                "Product organization",
+                "Launch checklist",
+            ],
+            [
+                "Start with a complete shop foundation",
+                "Create a trustworthy storefront",
+                "Make products easier to browse",
+                "Prepare the shop for ongoing optimization",
+            ],
+            [
+                "Handmade businesses",
+                "Digital product shops",
+                "Personalized products",
+                "New Etsy sellers",
+            ],
+            // ecommerceServiceImages.etsy,
+        ),
+
+        makeEcommerceService(
+            "etsy-shop-design-branding",
+            "Etsy Shop Design & Branding",
+            "Create a cohesive Etsy shop identity with branded visuals, shop presentation, product consistency, and recognizable customer experiences.",
+            "We align shop visuals, messaging, product presentation, and brand elements so your Etsy storefront feels cohesive across listings and customer touchpoints.",
+            [
+                "Shop branding",
+                "Banner and visual direction",
+                "Product presentation",
+                "Brand messaging",
+                "Visual consistency",
+                "Shop profile optimization",
+            ],
+            [
+                "Build a recognizable shop",
+                "Create consistent product presentation",
+                "Improve shopper trust",
+                "Strengthen brand identity",
+            ],
+            [
+                "Handmade brands",
+                "Artisan shops",
+                "Personalized product businesses",
+                "Digital product creators",
+            ],
+            // ecommerceServiceImages.etsy,
+        ),
+
+        makeEcommerceService(
+            "etsy-product-listing",
+            "Etsy Product Listing",
+            "Create Etsy product listings with clear titles, descriptions, attributes, tags, categories, and customer-focused product content.",
+            "We structure Etsy listings around shopper questions and marketplace discovery. Titles, descriptions, attributes, tags, categories, and key product details are organized for clarity and relevance.",
+            [
+                "Listing titles",
+                "Product descriptions",
+                "Tags and attributes",
+                "Category selection",
+                "Product details",
+                "Customer-focused copy",
+            ],
+            [
+                "Make products easier to understand",
+                "Support Etsy search discoverability",
+                "Improve buyer confidence",
+                "Create consistent listing standards",
+            ],
+            [
+                "Handmade products",
+                "Digital downloads",
+                "Personalized products",
+                "Vintage and niche products",
+            ],
+            // ecommerceServiceImages.etsy,
+        ),
+
+        makeEcommerceService(
+            "etsy-seo",
+            "Etsy SEO",
+            "Improve Etsy search visibility with keyword research, optimized titles, tags, attributes, categories, descriptions, and listing relevance.",
+            "Etsy SEO is built around understanding what shoppers search for and how listing relevance is communicated. We optimize titles, tags, attributes, categories, descriptions, and listing structure without keyword stuffing.",
+            [
+                "Etsy keyword research",
+                "Title optimization",
+                "Tag optimization",
+                "Attribute mapping",
+                "Category relevance",
+                "Listing SEO review",
+            ],
+            [
+                "Improve Etsy search visibility",
+                "Reach relevant shoppers",
+                "Strengthen listing relevance",
+                "Build repeatable optimization standards",
+                "Support long-term shop discovery",
+            ],
+            [
+                "Competitive Etsy niches",
+                "New shops",
+                "Low-visibility listings",
+                "Product catalog expansion",
+            ],
+            // ecommerceServiceImages.etsy,
+        ),
+
+        makeEcommerceService(
+            "etsy-listing-optimization",
+            "Etsy Listing Optimization",
+            "Improve existing Etsy listings with better titles, tags, attributes, descriptions, categories, and customer-focused product messaging.",
+            "We audit Etsy listings for gaps in search relevance, content clarity, attributes, tags, and buyer communication, then improve the listing around customer intent.",
+            [
+                "Listing audits",
+                "Keyword and tag review",
+                "Title refinement",
+                "Description improvements",
+                "Attribute optimization",
+                "Competitive research",
+            ],
+            [
+                "Improve listing quality",
+                "Support stronger discovery",
+                "Make products easier to understand",
+                "Identify keyword and content gaps",
+            ],
+            [
+                "Underperforming listings",
+                "Competitive categories",
+                "Existing Etsy shops",
+                "Catalog refreshes",
+            ],
+            // ecommerceServiceImages.etsy,
+        ),
+
+        makeEcommerceService(
+            "etsy-shop-management",
+            "Etsy Shop Management",
+            "Manage Etsy shop operations with listing updates, product organization, content maintenance, seasonal changes, and ongoing marketplace support.",
+            "We support recurring Etsy shop tasks as products, seasons, pricing, promotions, and customer needs change. This keeps the storefront current while reducing repetitive operational work.",
+            [
+                "Listing maintenance",
+                "Catalog updates",
+                "Seasonal listing changes",
+                "Shop organization",
+                "Content updates",
+                "Performance review",
+            ],
+            [
+                "Keep the shop current",
+                "Reduce repetitive marketplace work",
+                "Maintain consistent listings",
+                "Support seasonal merchandising",
+            ],
+            [
+                "Growing Etsy shops",
+                "Seasonal product businesses",
+                "Large catalogs",
+                "Creators outsourcing shop tasks",
+            ],
+            // ecommerceServiceImages.etsy,
+        ),
+
+        makeEcommerceService(
+            "etsy-product-photography-content",
+            "Etsy Product Photography & Content",
+            "Improve Etsy product presentation with photography direction, image content planning, listing visuals, and customer-focused product storytelling.",
+            "Etsy buyers rely heavily on visual information. We help plan product photography and listing visuals that communicate details, use cases, variations, scale, and brand context.",
+            [
+                "Photography direction",
+                "Listing image planning",
+                "Product detail shots",
+                "Lifestyle image concepts",
+                "Visual content hierarchy",
+                "Listing storytelling",
+            ],
+            [
+                "Show products more clearly",
+                "Improve visual trust",
+                "Answer common buyer questions",
+                "Create a cohesive shop presentation",
+            ],
+            [
+                "Handmade products",
+                "Jewelry and accessories",
+                "Home decor",
+                "Personalized products",
+            ],
+            // ecommerceServiceImages.etsy,
+        ),
+    ];
+
+    // ========================================================
+    // TIKTOK SHOP
+    // ========================================================
+
+    const tiktokShopServices: ServiceFeature[] = [
+        makeEcommerceService(
+            "tiktok-shop-setup",
+            "TikTok Shop Setup",
+            "Set up TikTok Shop with product catalog structure, store configuration, commerce requirements, and a foundation for content-led selling.",
+            "TikTok Shop combines product discovery with short-form content and creator-led commerce. We structure the shop, catalog, product information, and operational foundation for content-driven sales.",
+            [
+                "Shop setup",
+                "Product catalog configuration",
+                "Store information",
+                "Commerce readiness",
+                "Product organization",
+                "Launch planning",
+            ],
+            [
+                "Build a commerce-ready TikTok Shop",
+                "Organize products for discovery",
+                "Create a foundation for content-led sales",
+                "Reduce setup complexity",
+            ],
+            [
+                "D2C brands",
+                "Beauty products",
+                "Fashion products",
+                "Social commerce launches",
+            ],
+            // ecommerceServiceImages.tiktok,
+        ),
+
+        makeEcommerceService(
+            "tiktok-shop-product-listing",
+            "TikTok Shop Product Listing",
+            "Create TikTok Shop product listings with clear titles, descriptions, attributes, images, variants, and content-ready product information.",
+            "TikTok Shop listings need to communicate product value quickly because shoppers often discover products through short-form content. We structure product information around clarity and content alignment.",
+            [
+                "Product titles",
+                "Descriptions",
+                "Attributes and variants",
+                "Product media",
+                "Catalog structure",
+                "Content alignment",
+            ],
+            [
+                "Make products easier to understand",
+                "Support content-driven discovery",
+                "Improve product information quality",
+                "Create consistent catalog standards",
+            ],
+            [
+                "New TikTok Shop products",
+                "D2C catalogs",
+                "Creator campaigns",
+                "Product launches",
+            ],
+            // ecommerceServiceImages.tiktok,
+        ),
+
+        makeEcommerceService(
+            "tiktok-shop-seo",
+            "TikTok Shop SEO",
+            "Improve TikTok Shop product discoverability with search-focused titles, descriptions, attributes, catalog structure, and content alignment.",
+            "We connect product information with how shoppers discover products through TikTok search and content. Titles, descriptions, attributes, categories, and supporting content are optimized around relevant customer intent.",
+            [
+                "TikTok Shop keyword research",
+                "Title optimization",
+                "Description optimization",
+                "Attribute mapping",
+                "Catalog relevance",
+                "Content-search alignment",
+            ],
+            [
+                "Improve product discoverability",
+                "Reach relevant shoppers",
+                "Strengthen product relevance",
+                "Create consistent optimization standards",
+            ],
+            [
+                "Competitive categories",
+                "New shops",
+                "Low-visibility products",
+                "Content-led commerce",
+            ],
+            // ecommerceServiceImages.tiktok,
+        ),
+
+        makeEcommerceService(
+            "tiktok-shop-store-optimization",
+            "TikTok Shop Store Optimization",
+            "Optimize TikTok Shop product organization, catalog structure, store presentation, product information, and customer journeys.",
+            "We review how products are organized and how shoppers move from TikTok content to product pages and purchase. The goal is a clearer social-commerce journey with less friction.",
+            [
+                "Catalog optimization",
+                "Product organization",
+                "Store presentation",
+                "Merchandising structure",
+                "Product-page improvements",
+                "Conversion journey review",
+            ],
+            [
+                "Create a clearer shopping journey",
+                "Improve product discovery",
+                "Reduce friction between content and purchase",
+                "Present products consistently",
+            ],
+            [
+                "Growing TikTok Shops",
+                "Multi-product brands",
+                "Social commerce campaigns",
+                "Store optimization projects",
+            ],
+            // ecommerceServiceImages.tiktok,
+        ),
+
+        makeEcommerceService(
+            "tiktok-shop-management",
+            "TikTok Shop Management",
+            "Manage TikTok Shop operations with catalog updates, listing maintenance, product organization, campaign support, and recurring marketplace tasks.",
+            "We coordinate ongoing TikTok Shop operations so product information, catalog structure, campaigns, and commerce activity remain aligned.",
+            [
+                "Listing maintenance",
+                "Catalog updates",
+                "Product organization",
+                "Campaign support",
+                "Content-commerce coordination",
+                "Performance review",
+            ],
+            [
+                "Keep the catalog current",
+                "Reduce repetitive store work",
+                "Coordinate products with campaigns",
+                "Maintain a consistent shopping experience",
+            ],
+            [
+                "Growing social-commerce brands",
+                "Seasonal campaigns",
+                "Large product catalogs",
+                "Outsourced store operations",
+            ],
+            // ecommerceServiceImages.tiktok,
+        ),
+
+        makeEcommerceService(
+            "tiktok-shop-content-strategy",
+            "TikTok Shop Content Strategy",
+            "Plan product-focused TikTok content around discovery, education, demonstrations, social proof, creator collaborations, and conversion opportunities.",
+            "TikTok Shop works best when product content feels native to the platform. We develop content themes around demonstrations, product education, customer questions, creator formats, hooks, and clear product journeys.",
+            [
+                "Content pillars",
+                "Product video concepts",
+                "Hook and angle planning",
+                "Creator content direction",
+                "Campaign themes",
+                "Content-to-product journeys",
+            ],
+            [
+                "Create consistent product content",
+                "Connect content with commerce goals",
+                "Give creators clearer direction",
+                "Build repeatable content themes",
+                "Support product discovery",
+            ],
+            [
+                "D2C brands",
+                "Product launches",
+                "Creator campaigns",
+                "Always-on social commerce",
+            ],
+            // ecommerceServiceImages.tiktok,
+        ),
+
+        makeEcommerceService(
+            "tiktok-shop-integration",
+            "TikTok Shop Integration",
+            "Connect TikTok Shop with product catalogs, websites, analytics, fulfillment, and other commerce systems.",
+            "We connect TikTok Shop with the systems your business already uses. Depending on the workflow, integrations can synchronize product information, inventory, orders, fulfillment data, and analytics.",
+            [
+                "Catalog integrations",
+                "Website connections",
+                "Inventory synchronization",
+                "Order workflows",
+                "Fulfillment connections",
+                "Analytics integration",
+            ],
+            [
+                "Reduce manual product updates",
+                "Keep commerce systems synchronized",
+                "Improve operational visibility",
+                "Connect social commerce with your wider stack",
+            ],
+            [
+                "Omnichannel brands",
+                "Inventory synchronization",
+                "Fulfillment workflows",
+                "Social commerce integrations",
+            ],
+            // ecommerceServiceImages.tiktok,
+        ),
+    ];
+
+    // ========================================================
+    // PLATFORM OBJECTS
+    // ========================================================
+
+    const ecommercePlatforms: ServiceFeature[] = [
+        createEcommerceService({
+            slug: "shopify",
+            title: "Shopify",
+            description:
+                "Build, optimize, and scale Shopify stores with development, design, SEO, migration, performance, and integration services.",
+            detailedDescription:
+                "Our Shopify services cover the complete store lifecycle, from development and design to SEO, migration, performance optimization, and API integrations. Each engagement is aligned with your products, customers, brand, and growth goals.",
+            features: shopifyServices.map((service) => service.title),
+            benefits: [
+                "Build a scalable Shopify storefront",
+                "Create stronger customer experiences",
+                "Improve search visibility",
+                "Optimize storefront performance",
+                "Connect essential business systems",
+            ],
+            useCases: [
+                "New Shopify stores",
+                "D2C brands",
+                "Store redesigns",
+                "Growing online businesses",
+                "Platform migration projects",
+            ],
+            image: ecommerceServiceImages.shopify.platform,
+            heroImage: ecommerceServiceImages.shopify.platform,
+            nestedServices: shopifyServices,
+        }),
+
+        createEcommerceService({
+            slug: "woocommerce",
+            title: "WooCommerce",
+            description:
+                "Develop and optimize flexible WooCommerce stores with development, design, SEO, migration, customization, and integrations.",
+            detailedDescription:
+                "Our WooCommerce services combine WordPress commerce development with design, technical SEO, product optimization, migration, customization, and integrations to create a flexible and maintainable e-commerce foundation.",
+            features: woocommerceServices.map((service) => service.title),
+            benefits: [
+                "Build a flexible commerce platform",
+                "Support custom business requirements",
+                "Improve product and category visibility",
+                "Optimize performance and usability",
+                "Connect essential business systems",
+            ],
+            useCases: [
+                "Retail stores",
+                "B2B businesses",
+                "Large catalogs",
+                "Custom e-commerce businesses",
+                "Growing online brands",
+            ],
+            image: ecommerceServiceImages.woocommerce.platform,
+            heroImage: ecommerceServiceImages.woocommerce.platform,
+            nestedServices: woocommerceServices,
+        }),
+
+        createEcommerceService({
+            slug: "amazon",
+            title: "Amazon",
+            description:
+                "Grow your Amazon presence with seller services, product listings, listing optimization, Amazon SEO, A+ Content, Storefronts, and PPC management.",
+            detailedDescription:
+                "Our Amazon services focus on marketplace visibility, product communication, brand presentation, and advertising efficiency. We support sellers from listing creation through ongoing optimization and marketplace growth.",
+            features: amazonServices.map((service) => service.title),
+            benefits: [
+                "Improve marketplace visibility",
+                "Create stronger product listings",
+                "Build a stronger brand presence",
+                "Improve product discoverability",
+                "Support more efficient advertising",
+            ],
+            useCases: [
+                "Amazon sellers",
+                "Private-label brands",
+                "Consumer products",
+                "New product launches",
+                "Established marketplace brands",
+            ],
+            image: ecommerceServiceImages.amazon.platform,
+            heroImage: ecommerceServiceImages.amazon.platform,
+            nestedServices: amazonServices,
+        }),
+
+        createEcommerceService({
+            slug: "ebay",
+            title: "eBay",
+            description:
+                "Build and manage a stronger eBay presence with store setup, listing creation, listing optimization, SEO, store management, and catalog services.",
+            detailedDescription:
+                "Our eBay services help sellers establish a professional marketplace presence and maintain accurate, search-friendly product catalogs. From store setup to listing optimization and ongoing management, the focus remains on discoverability and operational consistency.",
+            features: ebayServices.map((service) => service.title),
+            benefits: [
+                "Improve marketplace presentation",
+                "Create clearer product listings",
+                "Improve product discoverability",
+                "Maintain organized catalogs",
+                "Reduce repetitive marketplace work",
+            ],
+            useCases: [
+                "New eBay sellers",
+                "Retail catalogs",
+                "Multi-SKU sellers",
+                "Growing marketplace businesses",
+                "Businesses outsourcing eBay operations",
+            ],
+            image: ecommerceServiceImages.ebay.platform,
+            heroImage: ecommerceServiceImages.ebay.platform,
+            nestedServices: ebayServices,
+        }),
+
+        createEcommerceService({
+            slug: "daraz",
+            title: "Daraz",
+            description:
+                "Build, optimize, and manage Daraz stores with seller setup, product listings, marketplace SEO, listing optimization, and catalog management.",
+            detailedDescription:
+                "Our Daraz services help sellers build professional marketplace stores, create better product listings, improve search visibility, and maintain organized catalogs as their businesses grow.",
+            features: darazServices.map((service) => service.title),
+            benefits: [
+                "Build a stronger Daraz presence",
+                "Improve product discoverability",
+                "Create better marketplace listings",
+                "Maintain organized product catalogs",
+                "Support ongoing seller operations",
+            ],
+            useCases: [
+                "Daraz sellers",
+                "Pakistani retail businesses",
+                "Local brands",
+                "Growing marketplace stores",
+                "Multi-SKU catalogs",
+            ],
+            image: ecommerceServiceImages.daraz.platform,
+            heroImage: ecommerceServiceImages.daraz.platform,
+            nestedServices: darazServices,
+        }),
+
+        createEcommerceService({
+            slug: "etsy",
+            title: "Etsy",
+            description:
+                "Launch and grow Etsy shops with setup, branding, product listings, Etsy SEO, listing optimization, shop management, and product content support.",
+            detailedDescription:
+                "Our Etsy services help handmade, digital, personalized, vintage, and niche-product sellers create cohesive shops and optimize product listings around relevant shopper searches.",
+            features: etsyServices.map((service) => service.title),
+            benefits: [
+                "Build a professional Etsy shop",
+                "Improve product discoverability",
+                "Create stronger listing content",
+                "Strengthen shop branding",
+                "Support ongoing marketplace growth",
+            ],
+            useCases: [
+                "Handmade businesses",
+                "Digital product creators",
+                "Personalized products",
+                "Vintage sellers",
+                "Niche Etsy shops",
+            ],
+            image: ecommerceServiceImages.etsy.platform,
+            heroImage: ecommerceServiceImages.etsy.platform,
+            nestedServices: etsyServices,
+        }),
+
+        createEcommerceService({
+            slug: "tiktok-shop",
+            title: "TikTok Shop",
+            description:
+                "Build a content-led TikTok Shop presence with setup, product listings, SEO, store optimization, management, content strategy, and integrations.",
+            detailedDescription:
+                "Our TikTok Shop services connect short-form content, product discovery, creator activity, catalog management, and commerce operations to help brands build a stronger social-commerce presence.",
+            features: tiktokShopServices.map((service) => service.title),
+            benefits: [
+                "Build a commerce-ready TikTok Shop",
+                "Improve product discoverability",
+                "Connect content with commerce",
+                "Organize product catalogs",
+                "Support ongoing social-commerce operations",
+            ],
+            useCases: [
+                "D2C brands",
+                "Beauty and fashion businesses",
+                "Consumer products",
+                "Creator-led campaigns",
+                "Social-commerce businesses",
+            ],
+          image: ecommerceServiceImages.tiktok.platform,
+heroImage: ecommerceServiceImages.tiktok.platform,
+nestedServices: tiktokShopServices,
+        }),
+    ];
+
+    // Replace ONLY E-Commerce's direct services.
+    // Every other service in the global services array remains untouched.
+    ecommerce.specificServices = ecommercePlatforms;
+
+    ecommerce.hero.subtitle =
+        "Build, optimize, and scale high-performing e-commerce businesses across Shopify, WooCommerce, Amazon, eBay, Daraz, Etsy, and TikTok Shop with development, marketplace optimization, SEO, automation, and growth services.";
+
+    ecommerce.cta.description =
+        "Let's build, optimize, and scale your online store or marketplace presence across Shopify, WooCommerce, Amazon, eBay, Daraz, Etsy, and TikTok Shop. Contact our e-commerce team to discuss your goals, requirements, and growth opportunities.";
+}
+
+// ============================================================
+// E-COMMERCE HELPERS
+// ============================================================
+export function getEcommercePlatformBySlug(
+    platformSlug: string,
+): ServiceFeature | undefined {
+    const ecommerce = getServiceBySlug("ecommerce");
+
+    return ecommerce?.specificServices.find(
+        (platform) => platform.slug === platformSlug,
+    );
+}
+
+/**
+ * Maps internal E-Commerce service slugs
+ * to their public/canonical URL slugs.
+ *
+ * Internal data slugs stay unchanged.
+ * Only public URLs are flattened/normalized.
+ */
+const ecommerceCanonicalSlugMap: Record<string, string> = {
+    "shopify-theme-customization":
+        "shopify-theme-development",
+
+    "woocommerce-theme-customization":
+        "woocommerce-custom-development",
+
+    "daraz-seller-store-setup":
+        "daraz-store-setup",
+};
+
+/**
+ * Maps public/legacy URL slugs to the
+ * internal service slugs used in the data.
+ */
+const ecommerceRouteSlugMap: Record<string, string> = {
+    // Shopify
+    "shopify-theme-development":
+        "shopify-theme-customization",
+
+    "shopify-seo-optimization":
+        "shopify-seo",
+
+    // WooCommerce
+    "woocommerce-custom-development":
+        "woocommerce-theme-customization",
+
+    "woocommerce-seo-optimization":
+        "woocommerce-seo",
+
+    // Daraz
+    "daraz-store-setup":
+        "daraz-seller-store-setup",
+};
+
+/**
+ * Returns the canonical public URL slug
+ * for an internal E-Commerce service slug.
+ */
+export function getEcommercePublicServiceSlug(
+    serviceSlug: string,
+): string {
+    return (
+        ecommerceCanonicalSlugMap[serviceSlug] ||
+        serviceSlug
+    );
+}
+
+/**
+ * Finds an E-Commerce service using its
+ * public/canonical URL slug or a known legacy slug.
+ *
+ * Example:
+ * shopify-theme-development
+ * -> Shopify platform
+ * -> shopify-theme-customization service
+ */
+export function getEcommerceServiceByPublicSlug(
+    publicSlug: string,
+): {
+    platform: ServiceFeature;
+    service: ServiceFeature;
+} | undefined {
+    const ecommerce = getServiceBySlug("ecommerce");
+
+    if (!ecommerce) {
+        return undefined;
+    }
+
+    const internalSlug =
+        ecommerceRouteSlugMap[publicSlug] ||
+        publicSlug;
+
+    for (const platform of ecommerce.specificServices) {
+        const service = (
+            platform.nestedServices || []
+        ).find(
+            (item) => item.slug === internalSlug,
+        );
+
+        if (service) {
+            return {
+                platform,
+                service,
+            };
+        }
+    }
+
+    return undefined;
+}
+
+/**
+ * Returns all canonical flat E-Commerce
+ * service URL slugs.
+ *
+ * Example:
+ * shopify-theme-customization
+ * -> shopify-theme-development
+ */
+export function getAllEcommerceServiceSlugs(): string[] {
+    const ecommerce = getServiceBySlug("ecommerce");
+
+    if (!ecommerce) {
+        return [];
+    }
+
+    return Array.from(
+        new Set(
+            ecommerce.specificServices.flatMap(
+                (platform) =>
+                    (platform.nestedServices || []).map(
+                        (service) =>
+                            getEcommercePublicServiceSlug(
+                                service.slug,
+                            ),
+                    ),
+            ),
+        ),
+    );
+}
+
+/**
+ * Finds an E-Commerce service by platform
+ * and either its internal or public/legacy slug.
+ *
+ * This is mainly useful for handling old nested URLs.
+ */
+export function getEcommerceServiceByRouteSlug(
+    platformSlug: string,
+    serviceSlug: string,
+): {
+    platform: ServiceFeature;
+    service: ServiceFeature;
+} | undefined {
+    const platform =
+        getEcommercePlatformBySlug(platformSlug);
+
+    if (!platform?.nestedServices) {
+        return undefined;
+    }
+
+    const internalSlug =
+        ecommerceRouteSlugMap[serviceSlug] ||
+        serviceSlug;
+
+    const service = platform.nestedServices.find(
+        (item) => item.slug === internalSlug,
+    );
+
+    if (!service) {
+        return undefined;
+    }
+
+    return {
+        platform,
+        service,
+    };
+}
+
+/**
+ * Existing helper kept for compatibility with
+ * old code/imports.
+ */
+export function getEcommerceServiceBySlug(
+    platformSlug: string,
+    serviceSlug: string,
+): {
+    platform: ServiceFeature;
+    service: ServiceFeature;
+} | undefined {
+    return getEcommerceServiceByRouteSlug(
+        platformSlug,
+        serviceSlug,
+    );
+}
+
+export function getAllEcommercePlatformSlugs(): string[] {
+    const ecommerce = getServiceBySlug("ecommerce");
+
+    return (
+        ecommerce?.specificServices.map(
+            (platform) => platform.slug,
+        ) || []
+    );
+}
+
+/**
+ * Returns the internal platform/service pairs.
+ *
+ * Used by the old nested route so those URLs
+ * can be redirected to the new flat URLs.
+ */
+export function getAllEcommerceServiceParams(): {
+    platformSlug: string;
+    serviceSlug: string;
+}[] {
+    const ecommerce = getServiceBySlug("ecommerce");
+
+    if (!ecommerce) {
+        return [];
+    }
+
+    return ecommerce.specificServices.flatMap(
+        (platform) =>
+            (platform.nestedServices || []).map(
+                (service) => ({
+                    platformSlug: platform.slug,
+                    serviceSlug: service.slug,
+                }),
+            ),
+    );
+}
+
+/**
+ * Existing legacy helper.
+ *
+ * It now resolves both internal and known
+ * public/legacy E-Commerce service slugs.
+ */
+export function getEcommerceLegacyServiceBySlug(
+    legacySlug: string,
+): {
+    platform: ServiceFeature;
+    service: ServiceFeature;
+} | undefined {
+    return getEcommerceServiceByPublicSlug(
+        legacySlug,
+    );
+}
+
+export function getServiceBySlug(
+    slug: string,
+): Service | undefined {
+    return services.find(
+        (service) => service.slug === slug,
+    );
 }
 
 export function getAllServiceSlugs(): string[] {
-    return services.map((service) => service.slug);
+    return services.map(
+        (service) => service.slug,
+    );
 }
 
-export function getSubServiceBySlug(serviceSlug: string, subServiceSlug: string): ServiceFeature | undefined {
-    const service = getServiceBySlug(serviceSlug);
-    if (!service) return undefined;
-    return service.specificServices.find((sub) => sub.slug === subServiceSlug);
+export function getSubServiceBySlug(
+    serviceSlug: string,
+    subServiceSlug: string,
+): ServiceFeature | undefined {
+    const service =
+        getServiceBySlug(serviceSlug);
+
+    if (!service) {
+        return undefined;
+    }
+
+    return service.specificServices.find(
+        (sub) => sub.slug === subServiceSlug,
+    );
 }
 
-export function getAllSubServiceSlugs(): { serviceSlug: string; subServiceSlug: string }[] {
-    const slugs: { serviceSlug: string; subServiceSlug: string }[] = [];
+export function getAllSubServiceSlugs(): {
+    serviceSlug: string;
+    subServiceSlug: string;
+}[] {
+    const slugs: {
+        serviceSlug: string;
+        subServiceSlug: string;
+    }[] = [];
+
     for (const service of services) {
         for (const subService of service.specificServices) {
             slugs.push({
@@ -3445,5 +5391,6 @@ export function getAllSubServiceSlugs(): { serviceSlug: string; subServiceSlug: 
             });
         }
     }
+
     return slugs;
 }

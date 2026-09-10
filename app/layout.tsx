@@ -11,6 +11,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+    metadataBase: new URL("https://minhajsolutions.com"),
   title: "Minhaj Solutions | Leading Technology Services Provider",
   description: "Professional software development, website design, digital marketing, and e-commerce solutions. 134 specialized services across 4 main categories.",
 };
