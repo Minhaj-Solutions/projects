@@ -49,6 +49,23 @@ export function OpportunityCard({
         </span>
       </div>
 
+      {/* Opportunity Badges */}
+      <div className="flex flex-wrap gap-2 mb-5">
+        {opportunity.type === "Internship" && (
+          <span className="rounded-full bg-green-50 px-3 py-1.5 text-xs font-medium text-green-700">
+            Paid Internship
+          </span>
+        )}
+
+        <span className="rounded-full bg-gray-100 px-3 py-1.5 text-xs font-medium text-gray-600">
+          {opportunity.experience}
+        </span>
+
+        <span className="rounded-full bg-gray-100 px-3 py-1.5 text-xs font-medium text-gray-600">
+          {opportunity.location}
+        </span>
+      </div>
+
       <div className="flex-1">
         <h3 className="text-xl font-bold text-gray-900 mb-3">
           {opportunity.title}
