@@ -101,37 +101,58 @@ export default function ContactPage() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
 
-    if (!validateForm()) {
-      return;
+  if (!validateForm()) {
+    return;
+  }
+
+  setIsSubmitting(true);
+
+  try {
+    const response = await fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      throw new Error(result.message || "Failed to send message.");
     }
 
-    setIsSubmitting(true);
+    setIsSubmitted(true);
 
-    // Simulate API call
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      setIsSubmitted(true);
-      setFormData({
-        firstName: "",
-        lastName: "",
-        businessEmail: "",
-        company: "",
-        jobTitle: "",
-        phone: "",
-        location: "",
-        message: "",
-        consent: false,
-      });
-      setErrors({});
-    } catch (error) {
-      console.error("Form submission error:", error);
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+    setFormData({
+      firstName: "",
+      lastName: "",
+      businessEmail: "",
+      company: "",
+      jobTitle: "",
+      phone: "",
+      location: "",
+      message: "",
+      consent: false,
+    });
+
+    setErrors({});
+  } catch (error) {
+    console.error("Contact form submission error:", error);
+
+    alert(
+      error instanceof Error
+        ? error.message
+        : "Unable to send your message. Please try again."
+    );
+  } finally {
+    setIsSubmitting(false);
+  }
+};
+
 
   const handleChange = (
     e: React.ChangeEvent<

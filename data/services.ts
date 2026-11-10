@@ -1761,8 +1761,7 @@ export const services: Service[] = [
         },
     },
        
-
-// 5. E-Commerce Solutions
+ // 5. E-Commerce Solutions
 {
     slug: "ecommerce",
     title: "E-Commerce Solutions",

@@ -1,11 +1,13 @@
 export const SITE_NAME = 'Minhaj Solutions'
 export const SITE_DESCRIPTION = 'Professional software development, website design, digital marketing, and e-commerce solutions.'
 
+
 export const NAVIGATION_ITEMS = [
   { name: 'Home', href: '/' },
   { name: 'Services', href: '/services' },
   { name: 'Portfolio', href: '/portfolio' },
   { name: 'Blog', href: '/blog' },
+  { name: 'Careers', href: '/jobs-internships' },
   { name: 'About', href: '/about' },
   { name: 'AI Training', href: '/courses/ai-training' },
   { name: 'Contact', href: '/contact' },
